@@ -16,4 +16,5 @@ func _ready():
 func _on_Server_connection_to_client(status):
 	print("Server status: ", status)
 	if status == StreamPeerTCP.STATUS_CONNECTED:
-		_server.communicate()
+#		_server.communicate_test()
+		pass
