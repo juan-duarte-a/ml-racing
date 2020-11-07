@@ -28,13 +28,13 @@ func set_action(action: int):
 		velocity = Vector2.ZERO
 	elif action == ACTIONS.TURN_LEFT:
 		direction = direction.rotated(deg2rad(-turn_angle))
-#		set_rotation_degrees(rotation_degrees - turn_angle)
+		set_rotation_degrees(rad2deg(direction.angle()))
 		print(direction)
 		if velocity != Vector2.ZERO:
 			velocity = direction * speed
 	elif action == ACTIONS.TURN_RIGHT:
 		direction = direction.rotated(deg2rad(turn_angle))
-#		set_rotation_degrees(rotation_degrees + turn_angle)
+		set_rotation_degrees(rad2deg(direction.angle()))
 		print(direction)
 		if velocity != Vector2.ZERO:
 			velocity = direction * speed
@@ -51,10 +51,8 @@ func _process(delta):
 	elif Input.is_action_just_pressed("turn_left"):
 		print("LEFT: ", OS.get_ticks_msec())
 		set_action(ACTIONS.TURN_LEFT)
-		set_rotation_degrees(rad2deg(direction.angle()))
 	elif Input.is_action_just_pressed("turn_right"):
 		print("RIGHT: ", OS.get_ticks_msec())
 		set_action(ACTIONS.TURN_RIGHT)
-		set_rotation_degrees(rad2deg(direction.angle()))
 	
 	velocity = move_and_slide(velocity)
