@@ -3,7 +3,7 @@ class_name Car
 
 export var speed: int = 100 # In pixels / second.
 export var turn_angle: float = 30 # In degrees.
-export var turn_velocity: float  = 30/0.2 # In degrees / sec.
+export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 
 onready var road: TileMap = get_parent().get_node("TileMapRoad")
 
@@ -41,12 +41,14 @@ func set_action(action: int):
 		if turning == false:
 			turning = true
 			turning_left = true
+			print("Turning start time: ", OS.get_ticks_msec())
 		if velocity != Vector2.ZERO:
 			velocity = direction * speed * speed_factor
 	elif action == ACTIONS.TURN_RIGHT:
 		if turning == false:
 			turning = true
 			turning_left = false
+			print("Turning start time: ", OS.get_ticks_msec())
 		if velocity != Vector2.ZERO:
 			velocity = direction * speed * speed_factor
 
@@ -69,27 +71,28 @@ func update_turn_angle(delta: float, left: bool):
 	set_rotation_degrees(rad2deg(rotation + angle))
 	
 	if not turning:
-		if abs(direction.angle_to(Vector2.UP)) < deg2rad(0.01):
+		if abs(direction.angle_to(Vector2.UP)) < deg2rad(0.001):
 			direction = Vector2.UP
 			if velocity != Vector2.ZERO:
 				velocity = Vector2.UP * speed * speed_factor
 			set_rotation_degrees(-90)
-		elif abs(direction.angle_to(Vector2.RIGHT)) < deg2rad(0.01):
+		elif abs(direction.angle_to(Vector2.RIGHT)) < deg2rad(0.001):
 			direction = Vector2.RIGHT
 			if velocity != Vector2.ZERO:
 				velocity = Vector2.RIGHT * speed * speed_factor
 			set_rotation_degrees(0)
-		elif abs(direction.angle_to(Vector2.DOWN)) < deg2rad(0.01):
+		elif abs(direction.angle_to(Vector2.DOWN)) < deg2rad(0.001):
 			direction = Vector2.DOWN
 			if velocity != Vector2.ZERO:
 				velocity = Vector2.DOWN * speed * speed_factor
 			set_rotation_degrees(90)
-		elif abs(direction.angle_to(Vector2.LEFT)) < deg2rad(0.01):
+		elif abs(direction.angle_to(Vector2.LEFT)) < deg2rad(0.001):
 			direction = Vector2.LEFT
 			if velocity != Vector2.ZERO:
 				velocity = Vector2.LEFT * speed * speed_factor
 			set_rotation_degrees(180)
 		print(direction)
+		print("Turning finish time: ", OS.get_ticks_msec())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

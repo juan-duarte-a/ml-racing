@@ -37,16 +37,16 @@
 [ext_resource path="res://assets/Deco/Rock_120.png" type="Texture" id=35]
 [ext_resource path="res://src/Track.gd" type="Script" id=36]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 40, 80, 40, 80, 80, 40, 80 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 120, 40, 80, 80, 40, 80, 0, 40, 40, 0, 80, 0, 80, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 40, 40, 80, 40, 80, 80, 40, 80 )
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=4]
 0/name = "Road_Main_120x120.png 0"
 0/texture = ExtResource( 20 )
 0/tex_offset = Vector2( 0, 0 )
@@ -477,14 +477,14 @@ points = PoolVector2Array( 40, 40, 80, 40, 80, 80, 40, 80 )
 30/navigation_offset = Vector2( 0, 0 )
 30/shape_offset = Vector2( 0, 0 )
 30/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-30/shape = SubResource( 2 )
+30/shape = SubResource( 1 )
 30/shape_one_way = false
 30/shape_one_way_margin = 1.0
 30/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 2 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 30/z_index = 0
@@ -498,14 +498,14 @@ points = PoolVector2Array( 40, 40, 80, 40, 80, 80, 40, 80 )
 31/navigation_offset = Vector2( 0, 0 )
 31/shape_offset = Vector2( 0, 0 )
 31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-31/shape = SubResource( 3 )
+31/shape = SubResource( 2 )
 31/shape_one_way = false
 31/shape_one_way_margin = 1.0
 31/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 31/z_index = 0
@@ -519,14 +519,14 @@ points = PoolVector2Array( 40, 40, 80, 40, 80, 80, 40, 80 )
 32/navigation_offset = Vector2( 0, 0 )
 32/shape_offset = Vector2( 0, 0 )
 32/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-32/shape = SubResource( 4 )
+32/shape = SubResource( 3 )
 32/shape_one_way = false
 32/shape_one_way_margin = 1.0
 32/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 4 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 32/z_index = 0
@@ -536,7 +536,7 @@ scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 36 )
 
 [node name="TileMapBackground" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 60, 60 )
 collision_layer = 4
 collision_mask = 1025
@@ -545,7 +545,7 @@ tile_data = PoolIntArray( 0, 25, 0, 2, 27, 0, 4, 25, 0, 6, 27, 0, 8, 25, 0, 10, 
 
 [node name="TileMapRoad" type="TileMap" parent="."]
 position = Vector2( 0, 60 )
-tile_set = SubResource( 1 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 120, 120 )
 collision_layer = 2
 format = 1
@@ -571,7 +571,7 @@ scale = Vector2( 0.1, 0.1 )
 polygon = PoolVector2Array( 63, -486.4, 63, -485.2, 91, -480.2, 91, -479, 117, -471, 117, -469.8, 137, -460.8, 137, -459.6, 161, -443.6, 161, -442.3, 184, -419.3, 184, -417.1, 203, -388.1, 203, -384.9, 212, -361.9, 212, -348.5, 214, -240.5, 212.8, -240.5, 211.8, -231.5, 210.2, -231.5, 197, -203.1, 197, -185.5, 207, -150.8, 207, -132.5, 205.8, -132.5, 200.8, -89.5, 199.3, -89.5, 188, -62.2, 188, -48.5, 188.9, -34.3, 224, -10.6, 224, -9.39999, 236, 1.59998, 236, 4.5, 238.2, 27.5, 236.2, 27.5, 233.2, 33.5, 224, 33.5, 224, 31.9, 193, 21.3, 193, 35.5, 196.9, 94.7, 204, 100.6, 204, 108.5, 205, 108.5, 205, 134.5, 207.1, 173.5, 205.8, 173.5, 204.2, 187.5, 204.9, 187.5, 213, 308.4, 213, 374.6, 211.9, 393.5, 210.5, 393.5, 208.5, 400.5, 207, 400.5, 188, 427.5, 186.9, 427.5, 150.9, 468.5, 148.6, 468.5, 126.5, 480.5, 121.2, 480.5, 83.1, 484.5, -83.1, 484.5, -127, 480.3, -127, 478.9, -149, 469.8, -149, 468.3, -169, 449.4, -169, 447.4, -187, 428.3, -187, 426.2, -211, 394.2, -211, 384.5, -213, 318.5, -211.9, 318.5, -203, 182.4, -203, 177.9, -207, 168.9, -207, 167.5, -205, 117.5, -204, 117.5, -204, 100.5, -202, 100.5, -196, 92, -196, 76.4, -192.2, 20.7, -217.6, 31.5, -221.6, 31.5, -234, 33.9, -234, 31.3, -237, 28.3, -237, 22.5, -238.2, 9.5, -236.8, 9.5, -235.8, 0.5, -233.9, 0.5, -224.9, -9.5, -222.8, -9.5, -211.8, -19.5, -209.6, -19.5, -189, -32.6, -189, -42.7, -187, -51.9, -187, -60.1, -200, -89.1, -200, -93.1, -206, -125.3, -206, -153.9, -198, -174.9, -198, -180.6, -196.2, -199.5, -213, -238.1, -213, -337.6, -210.9, -366.5, -209.4, -366.5, -197.4, -398.5, -196.1, -398.5, -181.1, -422.5, -179.9, -422.5, -162.9, -441.5, -160.7, -441.5, -138.7, -459.5, -136.5, -459.5, -107.5, -474.5, -104.3, -474.5, -76.3, -483.5, -71.4, -483.5, -45.2, -488.5, -35, -488.5, -16, -489.4, -16, -490.6 )
 
 [node name="TileMapTerrain" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 60, 60 )
 collision_layer = 2
 format = 1
