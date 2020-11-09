@@ -1,8 +1,8 @@
 extends KinematicBody2D
 class_name Car
 
-export var speed: int = 100 # In pixels / second.
-export var turn_angle: float = 30 # In degrees.
+export var _speed: int = 100 # In pixels / second.
+export var _turn_angle: float = 30 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 
 onready var road: TileMap = get_parent().get_node("TileMapRoad")
@@ -32,28 +32,28 @@ func _ready():
 func set_action(action: int):
 	if action == ACTIONS.RUN:
 		if velocity == Vector2.ZERO:
-			velocity = direction * speed * speed_factor
+			velocity = direction * _speed * speed_factor
 		else:
-			velocity = velocity.normalized() * speed * speed_factor
+			velocity = velocity.normalized() * _speed * speed_factor
 	elif action == ACTIONS.STOP:
 		velocity = Vector2.ZERO
 	elif action == ACTIONS.TURN_LEFT:
 		if turning == false:
 			turning = true
 			turning_left = true
-			print("Turning start time: ", OS.get_ticks_msec())
+#			print("Turning start time: ", OS.get_ticks_msec())
 		if velocity != Vector2.ZERO:
-			velocity = direction * speed * speed_factor
+			velocity = direction * _speed * speed_factor
 	elif action == ACTIONS.TURN_RIGHT:
 		if turning == false:
 			turning = true
 			turning_left = false
-			print("Turning start time: ", OS.get_ticks_msec())
+#			print("Turning start time: ", OS.get_ticks_msec())
 		if velocity != Vector2.ZERO:
-			velocity = direction * speed * speed_factor
+			velocity = direction * _speed * speed_factor
 
 
-func update_turn_angle(delta: float, left: bool):
+func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle):
 	var angle: float
 	var rotation_speed: float = deg2rad(turn_velocity) # To radians.
 	angle = rotation_speed * delta
@@ -74,29 +74,34 @@ func update_turn_angle(delta: float, left: bool):
 		if abs(direction.angle_to(Vector2.UP)) < deg2rad(0.001):
 			direction = Vector2.UP
 			if velocity != Vector2.ZERO:
-				velocity = Vector2.UP * speed * speed_factor
+				velocity = Vector2.UP * _speed * speed_factor
 			set_rotation_degrees(-90)
 		elif abs(direction.angle_to(Vector2.RIGHT)) < deg2rad(0.001):
 			direction = Vector2.RIGHT
 			if velocity != Vector2.ZERO:
-				velocity = Vector2.RIGHT * speed * speed_factor
+				velocity = Vector2.RIGHT * _speed * speed_factor
 			set_rotation_degrees(0)
 		elif abs(direction.angle_to(Vector2.DOWN)) < deg2rad(0.001):
 			direction = Vector2.DOWN
 			if velocity != Vector2.ZERO:
-				velocity = Vector2.DOWN * speed * speed_factor
+				velocity = Vector2.DOWN * _speed * speed_factor
 			set_rotation_degrees(90)
 		elif abs(direction.angle_to(Vector2.LEFT)) < deg2rad(0.001):
 			direction = Vector2.LEFT
 			if velocity != Vector2.ZERO:
-				velocity = Vector2.LEFT * speed * speed_factor
+				velocity = Vector2.LEFT * _speed * speed_factor
 			set_rotation_degrees(180)
-		print(direction)
-		print("Turning finish time: ", OS.get_ticks_msec())
+#		print(direction)
+#		print("Turning finish time: ", OS.get_ticks_msec())
+
+
+func set_speed(speed: int):
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+#	print(road.get_cellv(road.world_to_map(Vector2(position.x, position.y - 60))) == -1)
 	if road.get_cellv(road.world_to_map(Vector2(position.x, position.y - 60))) == -1:
 		speed_factor = 0.6
 	else:

@@ -21,6 +21,7 @@ var _online: bool = false
 var _byte_array: PoolByteArray
 var _data: Array
 var _message: String
+var comm_flow_control: bool
 
 onready var server_timer: Timer = $ServerTimer
 onready var car: KinematicBody2D = $Track/Car
@@ -30,6 +31,7 @@ onready var car: KinematicBody2D = $Track/Car
 func _ready():
 	socket_url = "127.0.0.1"
 	port = 11435
+	comm_flow_control = false
 
 
 func connect_to_client():
@@ -108,8 +110,15 @@ func receive_data(bytes: int = 1) -> Array:
 func _process(delta):
 	_data = []
 	if _online:
+		if comm_flow_control:
+			_byte_array = [49, 50, 51]
+			print("Sent ", _byte_array[0],_byte_array[1],_byte_array[2], " -> ", \
+					send_data(_byte_array), " ", _byte_array.get_string_from_ascii()) # Sends response to client.
+			comm_flow_control = false
+		
 		if streamTCP.get_available_bytes() >= packet_size:
 			_data = receive_data(packet_size) # Waits for data to be delivered from client.
+			comm_flow_control = true
 		
 		if _data != [] and _data[0] == 0:
 			if (_data[1] as PoolByteArray) == ACTIONS["RUN"]:
@@ -126,7 +135,3 @@ func _process(delta):
 				_message = "TURN_RIGHT"
 			print("Received <- ", _data[0], " ", _data[1][0],_data[1][1],_data[1][2], \
 					" ", (_data[1] as PoolByteArray).get_string_from_ascii(), " ", _message)
-			
-			_byte_array = [49, 50, 51]
-			print("Sent ", _byte_array[0],_byte_array[1],_byte_array[2], " -> ", \
-					send_data(_byte_array), " ", _byte_array.get_string_from_ascii()) # Sends response to client.
