@@ -6,6 +6,13 @@ var _server: TCP_Server
 var streamTCP: StreamPeerTCP
 var socket_url: String
 var port: int
+var _online: bool = false
+var _byte_array: PoolByteArray
+var _data: Array
+var _message: String
+var comm_flow_control: bool
+var temp_int: int
+var temp_int2: int
 
 export var packet_size: int = 3
 
@@ -16,12 +23,6 @@ var ACTIONS = {
 	"TURN_LEFT": ([50, 50, 50] as PoolByteArray),
 	"TURN_RIGHT": ([51, 51, 51] as PoolByteArray)
 	}
-
-var _online: bool = false
-var _byte_array: PoolByteArray
-var _data: Array
-var _message: String
-var comm_flow_control: bool
 
 onready var server_timer: Timer = $ServerTimer
 onready var car: KinematicBody2D = $Track/Car
@@ -107,11 +108,14 @@ func receive_data(bytes: int = 1) -> Array:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	_data = []
 	if _online:
 		if comm_flow_control:
-			_byte_array = [49, 50, 51]
+			temp_int2 = car.get_distance_front()
+			temp_int = int(temp_int2 / 256)
+			temp_int2 -= temp_int * 256
+			_byte_array = [0, temp_int, temp_int2]
 			print("Sent ", _byte_array[0],_byte_array[1],_byte_array[2], " -> ", \
 					send_data(_byte_array), " ", _byte_array.get_string_from_ascii()) # Sends response to client.
 			comm_flow_control = false

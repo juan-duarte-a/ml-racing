@@ -1,11 +1,26 @@
 extends KinematicBody2D
 class_name Car
 
+const RAD_90: float = 1.5707963
+
 export var _speed: int = 100 # In pixels / second.
 export var _turn_angle: float = 30 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 
 onready var road: TileMap = get_parent().get_node("TileMapRoad")
+onready var ray_cast_l: CarRayCast = get_node("CarRayCastL")
+onready var ray_cast_r: CarRayCast = get_node("CarRayCastR")
+onready var front_position: Area2D = get_node("FrontPositioner")
+
+onready var radar: Array = [
+	get_node("CarRayCast1"),
+	get_node("CarRayCast2"),
+	get_node("CarRayCast3"),
+	get_node("CarRayCast4"),
+	get_node("CarRayCast5"),
+	get_node("CarRayCast6"),
+	get_node("CarRayCast7")
+]
 
 var velocity: Vector2
 var direction: Vector2
@@ -100,6 +115,27 @@ func set_speed(speed: int):
 	pass
 
 
+func get_distance_front() -> int:
+	return int((radar[3] as CarRayCast).get_distance())
+
+
+func get_distance_to_center() -> int:
+	ray_cast_l.force_raycast_update()
+	ray_cast_r.force_raycast_update()
+	
+	var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
+			ray_cast_l.get_collision_point() - front_position.get_global_position())
+	
+#	print(Vector2(front_position.get_global_position().x, front_position.get_global_position().y))
+	if rad2deg(angle) < 180 and rad2deg(angle) > -180:
+		ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
+		ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
+#	print(rad2deg(ray_cast_r.rotation), " - ", rad2deg(angle), " - ", rad2deg(1.570796327 - angle), \
+#		" -> ", rad2deg(ray_cast_r.rotation + (1.570796327 + angle)))
+	
+	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance())
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -107,7 +143,7 @@ func set_speed(speed: int):
 
 func _physics_process(delta):
 #	print(road.get_cellv(road.world_to_map(Vector2(position.x, position.y - 60))) == -1)
-	if road.get_cellv(road.world_to_map(Vector2(position.x, position.y - 60))) == -1:
+	if not road.on_road(position.x, position.y):
 		speed_factor = 0.6
 	else:
 		speed_factor = 1
@@ -136,3 +172,8 @@ func _physics_process(delta):
 		prev_speed_factor = speed_factor
 	else:
 		collision_object = move_and_collide(velocity * delta * speed_factor)
+	
+	print(get_distance_to_center())
+#	print(road.is_oriented(front_position.get_global_position(), direction))
+#	print(road._get_direction_vector(front_position.get_global_position()))
+#	print(ray_cast_l.get_collision_point())
