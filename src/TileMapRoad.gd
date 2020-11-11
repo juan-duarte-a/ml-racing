@@ -60,8 +60,8 @@ func _ready():
 	print("Done")
 
 
-func on_road(x_pos: int, y_pos: int) -> bool:
-	return get_cellv(world_to_map(Vector2(x_pos, y_pos - 60))) != -1
+func on_road(position_vector: Vector2) -> bool:
+	return get_cellv(world_to_map(to_local(position_vector))) != -1
 
 
 func is_oriented(position_vector: Vector2, direction: Vector2) -> bool:

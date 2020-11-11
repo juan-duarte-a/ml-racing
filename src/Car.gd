@@ -126,12 +126,9 @@ func get_distance_to_center() -> int:
 	var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
 			ray_cast_l.get_collision_point() - front_position.get_global_position())
 	
-#	print(Vector2(front_position.get_global_position().x, front_position.get_global_position().y))
-	if rad2deg(angle) < 180 and rad2deg(angle) > -180:
+	if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
 		ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
 		ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
-#	print(rad2deg(ray_cast_r.rotation), " - ", rad2deg(angle), " - ", rad2deg(1.570796327 - angle), \
-#		" -> ", rad2deg(ray_cast_r.rotation + (1.570796327 + angle)))
 	
 	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance())
 
@@ -142,8 +139,7 @@ func get_distance_to_center() -> int:
 
 
 func _physics_process(delta):
-#	print(road.get_cellv(road.world_to_map(Vector2(position.x, position.y - 60))) == -1)
-	if not road.on_road(position.x, position.y):
+	if not road.on_road(get_global_position()):
 		speed_factor = 0.6
 	else:
 		speed_factor = 1
@@ -173,7 +169,8 @@ func _physics_process(delta):
 	else:
 		collision_object = move_and_collide(velocity * delta * speed_factor)
 	
-	print(get_distance_to_center())
+	get_distance_to_center()
+#	print(road.on_road(front_position.get_global_position()))
 #	print(road.is_oriented(front_position.get_global_position(), direction))
 #	print(road._get_direction_vector(front_position.get_global_position()))
-#	print(ray_cast_l.get_collision_point())
+#	print(radar[3].get_distance())
