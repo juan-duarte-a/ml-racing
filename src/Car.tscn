@@ -43,43 +43,35 @@ shape = SubResource( 1 )
 [node name="CarRayCast1" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = 1.5708
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCast2" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = 1.0472
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCast3" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = 0.5236
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCast4" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = -2.38419e-07
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCast5" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = -0.523595
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCast6" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = -1.0472
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCast7" parent="RayCasts" instance=ExtResource( 5 )]
 position = Vector2( 68.5, -0.00012207 )
 rotation = -1.5708
-scale = Vector2( 1, 1 )
 
 [node name="CarRayCastL" parent="RayCasts" instance=ExtResource( 5 )]
 self_modulate = Color( 0, 0.0156863, 1, 1 )
 position = Vector2( 68.5, -0.00012207 )
 rotation = -1.5708
-scale = Vector2( 1, 1 )
 
 [node name="Line2D" parent="RayCasts/CarRayCastL" index="0"]
 default_color = Color( 0.788235, 0.270588, 0.133333, 1 )
@@ -91,7 +83,6 @@ modulate = Color( 0.788235, 0.270588, 0.133333, 1 )
 self_modulate = Color( 0, 0.0156863, 1, 1 )
 position = Vector2( 68.5, -0.00012207 )
 rotation = 1.5708
-scale = Vector2( 1, 1 )
 
 [node name="Line2D" parent="RayCasts/CarRayCastR" index="0"]
 default_color = Color( 0.788235, 0.270588, 0.133333, 1 )

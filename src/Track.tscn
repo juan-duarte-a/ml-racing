@@ -585,13 +585,11 @@ script = ExtResource( 37 )
 [node name="CollisionRoadLimits" type="Node2D" parent="TileMapRoad" groups=[
 "road_limit",
 ]]
-scale = Vector2( 1, 1 )
 
 [node name="Road_limit1" type="Area2D" parent="TileMapRoad/CollisionRoadLimits" groups=[
 "road_limit",
 ]]
 position = Vector2( 486.088, 591.63 )
-scale = Vector2( 1, 1 )
 collision_layer = 8
 collision_mask = 0
 
@@ -604,7 +602,6 @@ shape = SubResource( 6 )
 "road_limit",
 ]]
 position = Vector2( 470.75, 945.656 )
-scale = Vector2( 1, 1 )
 collision_layer = 8
 collision_mask = 0
 

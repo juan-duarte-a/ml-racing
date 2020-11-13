@@ -29,6 +29,7 @@ func _ready():
 	car.ray_cast_l.set_visible(vision_center_distance)
 	car.ray_cast_r.set_visible(vision_center_distance)
 	car.set_tires_visible(false)
+	car.direction = Vector2(-1,0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -47,7 +47,7 @@ enum ACTIONS {RUN, STOP, TURN_RIGHT, TURN_LEFT}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	direction = Vector2(-1, 0)
+	direction = Vector2(1, 0)
 	velocity = Vector2(0, 0)
 	turning = false
 	accumulated_angle = 0
@@ -157,12 +157,13 @@ func get_distance_to_center() -> int:
 	ray_cast_l.force_raycast_update()
 	ray_cast_r.force_raycast_update()
 	
-	var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
-			ray_cast_l.get_collision_point() - front_position.get_global_position())
-	
-	if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
-		ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
-		ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
+	if road != null:
+		var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
+				ray_cast_l.get_collision_point() - front_position.get_global_position())
+		
+		if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
+			ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
+			ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
 	
 	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance())
 
