@@ -1,0 +1,178 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Car.gd" type="Script" id=2]
+[ext_resource path="res://src/CarTire.gd" type="Script" id=3]
+[ext_resource path="res://assets/Car_3_01.png" type="Texture" id=4]
+[ext_resource path="res://src/CarRayCast.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/tire1.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Car" type="KinematicBody2D"]
+collision_mask = 6
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 20, 0 )
+rotation = 1.5708
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 20, 0 )
+rotation = 1.5708
+scale = Vector2( 0.1, 0.1 )
+polygon = PoolVector2Array( 63, -486.4, 63, -485.2, 91, -480.2, 91, -479, 117, -471, 117, -469.8, 137, -460.8, 137, -459.6, 161, -443.6, 161, -442.3, 184, -419.3, 184, -417.1, 203, -388.1, 203, -384.9, 212, -361.9, 212, -348.5, 214, -240.5, 212.8, -240.5, 211.8, -231.5, 210.2, -231.5, 197, -203.1, 197, -185.5, 207, -150.8, 207, -132.5, 205.8, -132.5, 200.8, -89.5, 199.3, -89.5, 188, -62.2, 188, -48.5, 188.9, -34.3, 224, -10.6, 224, -9.39999, 236, 1.59998, 236, 4.5, 238.2, 27.5, 236.2, 27.5, 233.2, 33.5, 224, 33.5, 224, 31.9, 193, 21.3, 193, 35.5, 196.9, 94.7, 204, 100.6, 204, 108.5, 205, 108.5, 205, 134.5, 207.1, 173.5, 205.8, 173.5, 204.2, 187.5, 204.9, 187.5, 213, 308.4, 213, 374.6, 211.9, 393.5, 210.5, 393.5, 208.5, 400.5, 207, 400.5, 188, 427.5, 186.9, 427.5, 150.9, 468.5, 148.6, 468.5, 126.5, 480.5, 121.2, 480.5, 83.1, 484.5, -83.1, 484.5, -127, 480.3, -127, 478.9, -149, 469.8, -149, 468.3, -169, 449.4, -169, 447.4, -187, 428.3, -187, 426.2, -211, 394.2, -211, 384.5, -213, 318.5, -211.9, 318.5, -203, 182.4, -203, 177.9, -207, 168.9, -207, 167.5, -205, 117.5, -204, 117.5, -204, 100.5, -202, 100.5, -196, 92, -196, 76.4, -192.2, 20.7, -217.6, 31.5, -221.6, 31.5, -234, 33.9, -234, 31.3, -237, 28.3, -237, 22.5, -238.2, 9.5, -236.8, 9.5, -235.8, 0.5, -233.9, 0.5, -224.9, -9.5, -222.8, -9.5, -211.8, -19.5, -209.6, -19.5, -189, -32.6, -189, -42.7, -187, -51.9, -187, -60.1, -200, -89.1, -200, -93.1, -206, -125.3, -206, -153.9, -198, -174.9, -198, -180.6, -196.2, -199.5, -213, -238.1, -213, -337.6, -210.9, -366.5, -209.4, -366.5, -197.4, -398.5, -196.1, -398.5, -181.1, -422.5, -179.9, -422.5, -162.9, -441.5, -160.7, -441.5, -138.7, -459.5, -136.5, -459.5, -107.5, -474.5, -104.3, -474.5, -76.3, -483.5, -71.4, -483.5, -45.2, -488.5, -35, -488.5, -16, -489.4, -16, -490.6 )
+
+[node name="FrontPositioner" type="Area2D" parent="."]
+position = Vector2( 68.5, 0 )
+monitoring = false
+monitorable = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontPositioner"]
+scale = Vector2( 0.2, 0.2 )
+shape = SubResource( 1 )
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="CarRayCast1" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = 1.5708
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCast2" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = 1.0472
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCast3" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = 0.5236
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCast4" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = -2.38419e-07
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCast5" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = -0.523595
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCast6" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = -1.0472
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCast7" parent="RayCasts" instance=ExtResource( 5 )]
+position = Vector2( 68.5, -0.00012207 )
+rotation = -1.5708
+scale = Vector2( 1, 1 )
+
+[node name="CarRayCastL" parent="RayCasts" instance=ExtResource( 5 )]
+self_modulate = Color( 0, 0.0156863, 1, 1 )
+position = Vector2( 68.5, -0.00012207 )
+rotation = -1.5708
+scale = Vector2( 1, 1 )
+
+[node name="Line2D" parent="RayCasts/CarRayCastL" index="0"]
+default_color = Color( 0.788235, 0.270588, 0.133333, 1 )
+
+[node name="Triangle" parent="RayCasts/CarRayCastL/Line2D" index="0"]
+modulate = Color( 0.788235, 0.270588, 0.133333, 1 )
+
+[node name="CarRayCastR" parent="RayCasts" instance=ExtResource( 5 )]
+self_modulate = Color( 0, 0.0156863, 1, 1 )
+position = Vector2( 68.5, -0.00012207 )
+rotation = 1.5708
+scale = Vector2( 1, 1 )
+
+[node name="Line2D" parent="RayCasts/CarRayCastR" index="0"]
+default_color = Color( 0.788235, 0.270588, 0.133333, 1 )
+
+[node name="Triangle" parent="RayCasts/CarRayCastR/Line2D" index="0"]
+modulate = Color( 0.788235, 0.270588, 0.133333, 1 )
+
+[node name="Tires" type="Node2D" parent="."]
+
+[node name="CarTireFR" type="Area2D" parent="Tires"]
+position = Vector2( 44, 16 )
+rotation = 1.5708
+scale = Vector2( 0.245, 0.265 )
+collision_mask = 10
+script = ExtResource( 3 )
+
+[node name="TireImage" type="Sprite" parent="Tires/CarTireFR"]
+modulate = Color( 0.184314, 0.231373, 0.933333, 1 )
+rotation = 1.57079
+scale = Vector2( 0.35, 0.28 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireFR"]
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 2 )
+
+[node name="CarTireFL" type="Area2D" parent="Tires"]
+position = Vector2( 44, -16 )
+rotation = 1.5708
+scale = Vector2( 0.245, 0.265 )
+collision_mask = 10
+script = ExtResource( 3 )
+
+[node name="TireImage" type="Sprite" parent="Tires/CarTireFL"]
+modulate = Color( 0.184314, 0.231373, 0.933333, 1 )
+rotation = 1.57079
+scale = Vector2( 0.35, 0.28 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireFL"]
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 2 )
+
+[node name="CarTireBR" type="Area2D" parent="Tires"]
+position = Vector2( -10, 16 )
+rotation = 1.5708
+scale = Vector2( 0.245, 0.265 )
+collision_mask = 10
+script = ExtResource( 3 )
+
+[node name="TireImage" type="Sprite" parent="Tires/CarTireBR"]
+modulate = Color( 0.184314, 0.231373, 0.933333, 1 )
+rotation = 1.57079
+scale = Vector2( 0.35, 0.28 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireBR"]
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 2 )
+
+[node name="CarTireBL" type="Area2D" parent="Tires"]
+position = Vector2( -10, -16 )
+rotation = 1.5708
+scale = Vector2( 0.245, 0.265 )
+collision_mask = 10
+script = ExtResource( 3 )
+
+[node name="TireImage" type="Sprite" parent="Tires/CarTireBL"]
+modulate = Color( 0.184314, 0.231373, 0.933333, 1 )
+rotation = 1.57079
+scale = Vector2( 0.35, 0.28 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireBL"]
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="Tires/CarTireFR" to="Tires/CarTireFR" method="_on_area_entered"]
+[connection signal="area_entered" from="Tires/CarTireFL" to="Tires/CarTireFL" method="_on_area_entered"]
+[connection signal="area_entered" from="Tires/CarTireBR" to="Tires/CarTireBR" method="_on_area_entered"]
+[connection signal="area_entered" from="Tires/CarTireBL" to="Tires/CarTireBL" method="_on_area_entered"]
+
+[editable path="RayCasts/CarRayCastL"]
+
+[editable path="RayCasts/CarRayCastR"]
