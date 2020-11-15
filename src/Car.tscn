@@ -106,7 +106,7 @@ scale = Vector2( 0.35, 0.28 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireFR"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.01, 0.01 )
 shape = SubResource( 2 )
 
 [node name="CarTireFL" type="Area2D" parent="Tires"]
@@ -123,7 +123,7 @@ scale = Vector2( 0.35, 0.28 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireFL"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.01, 0.01 )
 shape = SubResource( 2 )
 
 [node name="CarTireBR" type="Area2D" parent="Tires"]
@@ -140,7 +140,7 @@ scale = Vector2( 0.35, 0.28 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireBR"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.01, 0.01 )
 shape = SubResource( 2 )
 
 [node name="CarTireBL" type="Area2D" parent="Tires"]
@@ -157,7 +157,7 @@ scale = Vector2( 0.35, 0.28 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireBL"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.01, 0.01 )
 shape = SubResource( 2 )
 [connection signal="area_entered" from="Tires/CarTireFR" to="Tires/CarTireFR" method="_on_area_entered"]
 [connection signal="area_entered" from="Tires/CarTireFL" to="Tires/CarTireFL" method="_on_area_entered"]

@@ -8,5 +8,5 @@ func _on_area_entered(area):
 		tire.set_modulate("ee2f2f")
 		off_road = true
 	else:
-		tire.set_modulate("2f3bee")
+		tire.set_modulate("119b23")
 		off_road = false

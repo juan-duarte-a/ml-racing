@@ -13,5 +13,8 @@ script = ExtResource( 2 )
 [node name="ServerTimer" type="Timer" parent="Server"]
 autostart = true
 
-[node name="Track" parent="Server" instance=ExtResource( 3 )]
+[node name="ServerTimer2" type="Timer" parent="Server"]
+autostart = true
+
+[node name="Track" parent="." instance=ExtResource( 3 )]
 [connection signal="connection_to_client" from="Server" to="." method="_on_Server_connection_to_client"]
