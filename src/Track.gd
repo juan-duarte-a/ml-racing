@@ -7,6 +7,7 @@ var vision_front_distance: bool
 var vision_car: bool
 var vision_tires: bool
 var vision_oriented: bool
+var show_center_distance: bool
 onready var car: KinematicBody2D = $Car
 onready var map_background: TileMap = $TileMapBackground
 onready var map_road: TileMap = $TileMapRoad
@@ -25,6 +26,7 @@ func _ready():
 	vision_car = true
 	vision_tires = false
 	vision_oriented = false
+	show_center_distance = false
 	for ray in car.radar:
 #		(ray as CarRayCast).add_exception(get_node("TileMapRoad/RoadCollisionShapes"))
 		ray.set_visible(vision_radar_mode)
@@ -63,8 +65,10 @@ func _process(_delta):
 			ray.set_visible(vision_radar_mode)
 		if vision_front_distance:
 			car.radar[3].set_visible(vision_front_distance)
-	elif Input.is_action_just_pressed("center_distance"):
+	elif Input.is_action_just_pressed("vision_center_distance"):
 		vision_center_distance = ! vision_center_distance
+		if vision_center_distance:
+			show_center_distance = false
 		car.ray_cast_l.set_visible(vision_center_distance)
 		car.ray_cast_r.set_visible(vision_center_distance)
 	elif Input.is_action_just_pressed("front_distance"):
@@ -78,8 +82,13 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("tires"):
 		vision_tires = !vision_tires
 		car.set_tires_visible(vision_tires)
-	elif Input.is_action_just_pressed("oriented"):
+	elif Input.is_action_just_pressed("vision_oriented"):
 		vision_oriented = !vision_oriented
+	elif Input.is_action_just_pressed("center_distance"):
+		if vision_center_distance:
+			show_center_distance = false
+		else:
+			show_center_distance = !show_center_distance
 	elif Input.is_action_just_pressed("vision_off"):
 		map_background.set_visible(true)
 		map_road.set_visible(true)
@@ -100,10 +109,11 @@ func _process(_delta):
 	if vision_tires:
 		print("Off road tires: ", car.tires_off_road)
 	if vision_front_distance:
-		print(car.radar[3].get_distance())
+		print("Front distance ", car.radar[3].get_distance())
 	if vision_center_distance:
-		print("From center: ", car.get_distance_to_center(), " -> Oriented :", \
-				map_road.is_oriented(car.front_position.get_global_position(), car.direction))
+		print("From center: ", car.get_distance_to_center())
 	if vision_oriented:
-		print(map_road.is_oriented(car.front_position.get_global_position(), car.direction))
+		print("Oriented: ", map_road.is_oriented(car.front_position.get_global_position(), car.direction))
+	if show_center_distance:
+		print("From center: ", car.get_distance_to_center())
 

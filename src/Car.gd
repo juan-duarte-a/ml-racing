@@ -156,7 +156,6 @@ func get_distance_front() -> int:
 func get_distance_to_center() -> int:
 	ray_cast_l.force_raycast_update()
 	ray_cast_r.force_raycast_update()
-	
 	if road != null:
 		var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
 				ray_cast_l.get_collision_point() - front_position.get_global_position())
@@ -164,7 +163,9 @@ func get_distance_to_center() -> int:
 		if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
 			ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
 			ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
-	
+	ray_cast_l.force_raycast_update()
+	ray_cast_r.force_raycast_update()
+
 	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance())
 
 
@@ -217,7 +218,9 @@ func _physics_process(delta):
 	else:
 		collision_object = move_and_collide(velocity * delta * speed_factor)
 	
-	get_distance_to_center()
+	# warning-ignore:return_value_discarded
+	get_distance_to_center() # This is a must to force distance_to_center raycasts update in time.
+	
 #	print("Off road tires: ", tires_off_road)
 #	print(road.on_road(front_position.get_global_position()))
 #	print(road.is_oriented(front_position.get_global_position(), direction))

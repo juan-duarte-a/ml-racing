@@ -4,7 +4,7 @@ extends Node
 export var comm_test: bool = false
 
 var comm_thread: Thread
-onready var _server = $Server
+onready var _server: Server = $Server
 
 
 # Called when the node enters the scene tree for the first time.
