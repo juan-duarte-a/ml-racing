@@ -124,7 +124,7 @@ func handle_communication(delay: float = 0):
 						emit_signal("action_signal")
 				elif _data[1][0] == REQUEST:
 					if (_data[1] as PoolByteArray) == REQUESTS["CENTER_DISTANCE"]:
-						temp_int1 = car.get_distance_to_center()
+						temp_int1 = car.get_distance_from_center()
 						err = _send_data(int_byte_code(temp_int1))
 						print("REQUEST -> Center distance: ", temp_int1, " ", int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
 						if err != OK:

@@ -153,19 +153,7 @@ func get_distance_front() -> int:
 	return int((radar[3] as CarRayCast).get_distance())
 
 
-func get_distance_to_center() -> int:
-	ray_cast_l.force_raycast_update()
-	ray_cast_r.force_raycast_update()
-	if road != null:
-		var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
-				ray_cast_l.get_collision_point() - front_position.get_global_position())
-		
-		if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
-			ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
-			ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
-	ray_cast_l.force_raycast_update()
-	ray_cast_r.force_raycast_update()
-
+func get_distance_from_center() -> int:
 	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance())
 
 
@@ -184,6 +172,20 @@ func set_tires_visible(visible_tires: bool):
 func rotate_front_tires(angle: float):
 	frt.set_rotation_degrees(frt.get_rotation_degrees() + angle)
 	flt.set_rotation_degrees(frt.get_rotation_degrees() + angle)
+
+
+func _update_l_r_raycasts():
+	ray_cast_l.force_raycast_update()
+	ray_cast_r.force_raycast_update()
+	if road != null:
+		var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
+				ray_cast_l.get_collision_point() - front_position.get_global_position())
+		
+		if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
+			ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
+			ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
+	ray_cast_l.force_raycast_update()
+	ray_cast_r.force_raycast_update()
 
 
 func _physics_process(delta):
@@ -218,8 +220,7 @@ func _physics_process(delta):
 	else:
 		collision_object = move_and_collide(velocity * delta * speed_factor)
 	
-	# warning-ignore:return_value_discarded
-	get_distance_to_center() # This is a must to force distance_to_center raycasts update in time.
+	_update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
 	
 #	print("Off road tires: ", tires_off_road)
 #	print(road.on_road(front_position.get_global_position()))

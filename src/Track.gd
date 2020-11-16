@@ -111,9 +111,9 @@ func _process(_delta):
 	if vision_front_distance:
 		print("Front distance ", car.radar[3].get_distance())
 	if vision_center_distance:
-		print("From center: ", car.get_distance_to_center())
+		print("From center: ", car.get_distance_from_center())
 	if vision_oriented:
 		print("Oriented: ", map_road.is_oriented(car.front_position.get_global_position(), car.direction))
 	if show_center_distance:
-		print("From center: ", car.get_distance_to_center())
+		print("From center: ", car.get_distance_from_center())
 
