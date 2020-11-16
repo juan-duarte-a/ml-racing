@@ -18,6 +18,7 @@ var manage_action_thread: Thread
 const ACTION: int = 65
 const REQUEST: int = 82
 const ERROR: int = 69
+const BYTE_TRUE: int = 84
 
 export var packet_size: int = 3 # Byte array size.
 
@@ -94,6 +95,7 @@ func handle_communication(delay: float = 0):
 	var err: int
 	var bytes_available: int
 	var temp_int1: int
+	var temp_bool1: bool
 	
 	_data = []
 	server_timer.set_one_shot(true)
@@ -107,8 +109,8 @@ func handle_communication(delay: float = 0):
 #		if bytes_available != 0:
 #			print(bytes_available)
 		if bytes_available >= packet_size:
-			if bytes_available > 3:
-				print("Bytes: ", bytes_available)
+#			if bytes_available > 3:
+#				print("Bytes: ", bytes_available)
 			_data = _receive_data(packet_size) # Gets data sent by client.
 			if _data[0] == OK:
 				print("Received <- ", _data[0], " ", _data[1][0]," ",_data[1][1]," ",_data[1][2], \
@@ -125,6 +127,12 @@ func handle_communication(delay: float = 0):
 				elif _data[1][0] == REQUEST:
 					if (_data[1] as PoolByteArray) == REQUESTS["CENTER_DISTANCE"]:
 						temp_int1 = car.get_distance_from_center()
+						err = _send_data(int_byte_code(temp_int1))
+						print("REQUEST -> Center distance: ", temp_int1, " ", int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
+						if err != OK:
+							print("Error sending data to client! :", err)
+					elif (_data[1] as PoolByteArray) == REQUESTS["IS_ORIENTED"]:
+						temp_bool1 = car.is_oriented()
 						err = _send_data(int_byte_code(temp_int1))
 						print("REQUEST -> Center distance: ", temp_int1, " ", int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
 						if err != OK:

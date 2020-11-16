@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Server",
 "language": "GDScript",
 "path": "res://src/Server.gd"
+}, {
+"base": "TileMap",
+"class": "TrackRoad",
+"language": "GDScript",
+"path": "res://src/TrackRoad.gd"
 } ]
 _global_script_class_icons={
 "Car": "",
 "CarRayCast": "",
-"Server": ""
+"Server": "",
+"TrackRoad": ""
 }
 
 [application]

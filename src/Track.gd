@@ -113,7 +113,7 @@ func _process(_delta):
 	if vision_center_distance:
 		print("From center: ", car.get_distance_from_center())
 	if vision_oriented:
-		print("Oriented: ", map_road.is_oriented(car.front_position.get_global_position(), car.direction))
+		print("Oriented: ", car.is_oriented())
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
 

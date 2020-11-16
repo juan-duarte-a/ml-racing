@@ -35,7 +35,7 @@
 [ext_resource path="res://assets/Deco/Bush_120.png" type="Texture" id=34]
 [ext_resource path="res://assets/Deco/Rock_120.png" type="Texture" id=35]
 [ext_resource path="res://src/Track.gd" type="Script" id=36]
-[ext_resource path="res://src/TileMapRoad.gd" type="Script" id=37]
+[ext_resource path="res://src/TrackRoad.gd" type="Script" id=37]
 [ext_resource path="res://assets/square.png" type="Texture" id=39]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]

@@ -9,7 +9,6 @@ export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 export var max_tire_rotation: float = 30 # Degrees.
 
 
-#onready var road: TileMap = get_parent().get_node("TileMapRoad")
 onready var ray_cast_l: CarRayCast = get_node("RayCasts/CarRayCastL")
 onready var ray_cast_r: CarRayCast = get_node("RayCasts/CarRayCastR")
 onready var front_position: Area2D = get_node("FrontPositioner")
@@ -29,7 +28,7 @@ onready var radar: Array = [
 	get_node("RayCasts/CarRayCast7")
 ]
 
-var road: TileMap
+var road: TrackRoad
 var velocity: Vector2
 var direction: Vector2
 var accumulated_angle: float
@@ -55,6 +54,9 @@ func _ready():
 	prev_speed_factor = speed_factor
 	tires_off_road = 0
 	accum_tire_rotation_time = 0
+	if get_parent().name != "root":
+		road = get_parent().get_node("TileMapRoad")
+
 
 
 func set_action(action: int):
@@ -155,6 +157,13 @@ func get_distance_front() -> int:
 
 func get_distance_from_center() -> int:
 	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance())
+
+
+func is_oriented() -> bool:
+	if road != null:
+		return road.is_oriented(front_position.get_global_position(), direction)
+	else:
+		return false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
