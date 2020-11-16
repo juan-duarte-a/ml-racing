@@ -1,4 +1,5 @@
 extends TileMap
+class_name TrackRoad
 
 var vector_up: Vector2 = Vector2.UP
 var vector_down: Vector2 = Vector2.DOWN
