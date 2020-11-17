@@ -19,6 +19,7 @@ const ACTION: int = 65
 const REQUEST: int = 82
 const ERROR: int = 69
 const BYTE_TRUE: int = 84
+const BYTE_FALSE: int = 70
 
 export var packet_size: int = 3 # Byte array size.
 
@@ -128,13 +129,14 @@ func handle_communication(delay: float = 0):
 					if (_data[1] as PoolByteArray) == REQUESTS["CENTER_DISTANCE"]:
 						temp_int1 = car.get_distance_from_center()
 						err = _send_data(int_byte_code(temp_int1))
-						print("REQUEST -> Center distance: ", temp_int1, " ", int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
+						print("REQUEST -> Center distance: ", temp_int1, " ", \
+								int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
 						if err != OK:
 							print("Error sending data to client! :", err)
 					elif (_data[1] as PoolByteArray) == REQUESTS["IS_ORIENTED"]:
 						temp_bool1 = car.is_oriented()
-						err = _send_data(int_byte_code(temp_int1))
-						print("REQUEST -> Center distance: ", temp_int1, " ", int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
+						err = _send_data(bool_byte_code(temp_bool1))
+						print("REQUEST -> Is oriented: ", temp_bool1, " ", bool_byte_code(temp_bool1)[2])
 						if err != OK:
 							print("Error sending data to client! :", err)
 			else:
@@ -172,7 +174,7 @@ func manage_action(_userdata):
 			elif (data[1] as PoolByteArray) == ACTIONS["TURN_RIGHT"]:
 				car.set_action(Car.ACTIONS.TURN_RIGHT)
 				message = "TURN_RIGHT"
-			print("Received <- ", message)
+			print("Received traduction <- ", message)
 		
 		_byte_array = int_byte_code(car.get_distance_front())
 		# Sends response to client.
@@ -202,9 +204,18 @@ func int_byte_code(int_value: int) -> PoolByteArray:
 	int1 = int(abs(int_value) / 256)
 	if int_value > 0:
 		int1 += 128
+	# warning-ignore:narrowing_conversion
 	int2 = abs(int_value) - (int1 if int1 < 128 else (int1 - 128)) * 256
 	
 	return PoolByteArray([0, int1, int2])
+
+
+func byte_bool_decode(byte_array: PoolByteArray) -> bool:
+	return true if byte_array[2] == BYTE_TRUE else false
+
+
+func bool_byte_code(boolean: bool) -> PoolByteArray:
+	return PoolByteArray([0, 0, BYTE_TRUE if boolean else BYTE_FALSE])
 
 
 # Test communication speed between server and client.
