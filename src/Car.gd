@@ -18,6 +18,7 @@ onready var flt = $Tires/CarTireFL
 onready var brt = $Tires/CarTireBR
 onready var blt = $Tires/CarTireBL
 
+
 onready var radar: Array = [
 	get_node("RayCasts/CarRayCast1"),
 	get_node("RayCasts/CarRayCast2"),
@@ -55,8 +56,7 @@ func _ready():
 	tires_off_road = 0
 	accum_tire_rotation_time = 0
 	if get_parent().name != "root":
-		road = get_parent().get_node("TileMapRoad")
-
+		road = get_parent().get_node("TrackRoad")
 
 
 func set_action(action: int):
@@ -183,9 +183,10 @@ func rotate_front_tires(angle: float):
 	flt.set_rotation_degrees(frt.get_rotation_degrees() + angle)
 
 
-func _update_l_r_raycasts():
+func update_l_r_raycasts():
 	ray_cast_l.force_raycast_update()
 	ray_cast_r.force_raycast_update()
+	
 	if road != null:
 		var angle: float = road.angle_to_direction_vector(front_position.get_global_position(), \
 				ray_cast_l.get_collision_point() - front_position.get_global_position())
@@ -193,12 +194,13 @@ func _update_l_r_raycasts():
 		if road.on_road(front_position.get_global_position()) and rad2deg(angle) < 180 and rad2deg(angle) > -180:
 			ray_cast_l.set_rotation(ray_cast_l.rotation - (RAD_90 - angle))
 			ray_cast_r.set_rotation(ray_cast_r.rotation - (RAD_90 - angle))
+	
 	ray_cast_l.force_raycast_update()
 	ray_cast_r.force_raycast_update()
 
 
 func _physics_process(delta):
-	tires_off_road = int(frt.off_road) + int(flt.off_road) +int(brt.off_road) + int(blt.off_road)
+	tires_off_road = int(frt.off_road) + int(flt.off_road) + int(brt.off_road) + int(blt.off_road)
 	if tires_off_road > 1:
 		speed_factor = 0.6
 	else:
@@ -229,8 +231,11 @@ func _physics_process(delta):
 	else:
 		collision_object = move_and_collide(velocity * delta * speed_factor)
 	
-	_update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
+	if get_parent().get_name() != "root":
+		get_parent().update_corner_vectors()
+	update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
 	
+#	print(road.get_cell_position(front_position.get_global_position()))
 #	print("Off road tires: ", tires_off_road)
 #	print(road.on_road(front_position.get_global_position()))
 #	print(road.is_oriented(front_position.get_global_position(), direction))

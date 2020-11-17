@@ -8,9 +8,13 @@ var vision_car: bool
 var vision_tires: bool
 var vision_oriented: bool
 var show_center_distance: bool
+var temp_vector1: Vector2
+var temp_line1: Line2D
+var temp_int1: int
+
 onready var car: KinematicBody2D = $Car
 onready var map_background: TileMap = $TileMapBackground
-onready var map_road: TileMap = $TileMapRoad
+onready var map_road: TileMap = $TrackRoad
 onready var map_terrain: TileMap = $TileMapTerrain
 
 
@@ -34,18 +38,25 @@ func _ready():
 	car.ray_cast_r.set_visible(vision_center_distance)
 	car.set_tires_visible(false)
 	car.direction = Vector2(-1,0)
+	get_node("TrackRoad/CornerLines").set_visible(false)
+
+
+func update_corner_vectors():
+	temp_vector1 = map_road.get_cell_position(car.front_position.get_global_position())
+	temp_int1 = map_road.road_curves.find(temp_vector1)
+	if temp_int1 != -1:
+		temp_line1 = map_road.corner_lines[temp_int1]
+		temp_line1.points[1] = temp_line1.to_local(car.front_position.get_global_position())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("vision_mode"):
 		vision_machine_mode = !vision_machine_mode
 		map_background.set_visible(!vision_machine_mode)
 		map_road.set_visible(!vision_machine_mode)
 		map_terrain.set_visible(!vision_machine_mode)
 		if vision_machine_mode:
-#			vision_radar_mode = true
-#			vision_tires = true
 			car.set_tires_visible(true)
 			car.ray_cast_l.set_visible(true)
 			car.ray_cast_r.set_visible(true)
@@ -116,4 +127,3 @@ func _process(_delta):
 		print("Oriented: ", car.is_oriented())
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
-
