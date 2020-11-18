@@ -2,6 +2,8 @@ extends TileMap
 class_name TrackRoad
 
 const CURVE_VECTOR: int = 100
+const MAP_X_SIZE = 10
+const MAP_Y_SIZE = 9
 
 var vector_up: Vector2 = Vector2.UP
 var vector_down: Vector2 = Vector2.DOWN
@@ -23,6 +25,42 @@ onready var corner_lines: Array = [
 	$CornerLines/LineC7,
 	$CornerLines/LineC8,
 	$CornerLines/LineC9
+]
+
+var completion_matrix: Array = []
+var road_cells_positions: Array = [
+	Vector2(4, 6),
+	Vector2(3, 6),
+	Vector2(2, 6),
+	Vector2(1, 6),
+	Vector2(1, 5),
+	Vector2(1, 4),
+	Vector2(1, 3),
+	Vector2(2, 3),
+	Vector2(3, 3),
+	Vector2(4, 3),
+	Vector2(5, 3),
+	Vector2(6, 3),
+	Vector2(6, 2),
+	Vector2(5, 2),
+	Vector2(4, 2),
+	Vector2(3, 2),
+	Vector2(3, 1),
+	Vector2(3, 0),
+	Vector2(4, 0),
+	Vector2(5, 0),
+	Vector2(6, 0),
+	Vector2(7, 0),
+	Vector2(8, 0),
+	Vector2(8, 1),
+	Vector2(8, 2),
+	Vector2(8, 3),
+	Vector2(8, 4),
+	Vector2(7, 4),
+	Vector2(6, 4),
+	Vector2(6, 5),
+	Vector2(6, 6),
+	Vector2(5, 6)
 ]
 
 var road_curves: Array = [
@@ -78,12 +116,15 @@ var direction_road: Array = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var count: int = 0
-	for y_pos in range(9):
+	for y_pos in range(MAP_Y_SIZE):
+		completion_matrix.append(Array())
 		direction_matrix.append(Array())
-		for x_pos in range(10):
+		for x_pos in range(MAP_X_SIZE):
 			if get_cell(x_pos, y_pos) == -1:
+				(completion_matrix[y_pos] as Array).append(-1)
 				(direction_matrix[y_pos] as Array).append(Vector2.ZERO)
 			else:
+				(completion_matrix[y_pos] as Array).append(road_cells_positions.find(Vector2(x_pos, y_pos)))
 				(direction_matrix[y_pos] as Array).append(direction_road[count])
 				count += 1
 	print("Done")
@@ -116,3 +157,12 @@ func _get_direction_vector(position_vector: Vector2) -> Vector2:
 		curve_line = corner_lines[int(dir_vector.y) - 1]
 		return (curve_line.points[1] as Vector2).rotated(deg2rad(90))
 	return direction_matrix[direction_vector.y][direction_vector.x]
+
+
+func get_track_completion(position_vector: Vector2) -> float:
+	var pos: Vector2
+	var percentage: float
+	pos = get_cell_position(position_vector)
+	percentage = 100.0 * float(completion_matrix[pos.y][pos.x]) / float(road_cells_positions.size())
+	
+	return percentage if percentage >= 0 else -1

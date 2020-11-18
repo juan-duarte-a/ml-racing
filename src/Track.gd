@@ -11,11 +11,14 @@ var show_center_distance: bool
 var temp_vector1: Vector2
 var temp_line1: Line2D
 var temp_int1: int
+var track_completion: float
+var completion_text: String
 
 onready var car: KinematicBody2D = $Car
 onready var map_background: TileMap = $TileMapBackground
 onready var map_road: TileMap = $TrackRoad
 onready var map_terrain: TileMap = $TileMapTerrain
+onready var completion_label: Label = $VBoxContainer/CompletionLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -127,3 +130,7 @@ func _physics_process(_delta):
 		print("Oriented: ", car.is_oriented())
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
+	
+	track_completion = stepify(map_road.get_track_completion(car.front_position.get_global_position()), 0.1)
+	completion_text = str(track_completion) if track_completion >= 0 else "--"
+	completion_label.set_text(completion_text + " %")

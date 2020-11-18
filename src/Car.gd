@@ -40,6 +40,7 @@ var prev_speed_factor: float
 var collision_object: KinematicCollision2D
 var tires_off_road: int
 var accum_tire_rotation_time: float
+var temp_vector: Vector2 = Vector2.ZERO
 
 
 enum ACTIONS {RUN, STOP, TURN_RIGHT, TURN_LEFT}
@@ -235,6 +236,7 @@ func _physics_process(delta):
 		get_parent().update_corner_vectors()
 	update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
 	
+#	print(road.get_track_completion(front_position.get_global_position()))
 #	print(road.get_cell_position(front_position.get_global_position()))
 #	print("Off road tires: ", tires_off_road)
 #	print(road.on_road(front_position.get_global_position()))
