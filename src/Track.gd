@@ -120,7 +120,7 @@ func _physics_process(_delta):
 	if vision_tires:
 		print("Off road tires: ", car.tires_off_road)
 	if vision_front_distance:
-		print("Front distance ", car.radar[3].get_distance())
+		print("Front distance: ", car.radar[3].get_distance())
 	if vision_center_distance:
 		print("From center: ", car.get_distance_from_center())
 	if vision_oriented:

@@ -590,7 +590,7 @@ tile_data = PoolIntArray( 3, 23, 0, 4, 7, 0, 5, 10, 0, 6, 9, 0, 7, 11, 0, 8, 5, 
 script = ExtResource( 37 )
 
 [node name="RoadPositionMap" type="TileMap" parent="TrackRoad"]
-cell_size = Vector2( 30, 30 )
+cell_size = Vector2( 60, 60 )
 format = 1
 
 [node name="CollisionRoadLimits" type="Node2D" parent="TrackRoad" groups=[
@@ -709,8 +709,8 @@ shape = SubResource( 6 )
 [node name="Road_limit20" type="Area2D" parent="TrackRoad/CollisionRoadLimits" groups=[
 "road_limit",
 ]]
-position = Vector2( 590.8, 360.15 )
-scale = Vector2( 0.345, 0.06 )
+position = Vector2( 593, 360.15 )
+scale = Vector2( 0.34, 0.06 )
 collision_layer = 8
 collision_mask = 0
 
