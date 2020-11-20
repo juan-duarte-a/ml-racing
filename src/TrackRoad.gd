@@ -159,6 +159,10 @@ func _get_direction_vector(position_vector: Vector2) -> Vector2:
 	return direction_matrix[direction_vector.y][direction_vector.x]
 
 
+func get_completion_step() -> float:
+	return 100.0 / float(road_cells_positions.size())
+
+
 func get_track_completion(position_vector: Vector2) -> float:
 	var pos: Vector2
 	var percentage: float

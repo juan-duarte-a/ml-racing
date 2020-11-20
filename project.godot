@@ -133,6 +133,7 @@ center_distance={
 2d_physics/layer_2="Road"
 2d_physics/layer_3="Terrain"
 2d_physics/layer_4="Road_limit"
+2d_physics/layer_5="Track_completion"
 
 [network]
 

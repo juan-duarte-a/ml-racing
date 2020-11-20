@@ -19,6 +19,8 @@ onready var map_background: TileMap = $TileMapBackground
 onready var map_road: TileMap = $TrackRoad
 onready var map_terrain: TileMap = $TileMapTerrain
 onready var completion_label: Label = $VBoxContainer/CompletionLabel
+#onready var completion_car_sensor: RayCast2D = $Car/FrontPositioner/CompletionRaycast
+onready var completion_car_sensor: RayCast2D = $TrackRoad/CompletionCarSensor
 
 
 # Called when the node enters the scene tree for the first time.
@@ -52,8 +54,26 @@ func update_corner_vectors():
 		temp_line1.points[1] = temp_line1.to_local(car.front_position.get_global_position())
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
+func update_track_completion():
+	var waypoint_distance: float
+	completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
+	completion_car_sensor.set_cast_to(
+		map_road._get_direction_vector(
+				map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
+	completion_car_sensor.force_raycast_update()
+	if map_road.on_road(car.front_position.get_global_position()):
+		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
+				map_road.to_local(completion_car_sensor.get_collision_point()))
+		if waypoint_distance == 0:
+			waypoint_distance = 0.000001
+	
+	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
+	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
+	completion_text = str("%.1f" % track_completion) if map_road.on_road(car.front_position.get_global_position()) else "--"
+	completion_label.set_text(completion_text + " %")
+
+
+func handle_input_events():
 	if Input.is_action_just_pressed("vision_mode"):
 		vision_machine_mode = !vision_machine_mode
 		map_background.set_visible(!vision_machine_mode)
@@ -119,7 +139,11 @@ func _physics_process(_delta):
 		vision_front_distance = false
 		vision_car = true
 		vision_tires = false
-	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(_delta):
+	handle_input_events()
 	if vision_tires:
 		print("Off road tires: ", car.tires_off_road)
 	if vision_front_distance:
@@ -131,6 +155,4 @@ func _physics_process(_delta):
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
 	
-	track_completion = stepify(map_road.get_track_completion(car.front_position.get_global_position()), 0.1)
-	completion_text = str(track_completion) if track_completion >= 0 else "--"
-	completion_label.set_text(completion_text + " %")
+	update_track_completion()

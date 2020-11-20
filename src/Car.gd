@@ -18,7 +18,6 @@ onready var flt = $Tires/CarTireFL
 onready var brt = $Tires/CarTireBR
 onready var blt = $Tires/CarTireBL
 
-
 onready var radar: Array = [
 	get_node("RayCasts/CarRayCast1"),
 	get_node("RayCasts/CarRayCast2"),
@@ -236,10 +235,14 @@ func _physics_process(delta):
 		get_parent().update_corner_vectors()
 	update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
 	
+#	if road != null:
+#		completion_raycast.set_cast_to(
+#			road._get_direction_vector(road.to_local(front_position.get_global_position())) * 100)
+	
 #	print(road.get_track_completion(front_position.get_global_position()))
 #	print(road.get_cell_position(front_position.get_global_position()))
 #	print("Off road tires: ", tires_off_road)
 #	print(road.on_road(front_position.get_global_position()))
 #	print(road.is_oriented(front_position.get_global_position(), direction))
-#	print(road._get_direction_vector(front_position.get_global_position()))
+#	print(road._get_direction_vector(road.to_local(front_position.get_global_position())))
 #	print(radar[3].get_distance())
