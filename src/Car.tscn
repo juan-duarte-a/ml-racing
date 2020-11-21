@@ -30,8 +30,7 @@ polygon = PoolVector2Array( 63, -486.4, 63, -485.2, 91, -480.2, 91, -479, 117, -
 [node name="FrontPositioner" type="Area2D" parent="."]
 position = Vector2( 68.5, 0 )
 monitoring = false
-monitorable = false
-collision_layer = 0
+collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontPositioner"]

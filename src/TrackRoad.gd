@@ -169,4 +169,4 @@ func get_track_completion(position_vector: Vector2) -> float:
 	pos = get_cell_position(position_vector)
 	percentage = 100.0 * float(completion_matrix[pos.y][pos.x]) / float(road_cells_positions.size())
 	
-	return percentage if percentage >= 0 else -1
+	return percentage if percentage >= 0 else -1.0

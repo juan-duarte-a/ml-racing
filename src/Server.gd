@@ -100,9 +100,6 @@ func handle_communication(delay: float = 0):
 	
 	_data = []
 	server_timer.set_one_shot(true)
-	
-	if err != OK:
-		print("Error action manager thread! :", err)
 	server_timer2.start(delay)
 	
 	while _online:
@@ -146,6 +143,8 @@ func handle_communication(delay: float = 0):
 		yield(server_timer2, "timeout")
 
 
+# Manages action requests from client.
+# This method should be call as a thread.
 func manage_action(_userdata):
 	var err: int
 	var message: String = ""

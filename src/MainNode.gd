@@ -14,11 +14,6 @@ func _ready():
 	print(get_physics_process_delta_time())
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_Server_connection_to_client(status):
 	comm_thread = Thread.new()
 	var err: int

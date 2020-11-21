@@ -1,5 +1,7 @@
 extends Node2D
 
+signal lap_finished(lap_time)
+
 var vision_machine_mode: bool
 var vision_radar_mode: bool
 var vision_center_distance: bool
@@ -13,18 +15,26 @@ var temp_line1: Line2D
 var temp_int1: int
 var track_completion: float
 var completion_text: String
+var stopwatch_time: Dictionary
+var update_timer: bool
+var lap_start: bool
+var best_lap_time: int
 
 onready var car: KinematicBody2D = $Car
 onready var map_background: TileMap = $TileMapBackground
 onready var map_road: TileMap = $TrackRoad
 onready var map_terrain: TileMap = $TileMapTerrain
 onready var completion_label: Label = $VBoxContainer/CompletionLabel
-#onready var completion_car_sensor: RayCast2D = $Car/FrontPositioner/CompletionRaycast
+onready var time_label: Label = $VBoxContainer/TimeLabel
 onready var completion_car_sensor: RayCast2D = $TrackRoad/CompletionCarSensor
+onready var timer: Timer = $Timer
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var err: int
+	
 	print(scale.length())
 	car.road = map_road
 	car._speed *= scale.length() / 1.414214
@@ -36,6 +46,9 @@ func _ready():
 	vision_tires = false
 	vision_oriented = false
 	show_center_distance = false
+	update_timer = true
+	lap_start = true
+	best_lap_time = 0
 	for ray in car.radar:
 #		(ray as CarRayCast).add_exception(get_node("TileMapRoad/RoadCollisionShapes"))
 		ray.set_visible(vision_radar_mode)
@@ -44,6 +57,12 @@ func _ready():
 	car.set_tires_visible(false)
 	car.direction = Vector2(-1,0)
 	get_node("TrackRoad/CornerLines").set_visible(false)
+	
+	timer.start_stopwatch()
+	
+	err = connect("lap_finished", self, "lap_finished")
+	if err != OK:
+		print("Error connecting 'lap_finished' signal!")
 
 
 func update_corner_vectors():
@@ -141,6 +160,16 @@ func handle_input_events():
 		vision_tires = false
 
 
+func update_time_label(update: bool = true):
+	if update:
+		stopwatch_time = timer.get_stopwatch_time()
+		# str(stopwatch_time["hours"]) + ":" + 
+		var lbl_text: String = str("%0*d" % [2, stopwatch_time["minutes"]]) + ":" + \
+				str("%0*d" % [2, stopwatch_time["seconds"]]) + \
+				str(":%0*d" % [2, stopwatch_time["milliseconds"]/10])
+		time_label.set_text(lbl_text)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	handle_input_events()
@@ -155,4 +184,36 @@ func _physics_process(_delta):
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
 	
+	update_time_label(update_timer)
 	update_track_completion()
+
+
+func _on_FinishLine_area_entered(area):
+	if area.get_name() == car.front_position.get_name():
+		var lap_time = timer.get_stopwatch_time_msecs()
+		
+		if lap_start:
+			lap_start = false
+		else:
+			if best_lap_time == 0:
+				best_lap_time = lap_time
+			else:
+				if lap_time < best_lap_time:
+					best_lap_time = lap_time
+			emit_signal("lap_finished", lap_time)
+			timer.restart_stopwatch()
+			
+			car.velocity = Vector2.ZERO
+			car.set_position(Vector2(654, 840))
+
+
+func lap_finished(_lap_time):
+	print("Lap finished!")
+	update_timer = false
+	timer.start()
+	animation_player.play("lap_finish")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "lap_finish":
+		update_timer = true
