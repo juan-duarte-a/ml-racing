@@ -1,13 +1,14 @@
 extends KinematicBody2D
 class_name Car
 
+signal run
+
 const RAD_90: float = 1.5707963 # 90 degrees to radians.
 
 export var _speed: int = 100 # In pixels / second.
 export var _turn_angle: float = 30 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 export var max_tire_rotation: float = 30 # Degrees.
-
 
 onready var ray_cast_l: CarRayCast = get_node("RayCasts/CarRayCastL")
 onready var ray_cast_r: CarRayCast = get_node("RayCasts/CarRayCastR")
@@ -40,7 +41,7 @@ var collision_object: KinematicCollision2D
 var tires_off_road: int
 var accum_tire_rotation_time: float
 var temp_vector: Vector2 = Vector2.ZERO
-
+var running: bool
 
 enum ACTIONS {RUN, STOP, TURN_RIGHT, TURN_LEFT}
 
@@ -50,6 +51,7 @@ func _ready():
 	direction = Vector2(1, 0)
 	velocity = Vector2(0, 0)
 	turning = false
+	running = false
 	accumulated_angle = 0
 	speed_factor = 1
 	prev_speed_factor = speed_factor
@@ -63,6 +65,9 @@ func set_action(action: int):
 	if action == ACTIONS.RUN:
 		if velocity == Vector2.ZERO:
 			velocity = direction * _speed
+			if not running:
+				emit_signal("run")
+				running = true
 		else:
 			velocity = velocity.normalized() * _speed
 	elif action == ACTIONS.STOP:

@@ -40,6 +40,14 @@ func restart_stopwatch():
 	time = 0
 	state = RUNNING
 
+
+func reset_stopwatch():
+	time = 0
+	stopwatch_init = 0
+	stopwatch_temp = 0
+	state = STOPPED
+
+
 # Returns current track time as a dictionary of keys: hours, minutes, seconds, milliseconds.
 func get_stopwatch_time() -> Dictionary:
 	var track_time: Dictionary

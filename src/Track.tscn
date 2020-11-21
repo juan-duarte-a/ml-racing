@@ -601,6 +601,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("VBoxContainer/CompletionLabel:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Track" type="Node2D"]
 scale = Vector2( 0.801, 0.801 )
@@ -1608,6 +1620,7 @@ margin_right = 160.0
 margin_bottom = 40.0
 custom_styles/normal = SubResource( 12 )
 custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Comp. %"
 align = 1
 valign = 1
@@ -1619,7 +1632,7 @@ margin_bottom = 84.0
 custom_styles/normal = SubResource( 12 )
 custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "00:00:000"
+text = "00:00:00"
 align = 1
 valign = 1
 

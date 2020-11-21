@@ -17,6 +17,7 @@ var track_completion: float
 var completion_text: String
 var stopwatch_time: Dictionary
 var update_timer: bool
+var update_completion: bool
 var lap_start: bool
 var best_lap_time: int
 
@@ -47,8 +48,10 @@ func _ready():
 	vision_oriented = false
 	show_center_distance = false
 	update_timer = true
+	update_completion = true
 	lap_start = true
 	best_lap_time = 0
+	
 	for ray in car.radar:
 #		(ray as CarRayCast).add_exception(get_node("TileMapRoad/RoadCollisionShapes"))
 		ray.set_visible(vision_radar_mode)
@@ -58,8 +61,9 @@ func _ready():
 	car.direction = Vector2(-1,0)
 	get_node("TrackRoad/CornerLines").set_visible(false)
 	
-	timer.start_stopwatch()
-	
+	err = car.connect("run", self, "run_start")
+	if err != OK:
+		print("Error connecting 'run' car signal!")
 	err = connect("lap_finished", self, "lap_finished")
 	if err != OK:
 		print("Error connecting 'lap_finished' signal!")
@@ -73,23 +77,24 @@ func update_corner_vectors():
 		temp_line1.points[1] = temp_line1.to_local(car.front_position.get_global_position())
 
 
-func update_track_completion():
-	var waypoint_distance: float
-	completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
-	completion_car_sensor.set_cast_to(
-		map_road._get_direction_vector(
-				map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
-	completion_car_sensor.force_raycast_update()
-	if map_road.on_road(car.front_position.get_global_position()):
-		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
-				map_road.to_local(completion_car_sensor.get_collision_point()))
-		if waypoint_distance == 0:
-			waypoint_distance = 0.000001
-	
-	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
-	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
-	completion_text = str("%.1f" % track_completion) if map_road.on_road(car.front_position.get_global_position()) else "--"
-	completion_label.set_text(completion_text + " %")
+func update_track_completion(update: bool = true):
+	if update:
+		var waypoint_distance: float
+		completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
+		completion_car_sensor.set_cast_to(
+			map_road._get_direction_vector(
+					map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
+		completion_car_sensor.force_raycast_update()
+		if map_road.on_road(car.front_position.get_global_position()):
+			waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
+					map_road.to_local(completion_car_sensor.get_collision_point()))
+			if waypoint_distance == 0:
+				waypoint_distance = 0.000001
+		
+		track_completion = map_road.get_track_completion(car.front_position.get_global_position())
+		track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
+		completion_text = str("%.1f" % track_completion) if map_road.on_road(car.front_position.get_global_position()) else "--"
+		completion_label.set_text(completion_text + " %")
 
 
 func handle_input_events():
@@ -185,7 +190,7 @@ func _physics_process(_delta):
 		print("From center: ", car.get_distance_from_center())
 	
 	update_time_label(update_timer)
-	update_track_completion()
+	update_track_completion(update_completion)
 
 
 func _on_FinishLine_area_entered(area):
@@ -201,19 +206,32 @@ func _on_FinishLine_area_entered(area):
 				if lap_time < best_lap_time:
 					best_lap_time = lap_time
 			emit_signal("lap_finished", lap_time)
-			timer.restart_stopwatch()
-			
-			car.velocity = Vector2.ZERO
-			car.set_position(Vector2(654, 840))
+			reset_track()
+
+
+func run_start():
+	timer.start_stopwatch()
+
+
+func reset_track():
+	timer.stop_stopwatch()
+	timer.reset_stopwatch()
+	car.velocity = Vector2.ZERO
+	car.running = false
+	car.set_position(Vector2(654, 840))
+	car.direction = Vector2(-1, 0)
+	car.set_rotation_degrees(180)
 
 
 func lap_finished(_lap_time):
 	print("Lap finished!")
 	update_timer = false
-	timer.start()
+	update_completion = false
+	completion_label.text = "100 %"
 	animation_player.play("lap_finish")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "lap_finish":
 		update_timer = true
+		update_completion = true
