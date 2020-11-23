@@ -13,6 +13,7 @@ var vector_ur: Vector2 = Vector2(1, -1).normalized()
 var vector_ul: Vector2 = Vector2(-1, -1).normalized()
 var vector_dr: Vector2 = Vector2(1, 1).normalized()
 var vector_dl: Vector2 = Vector2(-1, 1).normalized()
+var initial_direction: Vector2 = Vector2(-1 ,0)
 
 onready var corner_lines: Array = [
 	$CornerLines/LineC1,

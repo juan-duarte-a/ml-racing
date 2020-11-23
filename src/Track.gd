@@ -38,7 +38,6 @@ func _ready():
 	
 	print(scale.length())
 	car.road = map_road
-	car._speed *= scale.length() / 1.414214
 	vision_machine_mode = false
 	vision_radar_mode = false
 	vision_center_distance = false
@@ -51,6 +50,9 @@ func _ready():
 	update_completion = true
 	lap_start = true
 	best_lap_time = 0
+	
+	for s in range (car.speeds.size()):
+		car.speeds[s] *= scale.length() / 1.414214
 	
 	for ray in car.radar:
 #		(ray as CarRayCast).add_exception(get_node("TileMapRoad/RoadCollisionShapes"))
@@ -216,11 +218,7 @@ func run_start():
 func reset_track():
 	timer.stop_stopwatch()
 	timer.reset_stopwatch()
-	car.velocity = Vector2.ZERO
-	car.running = false
-	car.set_position(Vector2(654, 840))
-	car.direction = Vector2(-1, 0)
-	car.set_rotation_degrees(180)
+	car.reset()
 
 
 func lap_finished(_lap_time):

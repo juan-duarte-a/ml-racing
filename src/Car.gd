@@ -5,7 +5,9 @@ signal run
 
 const RAD_90: float = 1.5707963 # 90 degrees to radians.
 
-export var _speed: int = 100 # In pixels / second.
+export var high_speed: int = 140
+export var low_speed: int = 80
+export var gears: int = 2
 export var _turn_angle: float = 30 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 export var max_tire_rotation: float = 30 # Degrees.
@@ -29,6 +31,8 @@ onready var radar: Array = [
 	get_node("RayCasts/CarRayCast7")
 ]
 
+var _speed: int # In pixels / second.
+var speeds: Array
 var road: TrackRoad
 var velocity: Vector2
 var direction: Vector2
@@ -42,12 +46,15 @@ var tires_off_road: int
 var accum_tire_rotation_time: float
 var temp_vector: Vector2 = Vector2.ZERO
 var running: bool
+var gear: int
 
-enum ACTIONS {RUN, STOP, TURN_RIGHT, TURN_LEFT}
+enum ACTIONS {RUN, GEAR_UP, GEAR_DOWN, STOP, TURN_RIGHT, TURN_LEFT}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var speed_granularity: int
+	
 	direction = Vector2(1, 0)
 	velocity = Vector2(0, 0)
 	turning = false
@@ -59,19 +66,49 @@ func _ready():
 	accum_tire_rotation_time = 0
 	if get_parent().name != "root":
 		road = get_parent().get_node("TrackRoad")
+	
+	# warning-ignore:integer_division
+	speeds.append(0)
+	if gears > 1:
+		speed_granularity = (high_speed - low_speed) / (gears - 1)
+	else:
+		speed_granularity = 0
+	for s in range (gears):
+		speeds.append(low_speed + speed_granularity * s)
+	_speed = speeds[0]
+	gear = 0
 
 
-func set_action(action: int):
+func set_action(action: int, value: int = -1):
 	if action == ACTIONS.RUN:
-		if velocity == Vector2.ZERO:
-			velocity = direction * _speed
-			if not running:
-				emit_signal("run")
-				running = true
-		else:
-			velocity = velocity.normalized() * _speed
+		if gear == 0:
+			gear += 1
+			_speed = speeds[gear]
+			if velocity == Vector2.ZERO:
+				velocity = direction * _speed
+				if not running:
+					emit_signal("run")
+					running = true
 	elif action == ACTIONS.STOP:
 		velocity = Vector2.ZERO
+	elif action == ACTIONS.GEAR_UP:
+		if gear < gears:
+			gear += 1
+			_speed = speeds[gear]
+			if velocity == Vector2.ZERO:
+				velocity = direction * _speed
+				if not running:
+					emit_signal("run")
+					running = true
+			else:
+				velocity = velocity.normalized() * _speed
+	elif action == ACTIONS.GEAR_DOWN:
+		if gear > 0:
+			gear -= 1
+			_speed = speeds[gear]
+			velocity = velocity.normalized() * _speed
+		else:
+			velocity = Vector2.ZERO
 	elif action == ACTIONS.TURN_LEFT:
 		if turning == false:
 			turning = true
@@ -92,8 +129,8 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 	var angle: float
 	var rotation_speed: float = deg2rad(turn_velocity) # To radians.
 	var rotation_time: float = (turn_angle / turn_velocity)
-	var tire_rotation_speed = max_tire_rotation / (rotation_time * 0.9)
-	var tire_rotation_speed2 = max_tire_rotation / (rotation_time * 0.1)
+	var tire_rotation_speed = max_tire_rotation / (rotation_time * 0.7)
+	var tire_rotation_speed2 = max_tire_rotation / (rotation_time * 0.3)
 	
 	angle = rotation_speed * delta
 	accumulated_angle += angle
@@ -204,6 +241,16 @@ func update_l_r_raycasts():
 	ray_cast_r.force_raycast_update()
 
 
+func reset():
+	velocity = Vector2.ZERO
+	running = false
+	set_position(Vector2(654, 840))
+	set_rotation_degrees(180)
+	gear = 0
+	if road != null:
+		direction = road.initial_direction
+
+
 func _physics_process(delta):
 	tires_off_road = int(frt.off_road) + int(flt.off_road) + int(brt.off_road) + int(blt.off_road)
 	if tires_off_road > 1:
@@ -212,11 +259,11 @@ func _physics_process(delta):
 		speed_factor = 1
 	
 	if Input.is_action_just_pressed("forward"):
-		print("RUN: ", OS.get_ticks_msec())
-		set_action(ACTIONS.RUN)
+		print("GEAR UP: ", OS.get_ticks_msec())
+		set_action(ACTIONS.GEAR_UP)
 	elif Input.is_action_just_pressed("stop"):
-		print("STOP: ", OS.get_ticks_msec())
-		set_action(ACTIONS.STOP)
+		print("GEAR DOWN: ", OS.get_ticks_msec())
+		set_action(ACTIONS.GEAR_DOWN)
 	elif Input.is_action_just_pressed("turn_left"):
 		print("LEFT: ", OS.get_ticks_msec())
 		set_action(ACTIONS.TURN_LEFT)
