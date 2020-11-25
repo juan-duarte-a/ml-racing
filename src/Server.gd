@@ -5,9 +5,11 @@ signal connection_to_client(status)
 signal action_signal
 
 var _server: TCP_Server
+var _client: StreamPeerTCP
 var streamTCP: StreamPeerTCP
 var socket_url: String
-var port: int
+var port1: int
+var port2: int
 var _online: bool = false
 var _byte_array: PoolByteArray
 var _data: Array
@@ -46,7 +48,8 @@ var REQUESTS = {
 }
 
 var RESPONSES = {
-	"BUSY": ([ERROR, 24, 24] as PoolByteArray)
+	"BUSY": ([ERROR, 24, 24] as PoolByteArray),
+	"CONNECTION_OK": ([67, 79, 75] as PoolByteArray)
 }
 
 onready var server_timer: Timer = $ServerTimer
@@ -59,7 +62,8 @@ func _ready():
 	var err: int
 	
 	socket_url = "127.0.0.1"
-	port = 11435
+	port1 = 11435
+	port2 = 11436
 	comm_flow_control = false
 	manage_action_thread = Thread.new()
 	err = manage_action_thread.start(self, "manage_action")
@@ -67,11 +71,13 @@ func _ready():
 		print("Error initializing action manager thread! ", err)
 
 
-func connect_to_client(port_number: int = port):
+func connect_to_client(port_number1: int = port1, port_number2: int = port2):
+	var err: int
 	var status: int = -1
 	_server = TCP_Server.new()
+	_client = StreamPeerTCP.new()
 	
-	print("Listening: ", _server.listen(port_number, socket_url))
+	print("Listening: ", _server.listen(port_number1, socket_url))
 	
 	while true:
 		streamTCP = _server.take_connection()
@@ -82,7 +88,23 @@ func connect_to_client(port_number: int = port):
 	
 	print("StreamTCP: ", streamTCP)
 	print("Connected to host: ", streamTCP.is_connected_to_host())
+	streamTCP.set_no_delay(true)
+	
+	while streamTCP.get_available_bytes() <= packet_size:
+		_data = streamTCP.get_partial_data(packet_size) # Gets data sent by client.
+		if _data[0] == OK and (_data[1] as PoolByteArray) == RESPONSES["CONNECTION_OK"]:
+			err = _send_data(RESPONSES["CONNECTION_OK"])
+			if err != OK:
+				print("Error with 'input' connection!")
+			print("'Input' connection established.")
+			break
+		yield(server_timer, "timeout")
+		print("Waiting client confirmation...")
+	
 	yield(server_timer, "timeout")
+	err = _client.connect_to_host(socket_url, port_number2)
+	if err != OK:
+		print("'Output' connection error!")
 	
 	status = streamTCP.get_status()
 	_online = true
@@ -262,7 +284,7 @@ func _send_data(byte_array: PoolByteArray) -> int:
 	return err
 
 
-func _receive_data(bytes: int = 1) -> Array:
+func _receive_data(bytes: int = 3) -> Array:
 	var data: Array = []
 	while data.size() == 0 or (data[1] as PoolByteArray).size() == 0:
 		data =  streamTCP.get_partial_data(bytes)

@@ -165,6 +165,8 @@ func handle_input_events():
 		vision_front_distance = false
 		vision_car = true
 		vision_tires = false
+	elif Input.is_action_just_pressed("reset"):
+		car.reset()
 
 
 func update_time_label(update: bool = true):
