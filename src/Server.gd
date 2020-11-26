@@ -5,7 +5,7 @@ signal connection_to_client(status)
 signal action_signal
 
 var _server: TCP_Server
-var _client: StreamPeerTCP
+var _output_stream: StreamPeerTCP
 var streamTCP: StreamPeerTCP
 var socket_url: String
 var port1: int
@@ -44,7 +44,8 @@ var ACTIONS = {
 #	IS_ORIENTED = bytearray(bytes([82, 73, 79]))
 var REQUESTS = {
 	"CENTER_DISTANCE": ([REQUEST, 67, 68] as PoolByteArray),
-	"IS_ORIENTED": ([REQUEST, 73, 79] as PoolByteArray)
+	"IS_ORIENTED": ([REQUEST, 73, 79] as PoolByteArray),
+	"LAP_TIME": ([76, 84] as PoolByteArray)
 }
 
 var RESPONSES = {
@@ -55,6 +56,7 @@ var RESPONSES = {
 onready var server_timer: Timer = $ServerTimer
 onready var server_timer2: Timer = $ServerTimer2
 onready var car: Car = get_parent().get_node("Track/Car")
+onready var track: Node2D = get_parent().get_node("Track")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -69,13 +71,15 @@ func _ready():
 	err = manage_action_thread.start(self, "manage_action")
 	if err != OK:
 		print("Error initializing action manager thread! ", err)
+	
+	err = track.connect("lap_stats", self, "send_lap_stats")
 
 
 func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 	var err: int
 	var status: int = -1
 	_server = TCP_Server.new()
-	_client = StreamPeerTCP.new()
+	_output_stream = StreamPeerTCP.new()
 	
 	print("Listening: ", _server.listen(port_number1, socket_url))
 	
@@ -89,6 +93,7 @@ func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 	print("StreamTCP: ", streamTCP)
 	print("Connected to host: ", streamTCP.is_connected_to_host())
 	streamTCP.set_no_delay(true)
+	status = streamTCP.get_status()
 	
 	while streamTCP.get_available_bytes() <= packet_size:
 		_data = streamTCP.get_partial_data(packet_size) # Gets data sent by client.
@@ -102,11 +107,16 @@ func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 		print("Waiting client confirmation...")
 	
 	yield(server_timer, "timeout")
-	err = _client.connect_to_host(socket_url, port_number2)
+	err = _output_stream.connect_to_host(socket_url, port_number2)
 	if err != OK:
 		print("'Output' connection error!")
+	else:
+		err = _output_stream.put_data(RESPONSES["CONNECTION_OK"])
+		if err != OK:
+			print("Error sending data through 'output' connection!")
+		else:
+			print("'Output' connection established.")
 	
-	status = streamTCP.get_status()
 	_online = true
 	emit_signal("connection_to_client", status)
 
@@ -275,6 +285,16 @@ func communicate_test(_userdata):
 	total_time = OS.get_ticks_msec() - time_before
 	print("Total time (sec): ", total_time / 1000.0)
 	print("Messages per second: ", count / (total_time / 1000.0))
+
+
+func send_lap_stats(lap_time: int):
+	var err: int
+	var lap_data: PoolByteArray = REQUESTS["LAP_TIME"]
+	lap_data.append_array(str(lap_time).to_ascii())
+	print(lap_data.get_string_from_ascii())
+	err = _output_stream.put_data(lap_data)
+	if err != OK:
+		print("Error sending lap stats!")
 
 
 func _send_data(byte_array: PoolByteArray) -> int:

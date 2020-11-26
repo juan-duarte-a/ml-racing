@@ -1,6 +1,7 @@
 extends Node2D
 
 signal lap_finished(lap_time)
+signal lap_stats(lap_time)
 
 var vision_machine_mode: bool
 var vision_radar_mode: bool
@@ -169,13 +170,14 @@ func handle_input_events():
 		car.reset()
 
 
-func update_time_label(update: bool = true):
+func update_time_label(lap_time: bool = false, update: bool = true):
 	if update:
 		stopwatch_time = timer.get_stopwatch_time()
 		# str(stopwatch_time["hours"]) + ":" + 
 		var lbl_text: String = str("%0*d" % [2, stopwatch_time["minutes"]]) + ":" + \
 				str("%0*d" % [2, stopwatch_time["seconds"]]) + \
-				str(":%0*d" % [2, stopwatch_time["milliseconds"]/10])
+				(str(":%0*d" % [2, stopwatch_time["milliseconds"]/10]) if not lap_time \
+				else str(":%0*d" % [3, stopwatch_time["milliseconds"]]))
 		time_label.set_text(lbl_text)
 
 
@@ -193,16 +195,18 @@ func _physics_process(_delta):
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
 	
-	update_time_label(update_timer)
+	update_time_label(false, update_timer)
 	update_track_completion(update_completion)
 
 
 func _on_FinishLine_area_entered(area):
 	if area.get_name() == car.front_position.get_name():
+		timer.pause_stopwatch()
 		var lap_time = timer.get_stopwatch_time_msecs()
 		
 		if lap_start:
 			lap_start = false
+			timer.reset_stopwatch()
 		else:
 			if best_lap_time == 0:
 				best_lap_time = lap_time
@@ -210,7 +214,6 @@ func _on_FinishLine_area_entered(area):
 				if lap_time < best_lap_time:
 					best_lap_time = lap_time
 			emit_signal("lap_finished", lap_time)
-			reset_track()
 
 
 func run_start():
@@ -223,12 +226,15 @@ func reset_track():
 	car.reset()
 
 
-func lap_finished(_lap_time):
+func lap_finished(lap_time):
 	print("Lap finished!")
 	update_timer = false
 	update_completion = false
+	update_time_label(true)
 	completion_label.text = "100 %"
 	animation_player.play("lap_finish")
+	emit_signal("lap_stats", lap_time)
+	reset_track()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
