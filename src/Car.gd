@@ -306,7 +306,7 @@ func reset():
 	velocity = Vector2.ZERO
 	running = false
 	turning = false
-	set_position(Vector2(654, 840))
+	set_position(Vector2(654.75, 840))
 	set_rotation_degrees(180)
 	gear = 0
 	if road != null:

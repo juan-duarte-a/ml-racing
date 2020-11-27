@@ -2,11 +2,10 @@ extends Node
 class_name Server
 
 signal connection_to_client(status)
-signal action_signal
 
 var _server: TCP_Server
 var _output_stream: StreamPeerTCP
-var streamTCP: StreamPeerTCP
+var _input_stream: StreamPeerTCP
 var socket_url: String
 var port1: int
 var port2: int
@@ -14,8 +13,8 @@ var _online: bool = false
 var _byte_array: PoolByteArray
 var _data: Array
 var _data_action: Array
-var comm_flow_control: bool
-var manage_action_thread: Thread
+var update_state: bool
+var test: bool
 
 const ACTION: int = 65
 const REQUEST: int = 82
@@ -56,23 +55,19 @@ var RESPONSES = {
 onready var server_timer: Timer = $ServerTimer
 onready var server_timer2: Timer = $ServerTimer2
 onready var car: Car = get_parent().get_node("Track/Car")
-onready var track: Node2D = get_parent().get_node("Track")
+onready var track: Track = get_parent().get_node("Track")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var err: int
-	
 	socket_url = "127.0.0.1"
 	port1 = 11435
 	port2 = 11436
-	comm_flow_control = false
-	manage_action_thread = Thread.new()
-	err = manage_action_thread.start(self, "manage_action")
-	if err != OK:
-		print("Error initializing action manager thread! ", err)
+	update_state = false
+	test = false
 	
-	err = track.connect("lap_stats", self, "send_lap_stats")
+	if track.connect("lap_stats", self, "send_lap_stats") != OK:
+		print("Error connecting 'lap_stats' signal!")
 
 
 func connect_to_client(port_number1: int = port1, port_number2: int = port2):
@@ -84,29 +79,30 @@ func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 	print("Listening: ", _server.listen(port_number1, socket_url))
 	
 	while true:
-		streamTCP = _server.take_connection()
-		if streamTCP != null:
+		_input_stream = _server.take_connection()
+		if _input_stream != null:
 			break
 		yield(server_timer, "timeout")
 		print("Waiting client connection...")
 	
-	print("StreamTCP: ", streamTCP)
-	print("Connected to host: ", streamTCP.is_connected_to_host())
-	streamTCP.set_no_delay(true)
-	status = streamTCP.get_status()
+	print("StreamTCP: ", _input_stream)
+	print("Connected to host: ", _input_stream.is_connected_to_host())
+	_input_stream.set_no_delay(true)
+	status = _input_stream.get_status()
 	
-	while streamTCP.get_available_bytes() <= packet_size:
-		_data = streamTCP.get_partial_data(packet_size) # Gets data sent by client.
+	while _input_stream.get_available_bytes() <= packet_size:
+		_data = _input_stream.get_partial_data(packet_size) # Gets data sent by client.
 		if _data[0] == OK and (_data[1] as PoolByteArray) == RESPONSES["CONNECTION_OK"]:
 			err = _send_data(RESPONSES["CONNECTION_OK"])
 			if err != OK:
 				print("Error with 'input' connection!")
 			print("'Input' connection established.")
 			break
-		yield(server_timer, "timeout")
-		print("Waiting client confirmation...")
+			yield(server_timer, "timeout")
 	
-	yield(server_timer, "timeout")
+		print("Waiting client confirmation...")
+		yield(server_timer, "timeout")
+	
 	err = _output_stream.connect_to_host(socket_url, port_number2)
 	if err != OK:
 		print("'Output' connection error!")
@@ -125,49 +121,22 @@ func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 # Should be called as a thread.
 # delay: time in seconds before restarting the cycle (time client wait for response, only in action requests)
 func handle_communication(delay: float = 0):
-	var err: int
 	var bytes_available: int
-	var temp_int1: int
-	var temp_bool1: bool
 	
 	_data = []
 	server_timer.set_one_shot(true)
 	server_timer2.start(delay)
 	
 	while _online:
-		bytes_available = streamTCP.get_available_bytes()
-#		if bytes_available != 0:
-#			print(bytes_available)
+		bytes_available = _input_stream.get_available_bytes()
 		if bytes_available >= packet_size:
-#			if bytes_available > 3:
-#				print("Bytes: ", bytes_available)
 			_data = _receive_data(packet_size) # Gets data sent by client.
 			if _data[0] == OK:
 				print("Received <- ", _data[0], " ", _data[1][0]," ",_data[1][1]," ",_data[1][2], \
 					" ", (_data[1] as PoolByteArray).get_string_from_ascii())
 				if _data[1][0] == ACTION:
-					if comm_flow_control == true:
-						print("Server busy!")
-						err = _send_data(RESPONSES["BUSY"])
-						if err != OK:
-							print("Error sending data to client! :", err)
-					else:
-						_data_action = [_data.duplicate(true), delay]
-						emit_signal("action_signal")
-				elif _data[1][0] == REQUEST:
-					if (_data[1] as PoolByteArray) == REQUESTS["CENTER_DISTANCE"]:
-						temp_int1 = car.get_distance_from_center()
-						err = _send_data(int_byte_code(temp_int1))
-						print("REQUEST -> Center distance: ", temp_int1, " ", \
-								int_byte_code(temp_int1)[1], " ", int_byte_code(temp_int1)[2])
-						if err != OK:
-							print("Error sending data to client! :", err)
-					elif (_data[1] as PoolByteArray) == REQUESTS["IS_ORIENTED"]:
-						temp_bool1 = car.is_oriented()
-						err = _send_data(bool_byte_code(temp_bool1))
-						print("REQUEST -> Is oriented: ", temp_bool1, " ", bool_byte_code(temp_bool1)[2])
-						if err != OK:
-							print("Error sending data to client! :", err)
+					_data_action = [_data.duplicate(true), delay]
+					manage_action()
 			else:
 				print("Error receiving data from client! :", _data[0])
 			
@@ -177,47 +146,24 @@ func handle_communication(delay: float = 0):
 
 # Manages action requests from client.
 # This method should be call as a thread.
-func manage_action(_userdata):
-	var err: int
+func manage_action():
 	var message: String = ""
+	var data: Array = _data_action[0]
 	
-	yield(self, "connection_to_client")
-	
-	while _online:
-#		err = semaphore.wait()
-		yield(self, "action_signal")
-		comm_flow_control = true
-		if err != OK:
-			print("Manage action error! :", err)
-		
-		var data: Array = _data_action[0]
-		
-		if data != [] and data[0] == OK:
-			if (data[1] as PoolByteArray) == ACTIONS["RUN"]:
-				car.set_action(Car.ACTIONS.RUN)
-				message = "RUN"
-			elif (data[1] as PoolByteArray) == ACTIONS["STOP"]:
-				car.set_action(Car.ACTIONS.STOP)
-				message = "STOP"
-			elif (data[1] as PoolByteArray) == ACTIONS["TURN_LEFT"]:
-				car.set_action(Car.ACTIONS.TURN_LEFT)
-				message = "TURN_LEFT"
-			elif (data[1] as PoolByteArray) == ACTIONS["TURN_RIGHT"]:
-				car.set_action(Car.ACTIONS.TURN_RIGHT)
-				message = "TURN_RIGHT"
-			print("Received traduction <- ", message)
-		
-		_byte_array = int_byte_code(car.get_distance_front())
-		# Sends response to client.
-		err = _send_data(_byte_array)
-		print("Sent ", _byte_array[0]," ",_byte_array[1]," ",_byte_array[2], " -> ", \
-				err, " ", _byte_array.get_string_from_ascii())
-		
-		if _data_action[1] > 0:
-			server_timer.start(_data_action[1])
-			yield(server_timer, "timeout") # Waits 'delay' seconds.
-		
-		comm_flow_control = false
+	if data != [] and data[0] == OK:
+		if (data[1] as PoolByteArray) == ACTIONS["RUN"]:
+			car.set_action(Car.ACTIONS.RUN)
+			message = "RUN"
+		elif (data[1] as PoolByteArray) == ACTIONS["STOP"]:
+			car.set_action(Car.ACTIONS.STOP)
+			message = "STOP"
+		elif (data[1] as PoolByteArray) == ACTIONS["TURN_LEFT"]:
+			car.set_action(Car.ACTIONS.TURN_LEFT)
+			message = "TURN_LEFT"
+		elif (data[1] as PoolByteArray) == ACTIONS["TURN_RIGHT"]:
+			car.set_action(Car.ACTIONS.TURN_RIGHT)
+			message = "TURN_RIGHT"
+		print("Received traduction <- ", message)
 
 
 func byte_int_decode(byte_array: PoolByteArray) -> int:
@@ -252,6 +198,7 @@ func bool_byte_code(boolean: bool) -> PoolByteArray:
 # Test communication speed between server and client.
 # Should be called as a thread.
 func communicate_test(_userdata):
+	test = true
 	var time_start: bool = false
 	var time_before: float
 	var total_time: float
@@ -287,11 +234,28 @@ func communicate_test(_userdata):
 	print("Messages per second: ", count / (total_time / 1000.0))
 
 
+func send_state_variables():
+	var err: int
+	var state_parameters: String = ""
+	
+	if not test:
+		for s in track.state_variables:
+			state_parameters += str(s) + ":"
+		state_parameters = state_parameters.left(len(state_parameters) - 1)
+		err = _output_stream.put_data(PoolByteArray([len(state_parameters)]))
+		err = _output_stream.put_data(state_parameters.to_ascii())
+		if err != OK:
+			print("Error sending state data through 'output' connection!")
+
+
 func send_lap_stats(lap_time: int):
 	var err: int
 	var lap_data: PoolByteArray = REQUESTS["LAP_TIME"]
+	
+	
 	lap_data.append_array(str(lap_time).to_ascii())
 	print(lap_data.get_string_from_ascii())
+	err = _output_stream.put_data([lap_data.size()])
 	err = _output_stream.put_data(lap_data)
 	if err != OK:
 		print("Error sending lap stats!")
@@ -299,7 +263,7 @@ func send_lap_stats(lap_time: int):
 
 func _send_data(byte_array: PoolByteArray) -> int:
 	var err = -1
-	err = streamTCP.put_data(byte_array)
+	err = _input_stream.put_data(byte_array)
 	
 	return err
 
@@ -307,11 +271,16 @@ func _send_data(byte_array: PoolByteArray) -> int:
 func _receive_data(bytes: int = 3) -> Array:
 	var data: Array = []
 	while data.size() == 0 or (data[1] as PoolByteArray).size() == 0:
-		data =  streamTCP.get_partial_data(bytes)
+		data =  _input_stream.get_partial_data(bytes)
 	
 	return data
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(_delta):
-#	pass
+func _process(_delta):
+	if _online:
+		if update_state:
+			send_state_variables()
+			update_state = false
+		else:
+			update_state = true

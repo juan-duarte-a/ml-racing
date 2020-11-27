@@ -1,4 +1,5 @@
 extends Node2D
+class_name Track
 
 signal lap_finished(lap_time)
 signal lap_stats(lap_time)
@@ -21,6 +22,8 @@ var update_timer: bool
 var update_completion: bool
 var lap_start: bool
 var best_lap_time: int
+var state_variables: Array
+var running: bool
 
 onready var car: KinematicBody2D = $Car
 onready var map_background: TileMap = $TileMapBackground
@@ -50,7 +53,9 @@ func _ready():
 	update_timer = true
 	update_completion = true
 	lap_start = true
+	running = false
 	best_lap_time = 0
+	state_variables = []
 	
 	for s in range (car.speeds.size()):
 		car.speeds[s] *= scale.length() / 1.414214
@@ -82,22 +87,25 @@ func update_corner_vectors():
 
 func update_track_completion(update: bool = true):
 	if update:
-		var waypoint_distance: float
-		completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
-		completion_car_sensor.set_cast_to(
-			map_road._get_direction_vector(
-					map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
-		completion_car_sensor.force_raycast_update()
-		if map_road.on_road(car.front_position.get_global_position()):
-			waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
-					map_road.to_local(completion_car_sensor.get_collision_point()))
-			if waypoint_distance == 0:
-				waypoint_distance = 0.000001
-		
-		track_completion = map_road.get_track_completion(car.front_position.get_global_position())
-		track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
 		completion_text = str("%.1f" % track_completion) if map_road.on_road(car.front_position.get_global_position()) else "--"
 		completion_label.set_text(completion_text + " %")
+
+
+func calculate_track_completion():
+	var waypoint_distance: float
+	completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
+	completion_car_sensor.set_cast_to(
+		map_road._get_direction_vector(
+				map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
+	completion_car_sensor.force_raycast_update()
+	if map_road.on_road(car.front_position.get_global_position()):
+		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
+				map_road.to_local(completion_car_sensor.get_collision_point()))
+		if waypoint_distance == 0:
+			waypoint_distance = 0.000001
+	
+	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
+	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
 
 
 func handle_input_events():
@@ -181,6 +189,14 @@ func update_time_label(lap_time: bool = false, update: bool = true):
 		time_label.set_text(lbl_text)
 
 
+func update_state():
+	state_variables.clear()
+	state_variables.append(car.is_oriented())
+	state_variables.append(car.get_distance_from_center())
+	state_variables.append(car.get_distance_front())
+	state_variables.append(stepify(track_completion, 0.001))
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	handle_input_events()
@@ -195,8 +211,10 @@ func _physics_process(_delta):
 	if show_center_distance:
 		print("From center: ", car.get_distance_from_center())
 	
+	calculate_track_completion()
 	update_time_label(false, update_timer)
 	update_track_completion(update_completion)
+	update_state()
 
 
 func _on_FinishLine_area_entered(area):
@@ -218,12 +236,14 @@ func _on_FinishLine_area_entered(area):
 
 func run_start():
 	timer.start_stopwatch()
+	running = true
 
 
 func reset_track():
 	timer.stop_stopwatch()
 	timer.reset_stopwatch()
 	car.reset()
+	running = false
 
 
 func lap_finished(lap_time):
@@ -235,6 +255,7 @@ func lap_finished(lap_time):
 	animation_player.play("lap_finish")
 	emit_signal("lap_stats", lap_time)
 	reset_track()
+	update_state()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

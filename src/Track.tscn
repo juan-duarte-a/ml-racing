@@ -1585,7 +1585,7 @@ collision_mask = 32
 shape = SubResource( 11 )
 
 [node name="Car" parent="." instance=ExtResource( 1 )]
-position = Vector2( 654, 840 )
+position = Vector2( 654.75, 840 )
 rotation = 3.14159
 scale = Vector2( 0.8, 0.8 )
 
