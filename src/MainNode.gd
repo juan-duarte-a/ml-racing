@@ -2,6 +2,7 @@ tool
 extends Node
 
 export var comm_test: bool = false
+export var time_scale: float = 1.0
 
 var comm_thread: Thread
 onready var _server: Server = $Server
@@ -9,6 +10,7 @@ onready var _server: Server = $Server
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Engine.set_time_scale(time_scale)
 	_server.connect_to_client()
 	yield(_server, "connection_to_client")
 	print(get_physics_process_delta_time())
@@ -23,7 +25,7 @@ func _on_Server_connection_to_client(status):
 		if comm_test:
 			err = comm_thread.start(_server, "communicate_test")
 		else:
-			err = comm_thread.start(_server, "handle_communication", 0.005)
+			err = comm_thread.start(_server, "handle_communication", 0.0025 / Engine.get_time_scale())
 		
 		if err != OK:
 			print("Thread failure!")

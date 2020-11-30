@@ -279,8 +279,8 @@ func _receive_data(bytes: int = 3) -> Array:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if _online:
-		if update_state:
+#		if update_state:
 			send_state_variables()
-			update_state = false
-		else:
-			update_state = true
+#			update_state = false
+#		else:
+#			update_state = true

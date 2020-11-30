@@ -6,6 +6,7 @@
 
 [node name="MainNode" type="Node"]
 script = ExtResource( 1 )
+time_scale = 3.0
 
 [node name="Server" type="Node" parent="."]
 script = ExtResource( 2 )

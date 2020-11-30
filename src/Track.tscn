@@ -576,8 +576,7 @@ b = Vector2( 0, 120 )
 [sub_resource type="SegmentShape2D" id=10]
 b = Vector2( -120, 0 )
 
-[sub_resource type="SegmentShape2D" id=11]
-b = Vector2( 0, 120 )
+[sub_resource type="RectangleShape2D" id=11]
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0.235294 )
@@ -1582,12 +1581,15 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackRoad/FinishLine"]
+position = Vector2( 10, 59.736 )
+scale = Vector2( 1, 6 )
 shape = SubResource( 11 )
 
 [node name="Car" parent="." instance=ExtResource( 1 )]
 position = Vector2( 654.75, 840 )
 rotation = 3.14159
 scale = Vector2( 0.8, 0.8 )
+low_speed = 120
 
 [node name="TileMapTerrain" type="TileMap" parent="."]
 tile_set = SubResource( 5 )
@@ -1643,5 +1645,5 @@ script = ExtResource( 41 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/lap_finish = SubResource( 14 )
-[connection signal="area_entered" from="TrackRoad/FinishLine" to="." method="_on_FinishLine_area_entered"]
+[connection signal="area_exited" from="TrackRoad/FinishLine" to="." method="_on_FinishLine_area_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

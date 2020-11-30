@@ -8,8 +8,8 @@ enum TURN_MODE {FIXED_ANGLE, USER_CONTROLLED}
 
 const RAD_90: float = 1.5707963 # 90 degrees to radians.
 
-export var high_speed: int = 140
-export var low_speed: int = 80
+export var high_speed: int = 200
+export var low_speed: int = 120
 export var gears: int = 2
 export var _turn_angle: float = 30 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
@@ -311,6 +311,8 @@ func reset():
 	gear = 0
 	if road != null:
 		direction = road.initial_direction
+	frt.set_rotation_degrees(90)
+	flt.set_rotation_degrees(90)
 
 
 func _physics_process(delta):

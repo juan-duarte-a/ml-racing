@@ -24,6 +24,7 @@ var lap_start: bool
 var best_lap_time: int
 var state_variables: Array
 var running: bool
+var time_scale: float
 
 onready var car: KinematicBody2D = $Car
 onready var map_background: TileMap = $TileMapBackground
@@ -75,6 +76,8 @@ func _ready():
 	err = connect("lap_finished", self, "lap_finished")
 	if err != OK:
 		print("Error connecting 'lap_finished' signal!")
+		
+		time_scale = Engine.get_time_scale()
 
 
 func update_corner_vectors():
@@ -217,23 +220,6 @@ func _physics_process(_delta):
 	update_state()
 
 
-func _on_FinishLine_area_entered(area):
-	if area.get_name() == car.front_position.get_name():
-		timer.pause_stopwatch()
-		var lap_time = timer.get_stopwatch_time_msecs()
-		
-		if lap_start:
-			lap_start = false
-			timer.reset_stopwatch()
-		else:
-			if best_lap_time == 0:
-				best_lap_time = lap_time
-			else:
-				if lap_time < best_lap_time:
-					best_lap_time = lap_time
-			emit_signal("lap_finished", lap_time)
-
-
 func run_start():
 	timer.start_stopwatch()
 	running = true
@@ -244,6 +230,7 @@ func reset_track():
 	timer.reset_stopwatch()
 	car.reset()
 	running = false
+	lap_start = true
 
 
 func lap_finished(lap_time):
@@ -262,3 +249,22 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "lap_finish":
 		update_timer = true
 		update_completion = true
+
+
+func _on_FinishLine_area_exited(area):
+	if area.get_name() == car.front_position.get_name():
+		timer.pause_stopwatch()
+		var lap_time = timer.get_stopwatch_time_msecs()
+		
+		if lap_start:
+			lap_start = false
+			timer.time_scale = Engine.get_time_scale()
+			timer.reset_stopwatch()
+			timer.start_stopwatch()
+		else:
+			if best_lap_time == 0:
+				best_lap_time = lap_time
+			else:
+				if lap_time < best_lap_time:
+					best_lap_time = lap_time
+			emit_signal("lap_finished", lap_time)

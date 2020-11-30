@@ -4,6 +4,7 @@ var stopwatch_init: int
 var stopwatch_temp: int
 var state: int
 var time: int
+var time_scale: float
 
 enum {STOPPED, PAUSED, RUNNING}
 #enum action {START, STOP, RESTART}
@@ -24,13 +25,15 @@ func start_stopwatch():
 
 
 func stop_stopwatch():
-	time = OS.get_ticks_msec() - stopwatch_init
+	# warning-ignore:narrowing_conversion
+	time = (OS.get_ticks_msec() - stopwatch_init) * time_scale
 	state = STOPPED
 
 
 func pause_stopwatch():
 	stopwatch_temp = OS.get_ticks_msec()
-	time = OS.get_ticks_msec() - stopwatch_init
+	# warning-ignore:narrowing_conversion
+	time = (OS.get_ticks_msec() - stopwatch_init) * time_scale
 	state = PAUSED
 
 
@@ -57,10 +60,11 @@ func get_stopwatch_time() -> Dictionary:
 	var milliseconds: int
 	
 	if state == RUNNING:
-		time = OS.get_ticks_msec() - stopwatch_init
+	# warning-ignore:narrowing_conversion
+		time = (OS.get_ticks_msec() - stopwatch_init) * time_scale
 	
 	# warning-ignore:integer_division
-	hours = time / 3600000
+	hours = time  / 3600000
 	# warning-ignore:integer_division
 	minutes = (time % 3600000) / 60000
 	# warning-ignore:integer_division
@@ -79,6 +83,7 @@ func get_stopwatch_time() -> Dictionary:
 
 func get_stopwatch_time_msecs() -> int:
 	if state == RUNNING:
-		time = OS.get_ticks_msec() - stopwatch_init
+	# warning-ignore:narrowing_conversion
+		time = (OS.get_ticks_msec() - stopwatch_init) * time_scale
 	
 	return time
