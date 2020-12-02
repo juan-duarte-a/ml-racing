@@ -149,6 +149,7 @@ func get_cell_position(position_vector: Vector2) -> Vector2:
 
 
 func _get_direction_vector(position_vector: Vector2) -> Vector2:
+	return Vector2(1,1)
 	var curve_line: Line2D
 	var dir_vector: Vector2
 	var direction_vector: Vector2 = world_to_map(position_vector)
@@ -165,6 +166,7 @@ func get_completion_step() -> float:
 
 
 func get_track_completion(position_vector: Vector2) -> float:
+	return 50.0
 	var pos: Vector2
 	var percentage: float
 	pos = get_cell_position(position_vector)

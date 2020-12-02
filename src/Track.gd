@@ -26,7 +26,7 @@ var state_variables: Array
 var running: bool
 var time_scale: float
 
-onready var car: KinematicBody2D = $Car
+onready var car: Car = $Car
 onready var map_background: TileMap = $TileMapBackground
 onready var map_road: TileMap = $TrackRoad
 onready var map_terrain: TileMap = $TileMapTerrain
@@ -69,6 +69,7 @@ func _ready():
 	car.set_tires_visible(false)
 	car.direction = Vector2(-1,0)
 	get_node("TrackRoad/CornerLines").set_visible(false)
+#	(get_node("HBoxContainer/TrackCanvas") as CanvasLayer).custom_viewport = get_node("HBoxContainer/TrackCanvas/ViewportTrack")
 	
 	err = car.connect("run", self, "run_start")
 	if err != OK:

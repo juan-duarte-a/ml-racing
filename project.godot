@@ -9,25 +9,120 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Chart",
+"class": "BarChart",
+"language": "GDScript",
+"path": "res://util/easy_charts/BarChart/BarChart.gd"
+}, {
+"base": "Chart2D",
+"class": "BarChart2D",
+"language": "GDScript",
+"path": "res://util/easy_charts/BarChart2D/BarChart2D.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Car",
 "language": "GDScript",
 "path": "res://src/Car.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "CarHD",
+"language": "GDScript",
+"path": "res://src/CarHD.gd"
 }, {
 "base": "RayCast2D",
 "class": "CarRayCast",
 "language": "GDScript",
 "path": "res://src/CarRayCast.gd"
 }, {
+"base": "RayCast2D",
+"class": "CarRayCastHD",
+"language": "GDScript",
+"path": "res://src/CarRayCastHD.gd"
+}, {
+"base": "Control",
+"class": "Chart",
+"language": "GDScript",
+"path": "res://util/easy_charts/Utilities/Scripts/Chart.gd"
+}, {
+"base": "Node2D",
+"class": "Chart2D",
+"language": "GDScript",
+"path": "res://util/easy_charts/Utilities/Scripts/Chart2D.gd"
+}, {
+"base": "VBoxContainer",
+"class": "LegendElement",
+"language": "GDScript",
+"path": "res://util/easy_charts/Utilities/Legend/FunctionLegend.gd"
+}, {
+"base": "Chart",
+"class": "LineChart",
+"language": "GDScript",
+"path": "res://util/easy_charts/LineChart/line_chart.gd"
+}, {
+"base": "Chart2D",
+"class": "LineChart2D",
+"language": "GDScript",
+"path": "res://util/easy_charts/LineChart2D/LineChart2D.gd"
+}, {
+"base": "Chart",
+"class": "PieChart",
+"language": "GDScript",
+"path": "res://util/easy_charts/PieChart/pie_chart.gd"
+}, {
+"base": "Control",
+"class": "Point",
+"language": "GDScript",
+"path": "res://util/easy_charts/Utilities/Point/Point.gd"
+}, {
+"base": "PanelContainer",
+"class": "PointData",
+"language": "GDScript",
+"path": "res://util/easy_charts/Utilities/Point/PointData.gd"
+}, {
+"base": "Chart",
+"class": "RadarChart",
+"language": "GDScript",
+"path": "res://util/easy_charts/RadarChart/RadarChart.gd"
+}, {
+"base": "Chart",
+"class": "ScatterChart",
+"language": "GDScript",
+"path": "res://util/easy_charts/ScatterChart/ScatterChart.gd"
+}, {
+"base": "Chart2D",
+"class": "ScatterChart2D",
+"language": "GDScript",
+"path": "res://util/easy_charts/ScatterChart2D/ScatterChart2D.gd"
+}, {
+"base": "Spatial",
+"class": "ScatterChart3D",
+"language": "GDScript",
+"path": "res://util/easy_charts/ScatterChart3D/ScatterChart3D.gd"
+}, {
 "base": "Node",
 "class": "Server",
 "language": "GDScript",
 "path": "res://src/Server.gd"
 }, {
+"base": "Node",
+"class": "ServerHD",
+"language": "GDScript",
+"path": "res://src/ServerHD.gd"
+}, {
+"base": "Reference",
+"class": "Slice",
+"language": "GDScript",
+"path": "res://util/easy_charts/Utilities/Slice/slice.gd"
+}, {
 "base": "Node2D",
 "class": "Track",
 "language": "GDScript",
 "path": "res://src/Track.gd"
+}, {
+"base": "Node2D",
+"class": "TrackHD",
+"language": "GDScript",
+"path": "res://src/TrackHD.gd"
 }, {
 "base": "TileMap",
 "class": "TrackRoad",
@@ -35,10 +130,29 @@ _global_script_classes=[ {
 "path": "res://src/TrackRoad.gd"
 } ]
 _global_script_class_icons={
+"BarChart": "",
+"BarChart2D": "",
 "Car": "",
+"CarHD": "",
 "CarRayCast": "",
+"CarRayCastHD": "",
+"Chart": "",
+"Chart2D": "",
+"LegendElement": "",
+"LineChart": "",
+"LineChart2D": "",
+"PieChart": "",
+"Point": "",
+"PointData": "",
+"RadarChart": "",
+"ScatterChart": "",
+"ScatterChart2D": "",
+"ScatterChart3D": "",
 "Server": "",
+"ServerHD": "",
+"Slice": "",
 "Track": "",
+"TrackHD": "",
 "TrackRoad": ""
 }
 
@@ -50,7 +164,7 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=960
+window/size/width=1366
 window/size/height=768
 
 [input]
@@ -137,6 +251,16 @@ reset={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777220,"unicode":0,"echo":false,"script":null)
  ]
 }
+zoom_in={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777349,"unicode":0,"echo":false,"script":null)
+ ]
+}
+zoom_out={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777347,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -153,4 +277,5 @@ limits/debugger_stdout/max_chars_per_second=2048000000
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

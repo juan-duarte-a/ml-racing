@@ -53,7 +53,6 @@ var RESPONSES = {
 }
 
 onready var server_timer: Timer = $ServerTimer
-onready var server_timer2: Timer = $ServerTimer2
 onready var car: Car = get_parent().get_node("Track/Car")
 onready var track: Track = get_parent().get_node("Track")
 
@@ -124,8 +123,7 @@ func handle_communication(delay: float = 0):
 	var bytes_available: int
 	
 	_data = []
-	server_timer.set_one_shot(true)
-	server_timer2.start(delay)
+	server_timer.start(delay)
 	
 	while _online:
 		bytes_available = _input_stream.get_available_bytes()
@@ -141,7 +139,7 @@ func handle_communication(delay: float = 0):
 				print("Error receiving data from client! :", _data[0])
 			
 			_data.clear()
-		yield(server_timer2, "timeout")
+		yield(server_timer, "timeout")
 
 
 # Manages action requests from client.

@@ -240,11 +240,11 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 				90 + turn_angle if not left else 90 - turn_angle, 0.2, \
 				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		# warning-ignore:return_value_discarded
-		wheel_tween1.start()
-		# warning-ignore:return_value_discarded
 		wheel_tween2.interpolate_property(flt, "rotation_degrees", null, \
 				90 + turn_angle if not left else 90 - turn_angle, 0.2, \
 				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		# warning-ignore:return_value_discarded
+		wheel_tween1.start()
 		# warning-ignore:return_value_discarded
 		wheel_tween2.start()
 
@@ -311,8 +311,16 @@ func reset():
 	gear = 0
 	if road != null:
 		direction = road.initial_direction
-	frt.set_rotation_degrees(90)
-	flt.set_rotation_degrees(90)
+		# warning-ignore:return_value_discarded
+		wheel_tween1.interpolate_property(frt, "rotation_degrees", null, 90, 0.2, \
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		# warning-ignore:return_value_discarded
+		wheel_tween2.interpolate_property(flt, "rotation_degrees", null, 90, 0.2, \
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		# warning-ignore:return_value_discarded
+		wheel_tween1.start()
+		# warning-ignore:return_value_discarded
+		wheel_tween2.start()
 
 
 func _physics_process(delta):

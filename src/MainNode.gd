@@ -6,10 +6,12 @@ export var time_scale: float = 1.0
 
 var comm_thread: Thread
 onready var _server: Server = $Server
+onready var c_rect = get_node("HBoxContainer/ColorRect")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	c_rect.set_position(Vector2(960, 0))
 	Engine.set_time_scale(time_scale)
 	_server.connect_to_client()
 	yield(_server, "connection_to_client")

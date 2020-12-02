@@ -6,15 +6,11 @@
 
 [node name="MainNode" type="Node"]
 script = ExtResource( 1 )
-time_scale = 3.0
 
 [node name="Server" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="ServerTimer" type="Timer" parent="Server"]
-autostart = true
-
-[node name="ServerTimer2" type="Timer" parent="Server"]
 autostart = true
 
 [node name="Track" parent="." instance=ExtResource( 3 )]
