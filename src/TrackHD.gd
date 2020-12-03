@@ -4,6 +4,8 @@ class_name TrackHD
 signal lap_finished(lap_time)
 signal lap_stats(lap_time)
 
+const COMPLETION_VECTOR_SIZE = 1200
+
 var vision_machine_mode: bool
 var vision_radar_mode: bool
 var vision_center_distance: bool
@@ -26,13 +28,15 @@ var state_variables: Array
 var running: bool
 var time_scale: float
 
+onready var viewportrack: ViewportContainer = $ViewportTrack
+onready var viewport: Viewport = $ViewportTrack/Viewport
 onready var car: CarHD = $ViewportTrack/Viewport/Car
 onready var map_background: TileMap = $ViewportTrack/Viewport/TileMapBackground
-onready var map_road: TileMap = $ViewportTrack/Viewport/TrackRoad
+onready var map_road: TileMap = $ViewportTrack/Viewport/TrackRoadHD
 onready var map_terrain: TileMap = $ViewportTrack/Viewport/TileMapTerrain
 onready var completion_label: Label = $UICanvas/VBoxContainer/CompletionLabel
 onready var time_label: Label = $UICanvas/VBoxContainer/TimeLabel
-onready var completion_car_sensor: RayCast2D = $ViewportTrack/Viewport/TrackRoad/CompletionCarSensor
+onready var completion_car_sensor: RayCast2D = $ViewportTrack/Viewport/TrackRoadHD/CompletionCarSensor
 onready var timer: Timer = $Timer
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -41,7 +45,9 @@ onready var animation_player: AnimationPlayer = $AnimationPlayer
 func _ready():
 	var err: int
 	
-	print(scale.length())
+	viewportrack.set_size(Vector2(960, 768))
+	viewport.set_size(Vector2(960, 768))
+	
 	car.road = map_road
 	vision_machine_mode = false
 	vision_radar_mode = false
@@ -68,7 +74,7 @@ func _ready():
 	car.ray_cast_r.set_visible(vision_center_distance)
 	car.set_tires_visible(false)
 	car.direction = Vector2(-1,0)
-	get_node("ViewportTrack/Viewport/TrackRoad/CornerLines").set_visible(false)
+	get_node("ViewportTrack/Viewport/TrackRoadHD/CornerLines").set_visible(false)
 	
 	err = car.connect("run", self, "run_start")
 	if err != OK:
@@ -99,7 +105,7 @@ func calculate_track_completion():
 	completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
 	completion_car_sensor.set_cast_to(
 		map_road._get_direction_vector(
-				map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
+				map_road.to_local(car.front_position.get_global_position())).normalized() * COMPLETION_VECTOR_SIZE)
 	completion_car_sensor.force_raycast_update()
 	if map_road.on_road(car.front_position.get_global_position()):
 		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
@@ -108,7 +114,7 @@ func calculate_track_completion():
 			waypoint_distance = 0.000001
 	
 	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
-	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
+	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / map_road.get_cell_size().x)
 
 
 func handle_input_events():

@@ -8,8 +8,8 @@ enum TURN_MODE {FIXED_ANGLE, USER_CONTROLLED}
 
 const RAD_90: float = 1.5707963 # 90 degrees to radians.
 
-export var high_speed: int = 900
-export var low_speed: int = 540
+export var high_speed: int = 760
+export var low_speed: int = 440
 export var gears: int = 2
 export var _turn_angle: float = 30 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
@@ -38,7 +38,7 @@ onready var radar: Array = [
 
 var _speed: int # In pixels / second.
 var speeds: Array
-var road: TrackRoad
+var road: TrackRoadHD
 var velocity: Vector2
 var direction: Vector2
 var accumulated_angle: float
@@ -75,7 +75,7 @@ func _ready():
 	tires_off_road = 0
 	accum_tire_rotation_time = 0
 	if get_parent().name != "root":
-		road = get_parent().get_node("TrackRoad")
+		road = get_parent().get_node("TrackRoadHD")
 	
 	wheel_tween1 = Tween.new()
 	add_child(wheel_tween1)
@@ -96,8 +96,10 @@ func _ready():
 	gear = 0
 	
 	W = frt.position.distance_to(brt.position)
+	print("W = ", W)
 	
-	zoom = 3
+	zoom = 5.335
+	camera.set_zoom(Vector2(zoom, zoom))
 	zoom_step = 1.2
 
 
@@ -234,7 +236,7 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 	#		print(direction)
 	#		print("Turning finish time: ", OS.get_ticks_msec())
 	elif turning_mode == TURN_MODE.USER_CONTROLLED:
-		rotation_speed = abs(_speed / (W / sin(turn_angle)))
+		rotation_speed = abs(_speed / (W / sin(deg2rad(turn_angle)))) * 3
 		angle = rotation_speed * delta
 		accum_tire_rotation_time += delta
 		
@@ -311,11 +313,22 @@ func update_l_r_raycasts():
 	ray_cast_r.force_raycast_update()
 
 
+func car_radar_off():
+	for r in radar:
+		(r as RayCast2D).set_cast_to(Vector2.ZERO)
+
+
+func car_radar_on():
+	for r in radar:
+		(r as RayCast2D).set_cast_to(Vector2(9000, 0))
+
+
 func reset():
 	velocity = Vector2.ZERO
 	running = false
 	turning = false
-	set_position(Vector2(654.75, 840))
+	if get_parent().name != "root":
+		set_position(Vector2(road.CAR_INITIAL_X, road.CAR_INITIAL_Y))
 	set_rotation_degrees(180)
 	gear = 0
 	if road != null:
@@ -359,22 +372,37 @@ func _physics_process(delta):
 		print("RIGHT: ", OS.get_ticks_msec())
 		if turning_mode == TURN_MODE.USER_CONTROLLED:
 			set_action(ACTIONS.CENTER_WHEEL)
-	elif Input.is_action_just_released("zoom_in"):
-		# warning-ignore:return_value_discarded
-		zoom_tween.interpolate_property(camera, "zoom", null, camera.zoom / zoom_step, 0.3, \
-				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		# warning-ignore:return_value_discarded
-		zoom_tween.start()
-	elif Input.is_action_just_released("zoom_out"):
-		# warning-ignore:return_value_discarded
-		if camera.zoom.y >= 5.5:
-			camera.set_zoom(Vector2(5.5, 5.5))
+	elif Input.is_action_just_pressed("zoom_in"):
+		print(camera.zoom)
+		if camera.zoom.y / zoom_step < 1.24:
+			# warning-ignore:return_value_discarded
+			zoom_tween.interpolate_property(camera, "zoom", null, Vector2(1.24, 1.24), 0.3, \
+					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			# warning-ignore:return_value_discarded
+			zoom_tween.start()
 		else:
+			# warning-ignore:return_value_discarded
+			zoom_tween.interpolate_property(camera, "zoom", null, camera.zoom / zoom_step, 0.3, \
+					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			# warning-ignore:return_value_discarded
+			zoom_tween.start()
+	elif Input.is_action_just_pressed("zoom_out"):
+		print(camera.zoom)
+		# warning-ignore:return_value_discarded
+		if camera.zoom.y * zoom_step > 5.335:
+#			camera.set_zoom(Vector2(5.335, 5.335))
+			# warning-ignore:return_value_discarded
+			zoom_tween.interpolate_property(camera, "zoom", null, Vector2(5.335, 5.335), 0.3, \
+					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			# warning-ignore:return_value_discarded
+			zoom_tween.start()
+		else:
+			# warning-ignore:return_value_discarded
 			zoom_tween.interpolate_property(camera, "zoom", null, camera.zoom * zoom_step, 0.3, \
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		# warning-ignore:return_value_discarded
-		zoom_tween.start()
-	
+			# warning-ignore:return_value_discarded
+			zoom_tween.start()
+
 	if turning:
 		update_turn_angle(delta, turning_left)
 	
@@ -399,3 +427,11 @@ func _physics_process(delta):
 #	print(road.is_oriented(front_position.get_global_position(), direction))
 #	print(road._get_direction_vector(road.to_local(front_position.get_global_position())))
 #	print(radar[3].get_distance())
+
+
+func _on_FrontPositioner_area_entered(area):
+	if area.get_groups().has("road_limit"):
+		car_radar_off()
+		print(area.name)
+	elif area.get_groups().has("road"):
+		car_radar_on()

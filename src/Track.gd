@@ -4,6 +4,8 @@ class_name Track
 signal lap_finished(lap_time)
 signal lap_stats(lap_time)
 
+const COMPLETION_VECTOR_SIZE = 1200
+
 var vision_machine_mode: bool
 var vision_radar_mode: bool
 var vision_center_distance: bool
@@ -100,7 +102,7 @@ func calculate_track_completion():
 	completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
 	completion_car_sensor.set_cast_to(
 		map_road._get_direction_vector(
-				map_road.to_local(car.front_position.get_global_position())).normalized() * 200)
+				map_road.to_local(car.front_position.get_global_position())).normalized() * COMPLETION_VECTOR_SIZE)
 	completion_car_sensor.force_raycast_update()
 	if map_road.on_road(car.front_position.get_global_position()):
 		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
@@ -109,7 +111,7 @@ func calculate_track_completion():
 			waypoint_distance = 0.000001
 	
 	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
-	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / 120.0)
+	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / map_road.get_cell_size().x)
 
 
 func handle_input_events():

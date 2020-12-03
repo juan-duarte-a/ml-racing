@@ -29,12 +29,11 @@ polygon = PoolVector2Array( 36, -483.5, 36, -482.4, 62, -480.4, 62, -479.5, 68, 
 
 [node name="FrontPositioner" type="Area2D" parent="."]
 position = Vector2( 503, 0 )
-monitoring = false
 collision_layer = 32
-collision_mask = 0
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontPositioner"]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.4, 0.4 )
 shape = SubResource( 1 )
 
 [node name="RayCasts" type="Node2D" parent="."]
@@ -160,6 +159,7 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 3, 3 )
 limit_left = 0
 limit_top = 0
 limit_right = 5120
@@ -172,6 +172,7 @@ drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
+[connection signal="area_entered" from="FrontPositioner" to="." method="_on_FrontPositioner_area_entered"]
 [connection signal="area_entered" from="Tires/CarTireFR" to="Tires/CarTireFR" method="_on_area_entered"]
 [connection signal="area_entered" from="Tires/CarTireFL" to="Tires/CarTireFL" method="_on_area_entered"]
 [connection signal="area_entered" from="Tires/CarTireBR" to="Tires/CarTireBR" method="_on_area_entered"]
