@@ -32,7 +32,7 @@
 [ext_resource path="res://assets/512x512/RoadH3.png" type="Texture" id=53]
 [ext_resource path="res://src/TrackRoadHD.gd" type="Script" id=54]
 
-[sub_resource type="TileSet" id=38]
+[sub_resource type="TileSet" id=1]
 0/name = "Grass1.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -62,7 +62,7 @@
 1/shapes = [  ]
 1/z_index = 0
 
-[sub_resource type="TileSet" id=12]
+[sub_resource type="TileSet" id=2]
 0/name = "Curve1.png 0"
 0/texture = ExtResource( 48 )
 0/tex_offset = Vector2( 0, 0 )
@@ -232,103 +232,103 @@
 11/shapes = [  ]
 11/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 94.6633, 22.6083 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 90.6018, 3.93703 )
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 35.0817, 218.639 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 85.3578, 225.572 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 39.5541, 114.933 )
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 214.664, 22.8066 )
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 82.2893, 81.0012 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 49.3317, 196.884 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 397.89, 14.009 )
 
-[sub_resource type="RectangleShape2D" id=46]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 512, 10 )
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 108.181, 28.1208 )
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 27.1799, 64.569 )
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 82.7168, 23.6297 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 50.5933, 26.978 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 36.4339, 43.0326 )
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 251.963, 39.476 )
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 29.4508, 90.5708 )
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 16.8975, 9.30485 )
 
-[sub_resource type="SegmentShape2D" id=9]
+[sub_resource type="SegmentShape2D" id=21]
 b = Vector2( 0, 512 )
 
-[sub_resource type="SegmentShape2D" id=10]
+[sub_resource type="SegmentShape2D" id=22]
 b = Vector2( -512, 0 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 40.0002, 42.6667 )
 
-[sub_resource type="ConvexPolygonShape2D" id=33]
+[sub_resource type="ConvexPolygonShape2D" id=24]
 points = PoolVector2Array( 128, 384, 128, 384, 256, 128, 384, 128, 512, 384 )
 
-[sub_resource type="ConvexPolygonShape2D" id=34]
+[sub_resource type="ConvexPolygonShape2D" id=25]
 points = PoolVector2Array( 32, 384, 0, 224, 0, 192, 32, 160, 224, 96, 512, 96, 640, 160, 704, 320, 704, 384, 608, 416, 192, 416, 192, 416 )
 
-[sub_resource type="ConvexPolygonShape2D" id=40]
+[sub_resource type="ConvexPolygonShape2D" id=26]
 points = PoolVector2Array( 192, 176, 176, 192, 112, 192, 96, 176, 96, 112, 112, 96, 176, 96, 192, 112 )
 
-[sub_resource type="ConvexPolygonShape2D" id=35]
+[sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 384, 640, 384, 640, 320, 576, 320, 384, 384, 320, 576, 320, 640, 384, 640, 576, 576, 640 )
 
-[sub_resource type="ConvexPolygonShape2D" id=36]
+[sub_resource type="ConvexPolygonShape2D" id=28]
 points = PoolVector2Array( 0, 0, 512, 0, 512, 512, 0, 512 )
 
-[sub_resource type="ConvexPolygonShape2D" id=39]
+[sub_resource type="ConvexPolygonShape2D" id=29]
 points = PoolVector2Array( 0, 0, 256, 0, 256, 256, 0, 256 )
 
-[sub_resource type="ConvexPolygonShape2D" id=41]
+[sub_resource type="ConvexPolygonShape2D" id=30]
 points = PoolVector2Array( 176, 208, 176, 208, 128, 208, 80, 176, 80, 112, 128, 64, 176, 64, 224, 112, 224, 176 )
 
-[sub_resource type="ConvexPolygonShape2D" id=42]
+[sub_resource type="ConvexPolygonShape2D" id=31]
 points = PoolVector2Array( 144, 96, 144, 96, 112, 128, 64, 128, 48, 96, 48, 64, 80, 32, 112, 32, 144, 64, 144, 96 )
 
-[sub_resource type="ConvexPolygonShape2D" id=43]
+[sub_resource type="ConvexPolygonShape2D" id=32]
 points = PoolVector2Array( 16, 208, 0, 112, 32, 80, 304, 80, 352, 176, 352, 208, 304, 224, 96, 224 )
 
-[sub_resource type="ConvexPolygonShape2D" id=44]
+[sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 128, 0, 80, 16, 64, 32, 48, 176, 48, 208, 112, 208, 128, 176, 144, 64, 144 )
 
-[sub_resource type="ConvexPolygonShape2D" id=45]
+[sub_resource type="ConvexPolygonShape2D" id=34]
 points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304, 288, 272, 304, 208, 304 )
 
-[sub_resource type="TileSet" id=37]
+[sub_resource type="TileSet" id=35]
 0/name = "Bush.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -339,14 +339,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 33 )
+0/shape = SubResource( 24 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 33 ),
+"shape": SubResource( 24 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -360,14 +360,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape = SubResource( 34 )
+1/shape = SubResource( 25 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 34 ),
+"shape": SubResource( 25 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
@@ -381,14 +381,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 35 )
+2/shape = SubResource( 27 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 35 ),
+"shape": SubResource( 27 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
@@ -402,14 +402,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 36 )
+3/shape = SubResource( 28 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 36 ),
+"shape": SubResource( 28 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -423,14 +423,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 39 )
+4/shape = SubResource( 29 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 39 ),
+"shape": SubResource( 29 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -444,14 +444,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 0 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape = SubResource( 41 )
+5/shape = SubResource( 30 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 41 ),
+"shape": SubResource( 30 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
@@ -465,14 +465,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 6/navigation_offset = Vector2( 0, 0 )
 6/shape_offset = Vector2( 0, 0 )
 6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-6/shape = SubResource( 42 )
+6/shape = SubResource( 31 )
 6/shape_one_way = false
 6/shape_one_way_margin = 1.0
 6/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 42 ),
+"shape": SubResource( 31 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 6/z_index = 0
@@ -486,14 +486,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 7/navigation_offset = Vector2( 0, 0 )
 7/shape_offset = Vector2( 0, 0 )
 7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-7/shape = SubResource( 43 )
+7/shape = SubResource( 32 )
 7/shape_one_way = false
 7/shape_one_way_margin = 1.0
 7/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 43 ),
+"shape": SubResource( 32 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 7/z_index = 0
@@ -507,14 +507,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 8/navigation_offset = Vector2( 0, 0 )
 8/shape_offset = Vector2( 0, 0 )
 8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-8/shape = SubResource( 44 )
+8/shape = SubResource( 33 )
 8/shape_one_way = false
 8/shape_one_way_margin = 1.0
 8/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 44 ),
+"shape": SubResource( 33 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 8/z_index = 0
@@ -528,14 +528,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 9/navigation_offset = Vector2( 0, 0 )
 9/shape_offset = Vector2( 0, 0 )
 9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-9/shape = SubResource( 45 )
+9/shape = SubResource( 34 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
 9/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 45 ),
+"shape": SubResource( 34 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
@@ -549,26 +549,26 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 10/navigation_offset = Vector2( 0, 0 )
 10/shape_offset = Vector2( 0, 0 )
 10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape = SubResource( 40 )
+10/shape = SubResource( 26 )
 10/shape_one_way = false
 10/shape_one_way_margin = 1.0
 10/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 40 ),
+"shape": SubResource( 26 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 10/z_index = 0
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=36]
 bg_color = Color( 0, 0, 0, 0.352941 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=37]
 size = 32
 font_data = ExtResource( 38 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=38]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("UICanvas/VBoxContainer/TimeLabel:custom_colors/font_color")
@@ -598,8 +598,8 @@ tracks/1/keys = {
 [node name="Track" type="Node2D"]
 script = ExtResource( 36 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 4096.0, 0.0 ],
-"_edit_vertical_guides_": [ 0.864395, 1200.01, 5120.0 ]
+"_edit_horizontal_guides_": [ 4096.0, 0.0, 768.0 ],
+"_edit_vertical_guides_": [ 0.864395, 5120.0, 1365.95 ]
 }
 
 [node name="ViewportTrack" type="ViewportContainer" parent="."]
@@ -618,14 +618,14 @@ usage = 0
 render_target_update_mode = 3
 
 [node name="TileMapBackground" type="TileMap" parent="ViewportTrack/Viewport"]
-tile_set = SubResource( 38 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 512, 512 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 0, 0, 4, 1, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 65536, 0, 0, 65537, 1, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 1, 0, 65544, 1, 0, 65545, 0, 0, 131072, 0, 0, 131073, 1, 0, 131074, 1, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 1, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 1, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262144, 1, 0, 262145, 0, 0, 262146, 0, 0, 262147, 1, 0, 262148, 0, 0, 262149, 1, 0, 262150, 0, 0, 262151, 0, 0, 262152, 1, 0, 262153, 0, 0, 327680, 0, 0, 327681, 1, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 1, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 1, 0, 393219, 0, 0, 393220, 0, 0, 393221, 1, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 1, 0, 458760, 0, 0, 458761, 1, 0 )
 
 [node name="TrackRoadHD" type="TileMap" parent="ViewportTrack/Viewport"]
 position = Vector2( 0, 256 )
-tile_set = SubResource( 12 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 512, 512 )
 cell_quadrant_size = 128
 collision_layer = 0
@@ -647,7 +647,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit1"]
 scale = Vector2( 10.8173, 22.6466 )
-shape = SubResource( 17 )
+shape = SubResource( 3 )
 
 [node name="Road_limit2" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -658,7 +658,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit2"]
 scale = Vector2( 28.2555, 32.5118 )
-shape = SubResource( 16 )
+shape = SubResource( 4 )
 
 [node name="Road_limit3" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -669,7 +669,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit3"]
 scale = Vector2( 7.29726, 8.78161 )
-shape = SubResource( 18 )
+shape = SubResource( 5 )
 
 [node name="Road_limit4" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -680,7 +680,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit4"]
 scale = Vector2( 5.99828, 3.97213 )
-shape = SubResource( 19 )
+shape = SubResource( 6 )
 
 [node name="Road_limit5" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -691,7 +691,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit5"]
 scale = Vector2( 6.47214, 6.68217 )
-shape = SubResource( 20 )
+shape = SubResource( 7 )
 
 [node name="Road_limit6" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -702,7 +702,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit6"]
 scale = Vector2( 3.57769, 11.2248 )
-shape = SubResource( 21 )
+shape = SubResource( 8 )
 
 [node name="Road_limit7" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -713,7 +713,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit7"]
 scale = Vector2( 9.33293, 6.32089 )
-shape = SubResource( 22 )
+shape = SubResource( 9 )
 
 [node name="Road_limit8" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -724,7 +724,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit8"]
 scale = Vector2( 5.18936, 6.50129 )
-shape = SubResource( 23 )
+shape = SubResource( 10 )
 
 [node name="Road_limit9" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -735,7 +735,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit9"]
 scale = Vector2( 4.50375, 9.13696 )
-shape = SubResource( 24 )
+shape = SubResource( 11 )
 
 [node name="Road_limit10" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -854,7 +854,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit20"]
 scale = Vector2( 1.01, 0.7 )
-shape = SubResource( 46 )
+shape = SubResource( 12 )
 
 [node name="RoadCurveLimits" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
 "road_limit",
@@ -897,7 +897,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road1"]
 scale = Vector2( 9.46559, 9.10359 )
-shape = SubResource( 25 )
+shape = SubResource( 13 )
 
 [node name="Road2" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -907,7 +907,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road2"]
 scale = Vector2( 9.41872, 7.9295 )
-shape = SubResource( 26 )
+shape = SubResource( 14 )
 
 [node name="Road3" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -917,7 +917,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road3"]
 scale = Vector2( 12.3796, 10.8338 )
-shape = SubResource( 27 )
+shape = SubResource( 15 )
 
 [node name="Road4" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -927,7 +927,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road4"]
 scale = Vector2( 10.1199, 9.4892 )
-shape = SubResource( 28 )
+shape = SubResource( 16 )
 
 [node name="Road5" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -937,7 +937,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road5"]
 scale = Vector2( 7.02642, 5.94897 )
-shape = SubResource( 29 )
+shape = SubResource( 17 )
 
 [node name="Road6" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -947,7 +947,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road6"]
 scale = Vector2( 4.06409, 6.48496 )
-shape = SubResource( 30 )
+shape = SubResource( 18 )
 
 [node name="Road7" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -957,7 +957,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road7"]
 scale = Vector2( 8.69246, 8.47955 )
-shape = SubResource( 31 )
+shape = SubResource( 19 )
 
 [node name="Road8" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -967,7 +967,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road8"]
 scale = Vector2( 15.1502, 27.5125 )
-shape = SubResource( 32 )
+shape = SubResource( 20 )
 
 [node name="Road9" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -977,7 +977,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road9"]
 scale = Vector2( 15.1502, 27.5125 )
-shape = SubResource( 32 )
+shape = SubResource( 20 )
 
 [node name="Road10" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
 "road",
@@ -1136,7 +1136,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV1"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV2" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 3268 )
@@ -1144,7 +1144,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV2"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV3" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1536, 3268 )
@@ -1152,7 +1152,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV3"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV4" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1024, 3268 )
@@ -1160,7 +1160,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV4"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV5" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 512, 3268 )
@@ -1168,7 +1168,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV5"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV6" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1024, 1732 )
@@ -1176,7 +1176,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV6"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV7" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1536, 1732 )
@@ -1184,7 +1184,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV7"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV8" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 1732 )
@@ -1192,7 +1192,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV8"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV9" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2560, 1732 )
@@ -1200,7 +1200,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV9"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV10" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3072, 1732 )
@@ -1208,7 +1208,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV10"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV11" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 1732 )
@@ -1216,7 +1216,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV11"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV12" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 1220 )
@@ -1224,7 +1224,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV12"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV13" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3072, 1220 )
@@ -1232,7 +1232,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV13"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV14" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2560, 1220 )
@@ -1240,7 +1240,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV14"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV15" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 1220 )
@@ -1248,7 +1248,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV15"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV16" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1536, 1220 )
@@ -1256,7 +1256,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV16"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV17" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1536, 196 )
@@ -1264,7 +1264,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV17"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV18" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 196 )
@@ -1272,7 +1272,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV18"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV19" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2560, 196 )
@@ -1280,7 +1280,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV19"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV20" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3072, 196 )
@@ -1288,7 +1288,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV20"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV21" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 196 )
@@ -1296,7 +1296,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV21"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV22" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4096, 196 )
@@ -1304,7 +1304,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV22"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV23" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 196 )
@@ -1312,7 +1312,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV23"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV24" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 2244 )
@@ -1320,7 +1320,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV24"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV25" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4096, 2244 )
@@ -1328,7 +1328,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV25"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV26" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 2244 )
@@ -1336,7 +1336,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV26"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV27" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3072, 2244 )
@@ -1344,7 +1344,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV27"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointV28" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3072, 3268 )
@@ -1352,7 +1352,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointV28"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="CompletionWaypointH1" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1024, 3268 )
@@ -1360,7 +1360,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH1"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH2" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1024, 2756 )
@@ -1368,7 +1368,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH2"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH3" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1024, 2244 )
@@ -1376,7 +1376,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH3"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH4" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 1024, 1732 )
@@ -1384,7 +1384,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH4"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH5" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 1732 )
@@ -1392,7 +1392,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH5"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH6" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 1220 )
@@ -1400,7 +1400,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH6"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH7" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 1220 )
@@ -1408,7 +1408,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH7"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH8" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 708 )
@@ -1416,7 +1416,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH8"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH9" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 2048, 196 )
@@ -1424,7 +1424,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH9"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH10" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 196 )
@@ -1432,7 +1432,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH10"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH11" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 708 )
@@ -1440,7 +1440,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH11"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH12" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 1220 )
@@ -1448,7 +1448,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH12"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH13" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 1732 )
@@ -1456,7 +1456,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH13"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH14" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 2244 )
@@ -1464,7 +1464,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH14"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH15" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 4608, 2756 )
@@ -1472,7 +1472,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH15"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH16" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 2244 )
@@ -1480,7 +1480,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH16"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH17" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 2756 )
@@ -1488,7 +1488,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH17"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH18" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 3268 )
@@ -1496,7 +1496,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH18"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionWaypointH19" type="StaticBody2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints"]
 position = Vector2( 3584, 3780 )
@@ -1504,7 +1504,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CompletionWaypoints/CompletionWaypointH19"]
-shape = SubResource( 10 )
+shape = SubResource( 22 )
 
 [node name="CompletionCarSensor" type="RayCast2D" parent="ViewportTrack/Viewport/TrackRoadHD"]
 modulate = Color( 0.972549, 0.0313726, 0.0313726, 1 )
@@ -1526,14 +1526,14 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/FinishLine"]
 scale = Vector2( 1, 6 )
-shape = SubResource( 11 )
+shape = SubResource( 23 )
 
 [node name="Car" parent="ViewportTrack/Viewport" instance=ExtResource( 1 )]
 position = Vector2( 2710, 3584 )
 rotation = -3.14159
 
 [node name="TileMapTerrain" type="TileMap" parent="ViewportTrack/Viewport"]
-tile_set = SubResource( 37 )
+tile_set = SubResource( 35 )
 cell_size = Vector2( 256, 256 )
 cell_quadrant_size = 128
 collision_layer = 4
@@ -1554,8 +1554,8 @@ __meta__ = {
 [node name="CompletionLabel" type="Label" parent="UICanvas/VBoxContainer"]
 margin_right = 160.0
 margin_bottom = 40.0
-custom_styles/normal = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
+custom_styles/normal = SubResource( 36 )
+custom_fonts/font = SubResource( 37 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Comp. %"
 align = 1
@@ -1565,8 +1565,8 @@ valign = 1
 margin_top = 44.0
 margin_right = 160.0
 margin_bottom = 84.0
-custom_styles/normal = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
+custom_styles/normal = SubResource( 36 )
+custom_fonts/font = SubResource( 37 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "00:00:00"
 align = 1
@@ -1578,6 +1578,6 @@ one_shot = true
 script = ExtResource( 41 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/lap_finish = SubResource( 15 )
+anims/lap_finish = SubResource( 38 )
 [connection signal="area_exited" from="ViewportTrack/Viewport/TrackRoadHD/FinishLine" to="." method="_on_FinishLine_area_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

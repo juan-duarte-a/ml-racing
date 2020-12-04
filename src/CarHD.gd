@@ -11,7 +11,7 @@ const RAD_90: float = 1.5707963 # 90 degrees to radians.
 export var high_speed: int = 760
 export var low_speed: int = 440
 export var gears: int = 2
-export var _turn_angle: float = 30 # In degrees.
+export var _turn_angle: float = 35 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 export var max_tire_rotation: float = 30 # Degrees.
 export var turning_mode: int = TURN_MODE.FIXED_ANGLE
@@ -237,6 +237,7 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 	#		print("Turning finish time: ", OS.get_ticks_msec())
 	elif turning_mode == TURN_MODE.USER_CONTROLLED:
 		rotation_speed = abs(_speed / (W / sin(deg2rad(turn_angle)))) * 3
+#		print(_speed, " - ", W, " - ", turn_angle, " - ", rad2deg(rotation_speed))
 		angle = rotation_speed * delta
 		accum_tire_rotation_time += delta
 		
@@ -432,6 +433,5 @@ func _physics_process(delta):
 func _on_FrontPositioner_area_entered(area):
 	if area.get_groups().has("road_limit"):
 		car_radar_off()
-		print(area.name)
 	elif area.get_groups().has("road"):
 		car_radar_on()

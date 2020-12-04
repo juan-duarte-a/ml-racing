@@ -1,11 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/MainNodeHD.gd" type="Script" id=1]
 [ext_resource path="res://src/ServerHD.gd" type="Script" id=2]
 [ext_resource path="res://src/TrackHD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ml_racing_UI_background.png" type="Texture" id=4]
+[ext_resource path="res://assets/Fonts/Dinreg_Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="MainNode" type="Node"]
 script = ExtResource( 1 )
+offline_mode = true
 
 [node name="Server" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -21,6 +40,7 @@ __meta__ = {
 }
 
 [node name="Track" parent="HBoxContainer" instance=ExtResource( 3 )]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
 margin_right = 960.0
@@ -35,12 +55,64 @@ margin_right = 1362.0
 margin_bottom = 768.0
 rect_min_size = Vector2( 398, 768 )
 size_flags_vertical = 3
-color = Color( 0.0627451, 0.517647, 0.603922, 0.313726 )
+color = Color( 0.721569, 0.721569, 0.721569, 0 )
+
+[node name="Sprite" type="Sprite" parent="HBoxContainer/ColorRect2"]
+self_modulate = Color( 0.2, 0.207843, 0.227451, 1 )
+position = Vector2( 199, 384 )
+scale = Vector2( 0.97, 0.99 )
+texture = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect2"]
-margin_right = 404.0
-margin_bottom = 768.0
+margin_left = 1.12244
+margin_top = -1.12247
+margin_right = 405.122
+margin_bottom = 766.878
 rect_min_size = Vector2( 404, 768 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_right = 404.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 24.0
+margin_right = 404.0
+margin_bottom = 59.0
+
+[node name="BestLapCaptionLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer"]
+margin_left = 120.0
+margin_right = 283.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Mejor vuelta:"
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 63.0
+margin_right = 404.0
+margin_bottom = 100.0
+
+[node name="BestLapLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer2"]
+margin_left = 102.0
+margin_right = 302.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 200, 0 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+text = " --:--:---"
+align = 1
+max_lines_visible = 1
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 104.0
+margin_right = 404.0
+margin_bottom = 104.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

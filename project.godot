@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Chart",
 "class": "BarChart",
 "language": "GDScript",
-"path": "res://util/easy_charts/BarChart/BarChart.gd"
+"path": "res://addons/easy_charts/BarChart/BarChart.gd"
 }, {
 "base": "Chart2D",
 "class": "BarChart2D",
 "language": "GDScript",
-"path": "res://util/easy_charts/BarChart2D/BarChart2D.gd"
+"path": "res://addons/easy_charts/BarChart2D/BarChart2D.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Car",
@@ -42,62 +42,62 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Chart",
 "language": "GDScript",
-"path": "res://util/easy_charts/Utilities/Scripts/Chart.gd"
+"path": "res://addons/easy_charts/Utilities/Scripts/Chart.gd"
 }, {
 "base": "Node2D",
 "class": "Chart2D",
 "language": "GDScript",
-"path": "res://util/easy_charts/Utilities/Scripts/Chart2D.gd"
+"path": "res://addons/easy_charts/Utilities/Scripts/Chart2D.gd"
 }, {
 "base": "VBoxContainer",
 "class": "LegendElement",
 "language": "GDScript",
-"path": "res://util/easy_charts/Utilities/Legend/FunctionLegend.gd"
+"path": "res://addons/easy_charts/Utilities/Legend/FunctionLegend.gd"
 }, {
 "base": "Chart",
 "class": "LineChart",
 "language": "GDScript",
-"path": "res://util/easy_charts/LineChart/line_chart.gd"
+"path": "res://addons/easy_charts/LineChart/line_chart.gd"
 }, {
 "base": "Chart2D",
 "class": "LineChart2D",
 "language": "GDScript",
-"path": "res://util/easy_charts/LineChart2D/LineChart2D.gd"
+"path": "res://addons/easy_charts/LineChart2D/LineChart2D.gd"
 }, {
 "base": "Chart",
 "class": "PieChart",
 "language": "GDScript",
-"path": "res://util/easy_charts/PieChart/pie_chart.gd"
+"path": "res://addons/easy_charts/PieChart/pie_chart.gd"
 }, {
 "base": "Control",
 "class": "Point",
 "language": "GDScript",
-"path": "res://util/easy_charts/Utilities/Point/Point.gd"
+"path": "res://addons/easy_charts/Utilities/Point/Point.gd"
 }, {
 "base": "PanelContainer",
 "class": "PointData",
 "language": "GDScript",
-"path": "res://util/easy_charts/Utilities/Point/PointData.gd"
+"path": "res://addons/easy_charts/Utilities/Point/PointData.gd"
 }, {
 "base": "Chart",
 "class": "RadarChart",
 "language": "GDScript",
-"path": "res://util/easy_charts/RadarChart/RadarChart.gd"
+"path": "res://addons/easy_charts/RadarChart/RadarChart.gd"
 }, {
 "base": "Chart",
 "class": "ScatterChart",
 "language": "GDScript",
-"path": "res://util/easy_charts/ScatterChart/ScatterChart.gd"
+"path": "res://addons/easy_charts/ScatterChart/ScatterChart.gd"
 }, {
 "base": "Chart2D",
 "class": "ScatterChart2D",
 "language": "GDScript",
-"path": "res://util/easy_charts/ScatterChart2D/ScatterChart2D.gd"
+"path": "res://addons/easy_charts/ScatterChart2D/ScatterChart2D.gd"
 }, {
 "base": "Spatial",
 "class": "ScatterChart3D",
 "language": "GDScript",
-"path": "res://util/easy_charts/ScatterChart3D/ScatterChart3D.gd"
+"path": "res://addons/easy_charts/ScatterChart3D/ScatterChart3D.gd"
 }, {
 "base": "Node",
 "class": "Server",
@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Slice",
 "language": "GDScript",
-"path": "res://util/easy_charts/Utilities/Slice/slice.gd"
+"path": "res://addons/easy_charts/Utilities/Slice/slice.gd"
 }, {
 "base": "Node2D",
 "class": "Track",
@@ -167,6 +167,10 @@ _global_script_class_icons={
 config/name="ml-racing"
 run/main_scene="res://src/MainNode.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Utilities="*res://addons/easy_charts/Utilities/utilities.gd"
 
 [display]
 

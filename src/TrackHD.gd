@@ -3,6 +3,7 @@ class_name TrackHD
 
 signal lap_finished(lap_time)
 signal lap_stats(lap_time)
+signal update_best_lap_time(lap_time)
 
 const COMPLETION_VECTOR_SIZE = 1200
 
@@ -44,9 +45,10 @@ onready var animation_player: AnimationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var err: int
-	
 	viewportrack.set_size(Vector2(960, 768))
 	viewport.set_size(Vector2(960, 768))
+	if get_parent().get_name() == "root":
+		OS.set_window_size(Vector2(960, 768))
 	
 	car.road = map_road
 	vision_machine_mode = false
@@ -84,6 +86,8 @@ func _ready():
 		print("Error connecting 'lap_finished' signal!")
 		
 		time_scale = Engine.get_time_scale()
+	
+	set_visible(true)
 
 
 func update_corner_vectors():
@@ -96,7 +100,8 @@ func update_corner_vectors():
 
 func update_track_completion(update: bool = true):
 	if update:
-		completion_text = str("%.1f" % track_completion) if map_road.on_road(car.front_position.get_global_position()) else "--"
+		completion_text = str("%.1f" % track_completion) if \
+				map_road.on_road(car.front_position.get_global_position()) else "--"
 		completion_label.set_text(completion_text + " %")
 
 
@@ -105,7 +110,8 @@ func calculate_track_completion():
 	completion_car_sensor.set_position(map_road.to_local(car.front_position.get_global_position()))
 	completion_car_sensor.set_cast_to(
 		map_road._get_direction_vector(
-				map_road.to_local(car.front_position.get_global_position())).normalized() * COMPLETION_VECTOR_SIZE)
+				map_road.to_local(car.front_position.get_global_position())).normalized() * \
+						COMPLETION_VECTOR_SIZE)
 	completion_car_sensor.force_raycast_update()
 	if map_road.on_road(car.front_position.get_global_position()):
 		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
@@ -114,7 +120,8 @@ func calculate_track_completion():
 			waypoint_distance = 0.000001
 	
 	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
-	track_completion = track_completion + map_road.get_completion_step() * (1 - waypoint_distance / map_road.get_cell_size().x)
+	track_completion = track_completion + map_road.get_completion_step() * \
+			(1 - waypoint_distance / map_road.get_cell_size().x)
 
 
 func handle_input_events():
@@ -270,7 +277,9 @@ func _on_FinishLine_area_exited(area):
 		else:
 			if best_lap_time == 0:
 				best_lap_time = lap_time
+				emit_signal("update_best_lap_time", lap_time)
 			else:
 				if lap_time < best_lap_time:
 					best_lap_time = lap_time
+					emit_signal("update_best_lap_time", lap_time)
 			emit_signal("lap_finished", lap_time)

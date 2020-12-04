@@ -3,6 +3,7 @@ class_name ServerHD
 
 signal connection_to_client(status)
 
+var offline_mode: bool = false
 var _server: TCP_Server
 var _output_stream: StreamPeerTCP
 var _input_stream: StreamPeerTCP
@@ -247,16 +248,16 @@ func send_state_variables():
 
 
 func send_lap_stats(lap_time: int):
-	var err: int
-	var lap_data: PoolByteArray = REQUESTS["LAP_TIME"]
-	
-	
-	lap_data.append_array(str(lap_time).to_ascii())
-	print(lap_data.get_string_from_ascii())
-	err = _output_stream.put_data([lap_data.size()])
-	err = _output_stream.put_data(lap_data)
-	if err != OK:
-		print("Error sending lap stats!")
+	if not offline_mode:
+		var err: int
+		var lap_data: PoolByteArray = REQUESTS["LAP_TIME"]
+		
+		lap_data.append_array(str(lap_time).to_ascii())
+		print(lap_data.get_string_from_ascii())
+		err = _output_stream.put_data([lap_data.size()])
+		err = _output_stream.put_data(lap_data)
+		if err != OK:
+			print("Error sending lap stats!")
 
 
 func _send_data(byte_array: PoolByteArray) -> int:
