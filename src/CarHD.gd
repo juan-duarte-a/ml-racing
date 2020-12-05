@@ -8,7 +8,7 @@ enum TURN_MODE {FIXED_ANGLE, USER_CONTROLLED}
 
 const RAD_90: float = 1.5707963 # 90 degrees to radians.
 
-export var high_speed: int = 760
+export var high_speed: int = 660
 export var low_speed: int = 440
 export var gears: int = 2
 export var _turn_angle: float = 35 # In degrees.
@@ -317,11 +317,15 @@ func update_l_r_raycasts():
 func car_radar_off():
 	for r in radar:
 		(r as RayCast2D).set_cast_to(Vector2.ZERO)
+	(ray_cast_l as RayCast2D).set_cast_to(Vector2.ZERO)
+	(ray_cast_r as RayCast2D).set_cast_to(Vector2.ZERO)
 
 
 func car_radar_on():
 	for r in radar:
 		(r as RayCast2D).set_cast_to(Vector2(9000, 0))
+	(ray_cast_l as RayCast2D).set_cast_to(Vector2(9000, 0))
+	(ray_cast_r as RayCast2D).set_cast_to(Vector2(9000, 0))
 
 
 func reset():
@@ -349,7 +353,7 @@ func reset():
 func _physics_process(delta):
 	tires_off_road = int(frt.off_road) + int(flt.off_road) + int(brt.off_road) + int(blt.off_road)
 	if tires_off_road > 1:
-		speed_factor = 0.6
+		speed_factor = 0.7
 	else:
 		speed_factor = 1
 	

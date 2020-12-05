@@ -165,7 +165,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ml-racing"
-run/main_scene="res://src/MainNode.tscn"
+run/main_scene="res://src/MainNodeHD.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/MainNodeHD.gd" type="Script" id=1]
 [ext_resource path="res://src/ServerHD.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 28
+outline_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -21,6 +22,49 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="DynamicFont" id=9]
+size = 23
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 33
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_bottom = 1
+border_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_bottom = 1
+border_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+outline_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+font_data = ExtResource( 5 )
 
 [node name="MainNode" type="Node"]
 script = ExtResource( 1 )
@@ -64,25 +108,24 @@ scale = Vector2( 0.97, 0.99 )
 texture = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect2"]
-margin_left = 1.12244
-margin_top = -1.12247
-margin_right = 405.122
-margin_bottom = 766.878
+margin_left = -3.0
+margin_right = 401.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 404, 768 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+[node name="HSpacer1" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
 margin_right = 404.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 20 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 24.0
+margin_top = 34.0
 margin_right = 404.0
-margin_bottom = 59.0
+margin_bottom = 69.0
 
 [node name="BestLapCaptionLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer"]
 margin_left = 120.0
@@ -93,9 +136,9 @@ custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "Mejor vuelta:"
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 63.0
+margin_top = 73.0
 margin_right = 404.0
-margin_bottom = 100.0
+margin_bottom = 110.0
 
 [node name="BestLapLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer2"]
 margin_left = 102.0
@@ -109,11 +152,365 @@ text = " --:--:---"
 align = 1
 max_lines_visible = 1
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 104.0
+[node name="HSpacer2" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 114.0
 margin_right = 404.0
-margin_bottom = 104.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 50, 30 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="CenterContainer5" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 148.0
+margin_right = 404.0
+margin_bottom = 189.0
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5"]
+margin_left = 83.0
+margin_right = 321.0
+margin_bottom = 41.0
+columns = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer"]
+margin_top = 6.0
+margin_right = 217.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Número de intentos: "
+
+[node name="Label2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer"]
+margin_left = 221.0
+margin_right = 238.0
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "0"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HSpacer6" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 193.0
+margin_right = 404.0
+margin_bottom = 223.0
+rect_min_size = Vector2( 50, 30 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="HSpacer5" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 227.0
+margin_right = 404.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 50, 30 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 261.0
+margin_right = 404.0
+margin_bottom = 436.0
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3"]
+margin_left = 18.0
+margin_right = 386.0
+margin_bottom = 175.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelCaption1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_right = 120.0
+margin_bottom = 31.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Sección"
+align = 1
+
+[node name="LabelCaption2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 124.0
+margin_right = 244.0
+margin_bottom = 31.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Actual"
+align = 1
+
+[node name="LabelCaption3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 248.0
+margin_right = 368.0
+margin_bottom = 31.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Mejor"
+align = 1
+
+[node name="Label1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_top = 35.0
+margin_right = 120.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Sección 1"
+align = 1
+valign = 1
+
+[node name="Label1-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 124.0
+margin_top = 35.0
+margin_right = 244.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label1-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 248.0
+margin_top = 35.0
+margin_right = 368.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_top = 71.0
+margin_right = 120.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Sección 2"
+align = 1
+valign = 1
+
+[node name="Label2-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 124.0
+margin_top = 71.0
+margin_right = 244.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label2-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 248.0
+margin_top = 71.0
+margin_right = 368.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_top = 107.0
+margin_right = 120.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Sección 3"
+align = 1
+valign = 1
+
+[node name="Label3-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 124.0
+margin_top = 107.0
+margin_right = 244.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label3-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 248.0
+margin_top = 107.0
+margin_right = 368.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_top = 143.0
+margin_right = 120.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Sección 4"
+align = 1
+valign = 1
+
+[node name="Label4-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 124.0
+margin_top = 143.0
+margin_right = 244.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="Label4-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
+margin_left = 248.0
+margin_top = 143.0
+margin_right = 368.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 120, 32 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "00:00:000"
+align = 1
+valign = 1
+
+[node name="HSpacer3" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 440.0
+margin_right = 404.0
+margin_bottom = 470.0
+rect_min_size = Vector2( 50, 30 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="HSpacer4" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 474.0
+margin_right = 404.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 50, 30 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="CenterContainer4" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 508.0
+margin_right = 404.0
+margin_bottom = 628.0
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4"]
+margin_left = 20.0
+margin_right = 384.0
+margin_bottom = 120.0
+columns = 2
+
+[node name="Label1-1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_right = 180.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Orientado"
+align = 1
+
+[node name="Label1-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_left = 184.0
+margin_right = 364.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Sí"
+align = 1
+
+[node name="Label2-1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_top = 31.0
+margin_right = 180.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Llantas fuera"
+align = 1
+
+[node name="Label2-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_left = 184.0
+margin_top = 31.0
+margin_right = 364.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "0"
+align = 1
+
+[node name="Label3-1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_top = 62.0
+margin_right = 180.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Distancia frontal"
+align = 1
+
+[node name="Label3-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_left = 184.0
+margin_top = 62.0
+margin_right = 364.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "0"
+align = 1
+
+[node name="Label4-1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_top = 93.0
+margin_right = 180.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Centro de vía"
+align = 1
+
+[node name="Label4-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+margin_left = 184.0
+margin_top = 93.0
+margin_right = 364.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 180, 0 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "0"
+align = 1
 [connection signal="connection_to_client" from="Server" to="." method="_on_Server_connection_to_client"]
