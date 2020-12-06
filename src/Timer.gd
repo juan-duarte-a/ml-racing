@@ -83,13 +83,13 @@ func get_stopwatch_time() -> Dictionary:
 
 func msecs_to_string(msecs: int) -> String:
 	var track_time: String
-	var hours: int  
+	var _hours: int  
 	var minutes: int
 	var seconds: int
 	var milliseconds: int
 	
 	# warning-ignore:integer_division
-	hours = msecs  / 3600000
+	_hours = msecs  / 3600000
 	# warning-ignore:integer_division
 	minutes = (msecs % 3600000) / 60000
 	# warning-ignore:integer_division
