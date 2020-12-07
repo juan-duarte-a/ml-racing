@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://src/CarHD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/512x512/Bush.png" type="Texture" id=2]
@@ -14,6 +14,25 @@
 [ext_resource path="res://assets/512x512/Rock_2.png" type="Texture" id=12]
 [ext_resource path="res://assets/512x512/Tree_3.png" type="Texture" id=13]
 [ext_resource path="res://assets/512x512/Bush_2.png" type="Texture" id=14]
+[ext_resource path="res://assets/512x512/Road_Side_02.png" type="Texture" id=15]
+[ext_resource path="res://assets/512x512/Road_Side_2-01.png" type="Texture" id=16]
+[ext_resource path="res://assets/512x512/Road_Side_2-04.png" type="Texture" id=17]
+[ext_resource path="res://assets/512x512/Road_Side_2-03.png" type="Texture" id=18]
+[ext_resource path="res://assets/512x512/Road_Side_2-02.png" type="Texture" id=19]
+[ext_resource path="res://assets/512x512/Road_Side_01.png" type="Texture" id=20]
+[ext_resource path="res://assets/512x512/Road_Side_V2-03.png" type="Texture" id=21]
+[ext_resource path="res://assets/512x512/Road_Side_V2-02.png" type="Texture" id=22]
+[ext_resource path="res://assets/512x512/Road_Side_V2-01.png" type="Texture" id=23]
+[ext_resource path="res://assets/512x512/Road_Side_V2-04.png" type="Texture" id=24]
+[ext_resource path="res://assets/512x512/Road_Side_V01.png" type="Texture" id=25]
+[ext_resource path="res://assets/512x512/Road_Side_V02.png" type="Texture" id=26]
+[ext_resource path="res://assets/512x512/Road_Side_C04.png" type="Texture" id=27]
+[ext_resource path="res://assets/512x512/Road_Side_C02.png" type="Texture" id=28]
+[ext_resource path="res://assets/512x512/Road_Side_C01.png" type="Texture" id=29]
+[ext_resource path="res://assets/512x512/Road_Side_C03.png" type="Texture" id=30]
+[ext_resource path="res://assets/Deco/Pavilion.png" type="Texture" id=31]
+[ext_resource path="res://assets/Deco/Decor_Building.png" type="Texture" id=32]
+[ext_resource path="res://assets/ml_racing_UI_background.png" type="Texture" id=33]
 [ext_resource path="res://src/TrackHD.gd" type="Script" id=36]
 [ext_resource path="res://assets/Fonts/Dinreg_Regular.ttf" type="DynamicFontData" id=38]
 [ext_resource path="res://assets/Deco/Start.png" type="Texture" id=40]
@@ -61,6 +80,190 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
+
+[sub_resource type="TileSet" id=24]
+0/name = "Road_Side_01.png 0"
+0/texture = ExtResource( 20 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 512, 512 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Road_Side_2-01.png 1"
+1/texture = ExtResource( 16 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 512, 512 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "Road_Side_2-02.png 2"
+2/texture = ExtResource( 19 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 512, 512 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "Road_Side_2-03.png 3"
+3/texture = ExtResource( 18 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 512, 512 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "Road_Side_2-04.png 4"
+4/texture = ExtResource( 17 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 512, 512 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Road_Side_02.png 5"
+5/texture = ExtResource( 15 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 512, 512 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "Road_Side_02.png 6"
+6/texture = ExtResource( 15 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 512, 512 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "Road_Side_V01.png 7"
+7/texture = ExtResource( 25 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 512, 512 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "Road_Side_V2-01.png 8"
+8/texture = ExtResource( 23 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 512, 512 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "Road_Side_V2-02.png 9"
+9/texture = ExtResource( 22 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 0, 512, 512 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+10/name = "Road_Side_V2-03.png 10"
+10/texture = ExtResource( 21 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 0, 0, 512, 512 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
+11/name = "Road_Side_V2-04.png 11"
+11/texture = ExtResource( 24 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 0, 0, 512, 512 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
+11/shapes = [  ]
+11/z_index = 0
+12/name = "Road_Side_V02.png 12"
+12/texture = ExtResource( 26 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 0, 0, 512, 512 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
 
 [sub_resource type="TileSet" id=2]
 0/name = "Curve1.png 0"
@@ -295,40 +498,40 @@ b = Vector2( -512, 0 )
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 40.0002, 42.6667 )
 
-[sub_resource type="ConvexPolygonShape2D" id=24]
+[sub_resource type="ConvexPolygonShape2D" id=25]
 points = PoolVector2Array( 128, 384, 128, 384, 256, 128, 384, 128, 512, 384 )
 
-[sub_resource type="ConvexPolygonShape2D" id=25]
+[sub_resource type="ConvexPolygonShape2D" id=26]
 points = PoolVector2Array( 32, 384, 0, 224, 0, 192, 32, 160, 224, 96, 512, 96, 640, 160, 704, 320, 704, 384, 608, 416, 192, 416, 192, 416 )
 
-[sub_resource type="ConvexPolygonShape2D" id=26]
+[sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 192, 176, 176, 192, 112, 192, 96, 176, 96, 112, 112, 96, 176, 96, 192, 112 )
 
-[sub_resource type="ConvexPolygonShape2D" id=27]
+[sub_resource type="ConvexPolygonShape2D" id=28]
 points = PoolVector2Array( 384, 640, 384, 640, 320, 576, 320, 384, 384, 320, 576, 320, 640, 384, 640, 576, 576, 640 )
 
-[sub_resource type="ConvexPolygonShape2D" id=28]
+[sub_resource type="ConvexPolygonShape2D" id=29]
 points = PoolVector2Array( 0, 0, 512, 0, 512, 512, 0, 512 )
 
-[sub_resource type="ConvexPolygonShape2D" id=29]
+[sub_resource type="ConvexPolygonShape2D" id=30]
 points = PoolVector2Array( 0, 0, 256, 0, 256, 256, 0, 256 )
 
-[sub_resource type="ConvexPolygonShape2D" id=30]
+[sub_resource type="ConvexPolygonShape2D" id=31]
 points = PoolVector2Array( 176, 208, 176, 208, 128, 208, 80, 176, 80, 112, 128, 64, 176, 64, 224, 112, 224, 176 )
 
-[sub_resource type="ConvexPolygonShape2D" id=31]
+[sub_resource type="ConvexPolygonShape2D" id=32]
 points = PoolVector2Array( 144, 96, 144, 96, 112, 128, 64, 128, 48, 96, 48, 64, 80, 32, 112, 32, 144, 64, 144, 96 )
 
-[sub_resource type="ConvexPolygonShape2D" id=32]
+[sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 208, 0, 112, 32, 80, 304, 80, 352, 176, 352, 208, 304, 224, 96, 224 )
 
-[sub_resource type="ConvexPolygonShape2D" id=33]
+[sub_resource type="ConvexPolygonShape2D" id=34]
 points = PoolVector2Array( 16, 128, 0, 80, 16, 64, 32, 48, 176, 48, 208, 112, 208, 128, 176, 144, 64, 144 )
 
-[sub_resource type="ConvexPolygonShape2D" id=34]
+[sub_resource type="ConvexPolygonShape2D" id=35]
 points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304, 288, 272, 304, 208, 304 )
 
-[sub_resource type="TileSet" id=35]
+[sub_resource type="TileSet" id=36]
 0/name = "Bush.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -339,14 +542,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 24 )
+0/shape = SubResource( 25 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 24 ),
+"shape": SubResource( 25 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -360,14 +563,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape = SubResource( 25 )
+1/shape = SubResource( 26 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 25 ),
+"shape": SubResource( 26 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
@@ -381,14 +584,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 27 )
+2/shape = SubResource( 28 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 27 ),
+"shape": SubResource( 28 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
@@ -402,14 +605,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 28 )
+3/shape = SubResource( 29 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 28 ),
+"shape": SubResource( 29 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -423,14 +626,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 29 )
+4/shape = SubResource( 30 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 29 ),
+"shape": SubResource( 30 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -444,14 +647,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 0 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape = SubResource( 30 )
+5/shape = SubResource( 31 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 30 ),
+"shape": SubResource( 31 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
@@ -465,14 +668,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 6/navigation_offset = Vector2( 0, 0 )
 6/shape_offset = Vector2( 0, 0 )
 6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-6/shape = SubResource( 31 )
+6/shape = SubResource( 32 )
 6/shape_one_way = false
 6/shape_one_way_margin = 1.0
 6/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 31 ),
+"shape": SubResource( 32 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 6/z_index = 0
@@ -486,14 +689,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 7/navigation_offset = Vector2( 0, 0 )
 7/shape_offset = Vector2( 0, 0 )
 7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-7/shape = SubResource( 32 )
+7/shape = SubResource( 33 )
 7/shape_one_way = false
 7/shape_one_way_margin = 1.0
 7/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 32 ),
+"shape": SubResource( 33 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 7/z_index = 0
@@ -507,14 +710,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 8/navigation_offset = Vector2( 0, 0 )
 8/shape_offset = Vector2( 0, 0 )
 8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-8/shape = SubResource( 33 )
+8/shape = SubResource( 34 )
 8/shape_one_way = false
 8/shape_one_way_margin = 1.0
 8/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 33 ),
+"shape": SubResource( 34 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 8/z_index = 0
@@ -528,14 +731,14 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 9/navigation_offset = Vector2( 0, 0 )
 9/shape_offset = Vector2( 0, 0 )
 9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-9/shape = SubResource( 34 )
+9/shape = SubResource( 35 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
 9/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 34 ),
+"shape": SubResource( 35 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
@@ -549,26 +752,29 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 10/navigation_offset = Vector2( 0, 0 )
 10/shape_offset = Vector2( 0, 0 )
 10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape = SubResource( 26 )
+10/shape = SubResource( 27 )
 10/shape_one_way = false
 10/shape_one_way_margin = 1.0
 10/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 26 ),
+"shape": SubResource( 27 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 10/z_index = 0
 
-[sub_resource type="StyleBoxFlat" id=36]
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 13.3291, 0.555466 )
+
+[sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0, 0, 0, 0.352941 )
 
-[sub_resource type="DynamicFont" id=37]
+[sub_resource type="DynamicFont" id=38]
 size = 32
 font_data = ExtResource( 38 )
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=39]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("UICanvas/VBoxContainer/TimeLabel:custom_colors/font_color")
@@ -594,6 +800,15 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=41]
+size = 50
+outline_size = 1
+font_data = ExtResource( 38 )
+
+[sub_resource type="DynamicFont" id=42]
+size = 28
+font_data = ExtResource( 38 )
 
 [node name="Track" type="Node2D"]
 script = ExtResource( 36 )
@@ -623,6 +838,74 @@ cell_size = Vector2( 512, 512 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 0, 0, 4, 1, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 65536, 0, 0, 65537, 1, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 1, 0, 65544, 1, 0, 65545, 0, 0, 131072, 0, 0, 131073, 1, 0, 131074, 1, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 1, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 1, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262144, 1, 0, 262145, 0, 0, 262146, 0, 0, 262147, 1, 0, 262148, 0, 0, 262149, 1, 0, 262150, 0, 0, 262151, 0, 0, 262152, 1, 0, 262153, 0, 0, 327680, 0, 0, 327681, 1, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 1, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 1, 0, 393219, 0, 0, 393220, 0, 0, 393221, 1, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 1, 0, 458760, 0, 0, 458761, 1, 0 )
 
+[node name="RoadDetails" type="Node2D" parent="ViewportTrack/Viewport"]
+
+[node name="CurveSprites" type="Node2D" parent="ViewportTrack/Viewport/RoadDetails"]
+
+[node name="CurveSprite1" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 740, 3611 )
+texture = ExtResource( 29 )
+
+[node name="CurveSprite5" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 1764, 1563 )
+texture = ExtResource( 29 )
+
+[node name="CurveSprite2" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 741, 2020 )
+texture = ExtResource( 28 )
+
+[node name="CurveSprite6" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 1765, 484 )
+texture = ExtResource( 28 )
+
+[node name="CurveSprite7" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 3301, 2532 )
+texture = ExtResource( 28 )
+
+[node name="CurveSprite3" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 3356, 1508 )
+texture = ExtResource( 30 )
+
+[node name="CurveSprite8" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 4380, 484 )
+texture = ExtResource( 30 )
+
+[node name="CurveSprite4" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 3354, 2076 )
+texture = ExtResource( 27 )
+
+[node name="CurveSprite9" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 4379, 2588 )
+texture = ExtResource( 27 )
+
+[node name="CurveSprite10" type="Sprite" parent="ViewportTrack/Viewport/RoadDetails/CurveSprites"]
+position = Vector2( 3355, 3612 )
+texture = ExtResource( 27 )
+
+[node name="RoadDecoTileMap" type="TileMap" parent="ViewportTrack/Viewport/RoadDetails"]
+position = Vector2( 0, 256 )
+tile_set = SubResource( 24 )
+cell_size = Vector2( 512, 512 )
+cell_quadrant_size = 128
+format = 1
+tile_data = PoolIntArray( -65532, 2, 0, -65531, 5, 0, -65530, 2, 0, -65529, 1, 0, 65540, 4, 0, 65541, 0, 0, 65542, 4, 0, 65543, 3, 0, 131074, 5, 0, 131075, 1, 0, 196615, 5, 0, 262146, 4, 0, 262147, 4, 0, 262148, 0, 0, 262149, 4, 0, 327682, 2, 0, 327683, 5, 0, 327684, 1, 0, 327685, 1, 0, 327687, 3, 0, 458754, 4, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0 )
+
+[node name="RoadDecoTileMap2" type="TileMap" parent="ViewportTrack/Viewport/RoadDetails"]
+position = Vector2( 0, 256 )
+tile_set = SubResource( 24 )
+cell_size = Vector2( 512, 512 )
+cell_quadrant_size = 128
+format = 1
+tile_data = PoolIntArray( -65532, 2, 0, -65531, 5, 0, -65530, 2, 0, -65529, 1, 0, 65538, 10, 0, 65540, 5, 0, 65541, 1, 0, 65542, 4, 0, 65543, 10, 0, 65545, 8, 0, 131074, 5, 0, 131079, 11, 0, 131081, 9, 0, 196615, 10, 0, 196617, 8, 0, 262144, 7, 0, 262146, 8, 0, 262147, 4, 0, 262148, 0, 0, 262149, 4, 0, 327680, 11, 0, 327682, 9, 0, 327683, 5, 0, 327684, 1, 0, 327685, 7, 0, 327687, 9, 0, 458754, 4, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0 )
+
+[node name="RoadDecoTileMap3" type="TileMap" parent="ViewportTrack/Viewport/RoadDetails"]
+position = Vector2( 0, 256 )
+tile_set = SubResource( 24 )
+cell_size = Vector2( 512, 512 )
+cell_quadrant_size = 128
+format = 1
+tile_data = PoolIntArray( -65532, 2, 0, -65531, 5, 0, -65530, 2, 0, -65529, 1, 0, 65538, 10, 0, 65540, 8, 0, 65541, 1, 0, 65542, 4, 0, 65543, 10, 0, 65545, 8, 0, 131074, 5, 0, 131079, 11, 0, 131081, 9, 0, 196615, 10, 0, 196617, 8, 0, 262144, 7, 0, 262146, 8, 0, 262147, 4, 0, 262148, 0, 0, 262149, 4, 0, 327680, 11, 0, 327682, 9, 0, 327683, 5, 0, 327684, 1, 0, 327685, 1, 0, 327687, 9, 0, 458754, 4, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0 )
+
 [node name="TrackRoadHD" type="TileMap" parent="ViewportTrack/Viewport"]
 position = Vector2( 0, 256 )
 tile_set = SubResource( 2 )
@@ -630,7 +913,7 @@ cell_size = Vector2( 512, 512 )
 cell_quadrant_size = 128
 collision_layer = 0
 format = 1
-tile_data = PoolIntArray( 3, 1, 0, 4, 7, 0, 5, 6, 0, 6, 5, 0, 7, 4, 0, 8, 2, 0, 65539, 9, 0, 65544, 11, 0, 131075, 0, 0, 131076, 7, 0, 131077, 4, 0, 131078, 2, 0, 131080, 10, 0, 196609, 1, 0, 196610, 5, 0, 196611, 7, 0, 196612, 4, 0, 196613, 7, 0, 196614, 3, 0, 196616, 9, 0, 262145, 9, 0, 262150, 1, 0, 262151, 6, 0, 262152, 3, 0, 327681, 8, 0, 327686, 9, 0, 393217, 0, 0, 393218, 4, 0, 393219, 5, 0, 393220, 6, 0, 393221, 7, 0, 393222, 3, 0 )
+tile_data = PoolIntArray( 3, 1, 0, 4, 7, 0, 5, 6, 0, 6, 5, 0, 7, 4, 0, 8, 2, 0, 65539, 9, 0, 65544, 11, 0, 131075, 0, 0, 131076, 6, 0, 131077, 7, 0, 131078, 2, 0, 131080, 10, 0, 196609, 1, 0, 196610, 5, 0, 196611, 7, 0, 196612, 4, 0, 196613, 7, 0, 196614, 3, 0, 196616, 9, 0, 262145, 9, 0, 262150, 1, 0, 262151, 6, 0, 262152, 3, 0, 327681, 8, 0, 327686, 9, 0, 393217, 0, 0, 393218, 4, 0, 393219, 5, 0, 393220, 6, 0, 393221, 7, 0, 393222, 3, 0 )
 script = ExtResource( 54 )
 
 [node name="CollisionRoadLimits" type="Node2D" parent="ViewportTrack/Viewport/TrackRoadHD" groups=[
@@ -853,7 +1136,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit20"]
-scale = Vector2( 1.01, 0.7 )
+scale = Vector2( 1.01, 0.4 )
 shape = SubResource( 12 )
 
 [node name="RoadCurveLimits" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
@@ -1533,12 +1816,171 @@ position = Vector2( 2710, 3584 )
 rotation = -3.14159
 
 [node name="TileMapTerrain" type="TileMap" parent="ViewportTrack/Viewport"]
-tile_set = SubResource( 35 )
+tile_set = SubResource( 36 )
 cell_size = Vector2( 256, 256 )
 cell_quadrant_size = 128
 collision_layer = 4
 format = 1
-tile_data = PoolIntArray( -1, 4, 0, -65536, 4, 0, -65535, 4, 0, -65534, 4, 0, -65533, 4, 0, -65532, 4, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 4, 0, -65527, 4, 0, -65526, 4, 0, -65525, 4, 0, -65524, 4, 0, -65523, 4, 0, -65522, 4, 0, -65521, 4, 0, -65520, 4, 0, -65519, 4, 0, -65518, 4, 0, -65517, 4, 0, -65516, 4, 0, 65535, 4, 0, 0, 6, 0, 2, 5, 0, 6, 8, 0, 9, 10, 0, 14, 7, 0, 19, 6, 0, 20, 4, 0, 131071, 4, 0, 65539, 9, 0, 65555, 5, 0, 65556, 4, 0, 196607, 4, 0, 131073, 9, 0, 131091, 9, 0, 131092, 4, 0, 262143, 4, 0, 196612, 7, 0, 196617, 10, 0, 196619, 8, 0, 196621, 5, 0, 196622, 9, 0, 196628, 4, 0, 327679, 4, 0, 262145, 6, 0, 262147, 10, 0, 262154, 8, 0, 262155, 6, 0, 262156, 6, 0, 262162, 7, 0, 262164, 4, 0, 393215, 4, 0, 327680, 9, 0, 327683, 5, 0, 327695, 5, 0, 327698, 5, 0, 327700, 4, 0, 458751, 4, 0, 393230, 6, 0, 393231, 6, 0, 393236, 4, 0, 524287, 4, 0, 458766, 5, 0, 458767, 6, 0, 458771, 10, 0, 458772, 4, 0, 589823, 4, 0, 524288, 6, 0, 524308, 4, 0, 655359, 4, 0, 589824, 5, 0, 589830, 8, 0, 589831, 5, 0, 589833, 6, 0, 589844, 4, 0, 720895, 4, 0, 655360, 10, 0, 655365, 5, 0, 655366, 10, 0, 655367, 6, 0, 655368, 10, 0, 655369, 8, 0, 655370, 6, 0, 655379, 6, 0, 655380, 4, 0, 786431, 4, 0, 720901, 6, 0, 720902, 5, 0, 720903, 10, 0, 720904, 5, 0, 720905, 10, 0, 720907, 10, 0, 720915, 7, 0, 720916, 4, 0, 851967, 4, 0, 786432, 9, 0, 786437, 6, 0, 786447, 5, 0, 786448, 5, 0, 786450, 9, 0, 786452, 4, 0, 917503, 4, 0, 851983, 6, 0, 851984, 5, 0, 851985, 10, 0, 851988, 4, 0, 983039, 4, 0, 917521, 9, 0, 917524, 4, 0, 1048575, 4, 0, 983040, 6, 0, 983042, 7, 0, 983045, 10, 0, 983048, 9, 0, 983055, 6, 0, 983056, 8, 0, 983060, 4, 0, 1114111, 4, 0, 1048576, 4, 0, 1048577, 4, 0, 1048578, 4, 0, 1048579, 4, 0, 1048580, 4, 0, 1048581, 4, 0, 1048582, 4, 0, 1048583, 4, 0, 1048584, 4, 0, 1048585, 4, 0, 1048586, 4, 0, 1048587, 4, 0, 1048588, 4, 0, 1048589, 4, 0, 1048590, 4, 0, 1048591, 4, 0, 1048592, 4, 0, 1048593, 4, 0, 1048594, 4, 0, 1048595, 4, 0, 1048596, 4, 0 )
+tile_data = PoolIntArray( -1, 4, 0, -65536, 4, 0, -65535, 4, 0, -65534, 4, 0, -65533, 4, 0, -65532, 4, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 4, 0, -65527, 4, 0, -65526, 4, 0, -65525, 4, 0, -65524, 4, 0, -65523, 4, 0, -65522, 4, 0, -65521, 4, 0, -65520, 4, 0, -65519, 4, 0, -65518, 4, 0, -65517, 4, 0, -65516, 4, 0, 65535, 4, 0, 0, 6, 0, 2, 5, 0, 6, 8, 0, 9, 6, 0, 13, 8, 0, 17, 7, 0, 19, 6, 0, 20, 4, 0, 131071, 4, 0, 65536, 9, 0, 65539, 9, 0, 65555, 5, 0, 65556, 4, 0, 196607, 4, 0, 131073, 9, 0, 131091, 9, 0, 131092, 4, 0, 262143, 4, 0, 196617, 10, 0, 196621, 5, 0, 196622, 9, 0, 196628, 4, 0, 327679, 4, 0, 262144, 8, 0, 262145, 6, 0, 262147, 10, 0, 262154, 8, 0, 262155, 6, 0, 262156, 6, 0, 262164, 4, 0, 393215, 4, 0, 327680, 9, 0, 327683, 5, 0, 327694, 6, 0, 327700, 4, 0, 458751, 4, 0, 393236, 4, 0, 524287, 4, 0, 458753, 8, 0, 458766, 10, 0, 458771, 10, 0, 458772, 4, 0, 589823, 4, 0, 524288, 6, 0, 524308, 4, 0, 655359, 4, 0, 589824, 5, 0, 589844, 4, 0, 720895, 4, 0, 655360, 10, 0, 655364, 10, 0, 655366, 10, 0, 655367, 6, 0, 655368, 10, 0, 655369, 8, 0, 655370, 9, 0, 655371, 10, 0, 655379, 6, 0, 655380, 4, 0, 786431, 4, 0, 720901, 6, 0, 720903, 10, 0, 720914, 6, 0, 720915, 7, 0, 720916, 4, 0, 851967, 4, 0, 786432, 9, 0, 786437, 6, 0, 786438, 6, 0, 786447, 6, 0, 786448, 5, 0, 786450, 9, 0, 786452, 4, 0, 917503, 4, 0, 851983, 6, 0, 851984, 5, 0, 851985, 10, 0, 851988, 4, 0, 983039, 4, 0, 917521, 9, 0, 917522, 2, 0, 917524, 4, 0, 1048575, 4, 0, 983040, 6, 0, 983042, 7, 0, 983045, 10, 0, 983048, 9, 0, 983052, 9, 0, 983053, 9, 0, 983060, 4, 0, 1114111, 4, 0, 1048576, 4, 0, 1048577, 4, 0, 1048578, 4, 0, 1048579, 4, 0, 1048580, 4, 0, 1048581, 4, 0, 1048582, 4, 0, 1048583, 4, 0, 1048584, 4, 0, 1048585, 4, 0, 1048586, 4, 0, 1048587, 4, 0, 1048588, 4, 0, 1048589, 4, 0, 1048590, 4, 0, 1048591, 4, 0, 1048592, 4, 0, 1048593, 4, 0, 1048594, 4, 0, 1048595, 4, 0, 1048596, 4, 0 )
+
+[node name="MapDeco" type="Node2D" parent="ViewportTrack/Viewport/TileMapTerrain"]
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+z_index = 1
+collision_layer = 4
+
+[node name="Sprite1" type="Sprite" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D1"]
+position = Vector2( 2383.58, 3115 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D1"]
+position = Vector2( 2383.58, 3115 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 590, -220, 606.6, -124, 620, -117.4, 620, -113.3, 610, -103.3, 610, -99.5, 617, -63.8, 617, 34.2, 617.4, 35.8, 625, 41.5, 637.1, 41.5, 698, 45.7, 698, 134, 699.5, 143.5, 689.3, 143.5, 620.4, 150.3, 617, 156.3, 617, 200.5, 600, 200.5, 569, 223.5, 505.1, 223.5, 497.1, 206.5, 489.7, 201.8, 462, 223.5, 397.1, 223.5, 388.1, 205.5, 381.2, 201.5, 354.1, 223.5, 290.3, 223.5, 279.3, 205.5, 272.2, 201.5, 248.2, 223.5, 182.4, 223.5, 171.4, 206.5, 163.2, 201.5, 139.2, 223.5, 75.8, 223.5, 54.5, 202.2, 32.2, 223.5, -34, 223.5, -34, 220.6, -49.3, 203.5, -50.6, 203.5, -53.6, 202.3, -58.5, 203.1, -75.6, 223.5, -141, 223.5, -141, 220.8, -157.3, 203.5, -158.5, 203.5, -162.6, 202.1, -170, 205.4, -170, 206.5, -182.5, 223.5, -250, 223.5, -250, 219.7, -266.2, 203.5, -267.5, 203.5, -271.5, 202.1, -278, 204.6, -278, 205.4, -290.4, 223.5, -356, 223.5, -356, 220.8, -375.1, 203.5, -376.5, 203.5, -380.5, 202.1, -387, 204.6, -387, 205.3, -397.2, 223.5, -464, 223.5, -464, 221, -489.5, 202.5, -496, 205.4, -496, 206.3, -505.2, 223.5, -571, 223.5, -571, 221, -596, 201.5, -599.1, 201.5, -617, 200.3, -617, -63.8, -610, -99.5, -610, -105.7, -616.5, -116.5, -614.7, -119.5, -610.7, -119.5, -605, -130.2, -605, -135.8, -590, -220, -590, -223.5, 590, -223.5 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D1"]
+position = Vector2( 2383.58, 3115 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -701, -142.6, -701, -137.5, -699.3, -129.5, -701.7, -129.5, -706.7, -111.5, -718, -111.5, -718, -120.2, -723.8, -143.5, -720, -143.5, -718, -145, -718, -148.8 )
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D1"]
+position = Vector2( 2383.58, 3115 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 723, -142.7, 723, -128.5, 721.4, -128.5, 717.4, -111.5, 706, -111.5, 706, -118.8, 700, -131.8, 700, -138.6, 705, -144.6, 705, -148.7 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+
+[node name="Sprite4" type="Sprite" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D2"]
+position = Vector2( 4826, 1145.08 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D2"]
+position = Vector2( 4826, 1145.08 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 590, -220, 606.6, -124, 620, -117.4, 620, -113.3, 610, -103.3, 610, -99.5, 617, -63.8, 617, 34.2, 617.4, 35.8, 625, 41.5, 637.1, 41.5, 698, 45.7, 698, 134, 699.5, 143.5, 689.3, 143.5, 620.4, 150.3, 617, 156.3, 617, 200.5, 600, 200.5, 569, 223.5, 505.1, 223.5, 497.1, 206.5, 489.7, 201.8, 462, 223.5, 397.1, 223.5, 388.1, 205.5, 381.2, 201.5, 354.1, 223.5, 290.3, 223.5, 279.3, 205.5, 272.2, 201.5, 248.2, 223.5, 182.4, 223.5, 171.4, 206.5, 163.2, 201.5, 139.2, 223.5, 75.8, 223.5, 54.5, 202.2, 32.2, 223.5, -34, 223.5, -34, 220.6, -49.3, 203.5, -50.6, 203.5, -53.6, 202.3, -58.5, 203.1, -75.6, 223.5, -141, 223.5, -141, 220.8, -157.3, 203.5, -158.5, 203.5, -162.6, 202.1, -170, 205.4, -170, 206.5, -182.5, 223.5, -250, 223.5, -250, 219.7, -266.2, 203.5, -267.5, 203.5, -271.5, 202.1, -278, 204.6, -278, 205.4, -290.4, 223.5, -356, 223.5, -356, 220.8, -375.1, 203.5, -376.5, 203.5, -380.5, 202.1, -387, 204.6, -387, 205.3, -397.2, 223.5, -464, 223.5, -464, 221, -489.5, 202.5, -496, 205.4, -496, 206.3, -505.2, 223.5, -571, 223.5, -571, 221, -596, 201.5, -599.1, 201.5, -617, 200.3, -617, -63.8, -610, -99.5, -610, -105.7, -616.5, -116.5, -614.7, -119.5, -610.7, -119.5, -605, -130.2, -605, -135.8, -590, -220, -590, -223.5, 590, -223.5 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D2"]
+position = Vector2( 4826, 1145.08 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -701, -142.6, -701, -137.5, -699.3, -129.5, -701.7, -129.5, -706.7, -111.5, -718, -111.5, -718, -120.2, -723.8, -143.5, -720, -143.5, -718, -145, -718, -148.8 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D2"]
+position = Vector2( 4826, 1145.08 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 723, -142.7, 723, -128.5, 721.4, -128.5, 717.4, -111.5, 706, -111.5, 706, -118.8, 700, -131.8, 700, -138.6, 705, -144.6, 705, -148.7 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+
+[node name="Sprite5" type="Sprite" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D3"]
+position = Vector2( 4826, 1925.51 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D3"]
+position = Vector2( 4826, 1925.51 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 590, -220, 606.6, -124, 620, -117.4, 620, -113.3, 610, -103.3, 610, -99.5, 617, -63.8, 617, 34.2, 617.4, 35.8, 625, 41.5, 637.1, 41.5, 698, 45.7, 698, 134, 699.5, 143.5, 689.3, 143.5, 620.4, 150.3, 617, 156.3, 617, 200.5, 600, 200.5, 569, 223.5, 505.1, 223.5, 497.1, 206.5, 489.7, 201.8, 462, 223.5, 397.1, 223.5, 388.1, 205.5, 381.2, 201.5, 354.1, 223.5, 290.3, 223.5, 279.3, 205.5, 272.2, 201.5, 248.2, 223.5, 182.4, 223.5, 171.4, 206.5, 163.2, 201.5, 139.2, 223.5, 75.8, 223.5, 54.5, 202.2, 32.2, 223.5, -34, 223.5, -34, 220.6, -49.3, 203.5, -50.6, 203.5, -53.6, 202.3, -58.5, 203.1, -75.6, 223.5, -141, 223.5, -141, 220.8, -157.3, 203.5, -158.5, 203.5, -162.6, 202.1, -170, 205.4, -170, 206.5, -182.5, 223.5, -250, 223.5, -250, 219.7, -266.2, 203.5, -267.5, 203.5, -271.5, 202.1, -278, 204.6, -278, 205.4, -290.4, 223.5, -356, 223.5, -356, 220.8, -375.1, 203.5, -376.5, 203.5, -380.5, 202.1, -387, 204.6, -387, 205.3, -397.2, 223.5, -464, 223.5, -464, 221, -489.5, 202.5, -496, 205.4, -496, 206.3, -505.2, 223.5, -571, 223.5, -571, 221, -596, 201.5, -599.1, 201.5, -617, 200.3, -617, -63.8, -610, -99.5, -610, -105.7, -616.5, -116.5, -614.7, -119.5, -610.7, -119.5, -605, -130.2, -605, -135.8, -590, -220, -590, -223.5, 590, -223.5 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D3"]
+position = Vector2( 4826, 1925.51 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -701, -142.6, -701, -137.5, -699.3, -129.5, -701.7, -129.5, -706.7, -111.5, -718, -111.5, -718, -120.2, -723.8, -143.5, -720, -143.5, -718, -145, -718, -148.8 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D3"]
+position = Vector2( 4826, 1925.51 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 723, -142.7, 723, -128.5, 721.4, -128.5, 717.4, -111.5, 706, -111.5, 706, -118.8, 700, -131.8, 700, -138.6, 705, -144.6, 705, -148.7 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+
+[node name="Sprite6" type="Sprite" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D4"]
+position = Vector2( 1318, 1004.08 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D4"]
+position = Vector2( 1318, 1004.08 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 590, -220, 606.6, -124, 620, -117.4, 620, -113.3, 610, -103.3, 610, -99.5, 617, -63.8, 617, 34.2, 617.4, 35.8, 625, 41.5, 637.1, 41.5, 698, 45.7, 698, 134, 699.5, 143.5, 689.3, 143.5, 620.4, 150.3, 617, 156.3, 617, 200.5, 600, 200.5, 569, 223.5, 505.1, 223.5, 497.1, 206.5, 489.7, 201.8, 462, 223.5, 397.1, 223.5, 388.1, 205.5, 381.2, 201.5, 354.1, 223.5, 290.3, 223.5, 279.3, 205.5, 272.2, 201.5, 248.2, 223.5, 182.4, 223.5, 171.4, 206.5, 163.2, 201.5, 139.2, 223.5, 75.8, 223.5, 54.5, 202.2, 32.2, 223.5, -34, 223.5, -34, 220.6, -49.3, 203.5, -50.6, 203.5, -53.6, 202.3, -58.5, 203.1, -75.6, 223.5, -141, 223.5, -141, 220.8, -157.3, 203.5, -158.5, 203.5, -162.6, 202.1, -170, 205.4, -170, 206.5, -182.5, 223.5, -250, 223.5, -250, 219.7, -266.2, 203.5, -267.5, 203.5, -271.5, 202.1, -278, 204.6, -278, 205.4, -290.4, 223.5, -356, 223.5, -356, 220.8, -375.1, 203.5, -376.5, 203.5, -380.5, 202.1, -387, 204.6, -387, 205.3, -397.2, 223.5, -464, 223.5, -464, 221, -489.5, 202.5, -496, 205.4, -496, 206.3, -505.2, 223.5, -571, 223.5, -571, 221, -596, 201.5, -599.1, 201.5, -617, 200.3, -617, -63.8, -610, -99.5, -610, -105.7, -616.5, -116.5, -614.7, -119.5, -610.7, -119.5, -605, -130.2, -605, -135.8, -590, -220, -590, -223.5, 590, -223.5 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D4"]
+position = Vector2( 1318, 1004.08 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -701, -142.6, -701, -137.5, -699.3, -129.5, -701.7, -129.5, -706.7, -111.5, -718, -111.5, -718, -120.2, -723.8, -143.5, -720, -143.5, -718, -145, -718, -148.8 )
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D4"]
+position = Vector2( 1318, 1004.08 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 723, -142.7, 723, -128.5, 721.4, -128.5, 717.4, -111.5, 706, -111.5, 706, -118.8, 700, -131.8, 700, -138.6, 705, -144.6, 705, -148.7 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+
+[node name="Sprite3" type="Sprite" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D5"]
+position = Vector2( 1572, 3115 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D5"]
+position = Vector2( 1572, 3115 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 590, -220, 606.6, -124, 620, -117.4, 620, -113.3, 610, -103.3, 610, -99.5, 617, -63.8, 617, 34.2, 617.4, 35.8, 625, 41.5, 637.1, 41.5, 698, 45.7, 698, 134, 699.5, 143.5, 689.3, 143.5, 620.4, 150.3, 617, 156.3, 617, 200.5, 600, 200.5, 569, 223.5, 505.1, 223.5, 497.1, 206.5, 489.7, 201.8, 462, 223.5, 397.1, 223.5, 388.1, 205.5, 381.2, 201.5, 354.1, 223.5, 290.3, 223.5, 279.3, 205.5, 272.2, 201.5, 248.2, 223.5, 182.4, 223.5, 171.4, 206.5, 163.2, 201.5, 139.2, 223.5, 75.8, 223.5, 54.5, 202.2, 32.2, 223.5, -34, 223.5, -34, 220.6, -49.3, 203.5, -50.6, 203.5, -53.6, 202.3, -58.5, 203.1, -75.6, 223.5, -141, 223.5, -141, 220.8, -157.3, 203.5, -158.5, 203.5, -162.6, 202.1, -170, 205.4, -170, 206.5, -182.5, 223.5, -250, 223.5, -250, 219.7, -266.2, 203.5, -267.5, 203.5, -271.5, 202.1, -278, 204.6, -278, 205.4, -290.4, 223.5, -356, 223.5, -356, 220.8, -375.1, 203.5, -376.5, 203.5, -380.5, 202.1, -387, 204.6, -387, 205.3, -397.2, 223.5, -464, 223.5, -464, 221, -489.5, 202.5, -496, 205.4, -496, 206.3, -505.2, 223.5, -571, 223.5, -571, 221, -596, 201.5, -599.1, 201.5, -617, 200.3, -617, -63.8, -610, -99.5, -610, -105.7, -616.5, -116.5, -614.7, -119.5, -610.7, -119.5, -605, -130.2, -605, -135.8, -590, -220, -590, -223.5, 590, -223.5 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D5"]
+position = Vector2( 1572, 3115 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -701, -142.6, -701, -137.5, -699.3, -129.5, -701.7, -129.5, -706.7, -111.5, -718, -111.5, -718, -120.2, -723.8, -143.5, -720, -143.5, -718, -145, -718, -148.8 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D5"]
+position = Vector2( 1572, 3115 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 723, -142.7, 723, -128.5, 721.4, -128.5, 717.4, -111.5, 706, -111.5, 706, -118.8, 700, -131.8, 700, -138.6, 705, -144.6, 705, -148.7 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+
+[node name="Sprite2" type="Sprite" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D6"]
+position = Vector2( 4213.18, 3501.56 )
+rotation = 0.785398
+scale = Vector2( 1, 1 )
+texture = ExtResource( 32 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/StaticBody2D6"]
+position = Vector2( 4213.18, 3501.56 )
+rotation = 0.785398
+scale = Vector2( 1, 1 )
+polygon = PoolVector2Array( 32.5, -485.2, 40.7, -477, 335.5, -477, 335.5, 298, 306.7, 298, 298.5, 306.2, 298.5, 493, -191.5, 493, -191.5, 306.2, -199.7, 298, -334.5, 298, -334.5, 234.2, -331.3, 232.5, -321.6, 239, -287.5, 239, -281, 237.4, -277.9, 231.8, -285.7, 224, -321.5, 224, -331.3, 230.5, -334.5, 228.8, -334.5, -86.8, -331.3, -88.5, -321.6, -82, -287.5, -82, -279.5, -85.1, -278.3, -88.6, -279.1, -93.5, -285.3, -97, -321.5, -97, -331.3, -90.5, -334.5, -92.2, -334.5, -409, -329.5, -409, -321.5, -403, -287.5, -403, -279.5, -406.1, -278.3, -409.6, -279.1, -414.5, -285.3, -418, -321.5, -418, -331.3, -411.5, -334.5, -413.2, -334.5, -477, -87.6, -477, -74.1, -479.5, -70.5, -485.8, -70.5, -493, 32.5, -493 )
+
+[node name="Separator" type="StaticBody2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco"]
+position = Vector2( 2560, 1792 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/Separator"]
+scale = Vector2( 37.2945, 10.1588 )
+shape = SubResource( 40 )
+
+[node name="ColorRect" type="ColorRect" parent="ViewportTrack/Viewport/TileMapTerrain/MapDeco/Separator"]
+margin_left = -498.0
+margin_top = 7.0
+margin_right = -425.0
+margin_bottom = 61.0
+rect_scale = Vector2( 13.6658, -0.258258 )
+color = Color( 0.772549, 0.772549, 0.772549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UICanvas" type="CanvasLayer" parent="."]
 
@@ -1554,8 +1996,8 @@ __meta__ = {
 [node name="CompletionLabel" type="Label" parent="UICanvas/VBoxContainer"]
 margin_right = 160.0
 margin_bottom = 40.0
-custom_styles/normal = SubResource( 36 )
-custom_fonts/font = SubResource( 37 )
+custom_styles/normal = SubResource( 37 )
+custom_fonts/font = SubResource( 38 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Comp. %"
 align = 1
@@ -1565,8 +2007,8 @@ valign = 1
 margin_top = 44.0
 margin_right = 160.0
 margin_bottom = 84.0
-custom_styles/normal = SubResource( 36 )
-custom_fonts/font = SubResource( 37 )
+custom_styles/normal = SubResource( 37 )
+custom_fonts/font = SubResource( 38 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "00:00:00"
 align = 1
@@ -1578,6 +2020,84 @@ one_shot = true
 script = ExtResource( 41 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/lap_finish = SubResource( 38 )
+anims/lap_finish = SubResource( 39 )
+
+[node name="HelpCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HelpColorRect" type="ColorRect" parent="HelpCanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 960, 768 )
+color = Color( 0, 0, 0, 0.368627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="HelpCanvasLayer/HelpColorRect"]
+modulate = Color( 0.0666667, 0.113725, 0.156863, 1 )
+position = Vector2( 480, 375 )
+scale = Vector2( 1.24, 0.8 )
+texture = ExtResource( 33 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpCanvasLayer/HelpColorRect"]
+margin_right = 960.0
+margin_bottom = 768.0
+grow_horizontal = 2
+rect_min_size = Vector2( 960, 768 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HelpCanvasLayer/HelpColorRect/VBoxContainer"]
+margin_right = 960.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="CenterContainer" type="CenterContainer" parent="HelpCanvasLayer/HelpColorRect/VBoxContainer"]
+margin_top = 104.0
+margin_right = 960.0
+margin_bottom = 166.0
+
+[node name="Label" type="Label" parent="HelpCanvasLayer/HelpColorRect/VBoxContainer/CenterContainer"]
+margin_left = 413.0
+margin_right = 547.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 41 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+custom_colors/font_outline_modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "Ayuda"
+align = 1
+
+[node name="ColorRect2" type="ColorRect" parent="HelpCanvasLayer/HelpColorRect/VBoxContainer"]
+margin_top = 170.0
+margin_right = 960.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 80 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="CenterContainer2" type="CenterContainer" parent="HelpCanvasLayer/HelpColorRect/VBoxContainer"]
+margin_top = 254.0
+margin_right = 960.0
+margin_bottom = 593.0
+
+[node name="Label" type="Label" parent="HelpCanvasLayer/HelpColorRect/VBoxContainer/CenterContainer2"]
+margin_left = 266.0
+margin_right = 693.0
+margin_bottom = 339.0
+custom_fonts/font = SubResource( 42 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+custom_colors/font_outline_modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+text = "[F1] = Abrir/cerrar ayuda
+[R] = Radar ON/OFF
+[D] = Radar lateral ON/OFF
+[F] = Distancia frontal ON/OFF
+[T] = Mostrar/ocultar llantas
+[BACKSPACE] = Reiniciar vehículo
+[NUM +] = Aumentar zoom
+[NUM -] = Disminuir zoom
+[ESC] = Reestablecer vista"
 [connection signal="area_exited" from="ViewportTrack/Viewport/TrackRoadHD/FinishLine" to="." method="_on_FinishLine_area_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

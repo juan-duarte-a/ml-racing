@@ -16,12 +16,15 @@ var _data: Array
 var _data_action: Array
 var update_state: bool
 var test: bool
+var attemps: int
+var update_frames: int
 
 const ACTION: int = 65
 const REQUEST: int = 82
 const ERROR: int = 69
 const BYTE_TRUE: int = 84
 const BYTE_FALSE: int = 70
+const UPDATE_FRAMES: int = 4
 
 export var packet_size: int = 3 # Byte array size.
 
@@ -56,6 +59,16 @@ var RESPONSES = {
 onready var server_timer: Timer = $ServerTimer
 onready var car: CarHD = get_parent().get_node("HBoxContainer/Track/ViewportTrack/Viewport/Car")
 onready var track: TrackHD = get_parent().get_node("HBoxContainer/Track")
+onready var attemps_lbl = get_parent().get_node(
+			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer/AttempsLabel")
+onready var is_oriented_lbl = get_parent().get_node(
+			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label1-2")
+onready var off_road_tires_lbl = get_parent().get_node(
+			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label2-2")
+onready var front_distance_lbl = get_parent().get_node(
+			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label3-2")
+onready var center_distance_lbl = get_parent().get_node(
+			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label4-2")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -65,6 +78,8 @@ func _ready():
 	port2 = 11436
 	update_state = false
 	test = false
+	attemps = 0
+	update_frames = 1
 	
 	if track.connect("lap_stats", self, "send_lap_stats") != OK:
 		print("Error connecting 'lap_stats' signal!")
@@ -248,6 +263,9 @@ func send_state_variables():
 
 
 func send_lap_stats(lap_time: int):
+	attemps += 1
+	attemps_lbl.set_text(str(attemps))
+	
 	if not offline_mode:
 		var err: int
 		var lap_data: PoolByteArray = REQUESTS["LAP_TIME"]
@@ -275,11 +293,23 @@ func _receive_data(bytes: int = 3) -> Array:
 	return data
 
 
+func _update_state_labels():
+	var temp_str: String
+	if track.state_variables[0]:
+		temp_str = "Sí"
+	else:
+		temp_str = "No"
+	is_oriented_lbl.set_text(temp_str)
+	off_road_tires_lbl.set_text(str(track.state_variables[1]))
+	front_distance_lbl.set_text(str(track.state_variables[2]))
+	center_distance_lbl.set_text(str(track.state_variables[3]))
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if _online:
-#		if update_state:
-			send_state_variables()
-#			update_state = false
-#		else:
-#			update_state = true
+		send_state_variables()
+	if update_frames == UPDATE_FRAMES:
+		update_frames = 1
+		_update_state_labels()
+	else:
+		update_frames += 1
