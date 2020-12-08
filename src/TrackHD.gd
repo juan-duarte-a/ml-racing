@@ -139,37 +139,42 @@ func handle_input_events():
 			car.ray_cast_r.set_visible(true)
 			for ray in car.radar:
 				ray.set_visible(true)
+			car.get_node("Sprite").set_visible(false)
 		else:
 			car.set_tires_visible(vision_tires)
 			for ray in car.radar:
 				ray.set_visible(vision_radar_mode)
 			car.ray_cast_l.set_visible(vision_center_distance)
 			car.ray_cast_r.set_visible(vision_center_distance)
-			vision_car = true
 			car.get_node("Sprite").set_visible(vision_car)
 	elif Input.is_action_just_pressed("radar"):
-		vision_radar_mode = !vision_radar_mode
 		for ray in car.radar:
-			ray.set_visible(vision_radar_mode)
+			ray.set_visible(!ray.is_visible())
 		if vision_front_distance:
-			car.radar[3].set_visible(vision_front_distance)
+			car.radar[3].set_visible(!car.radar[3].is_visible())
+		if not vision_machine_mode:
+			vision_radar_mode = !vision_radar_mode
 	elif Input.is_action_just_pressed("vision_center_distance"):
-		vision_center_distance = ! vision_center_distance
 		if vision_center_distance:
 			show_center_distance = false
-		car.ray_cast_l.set_visible(vision_center_distance)
-		car.ray_cast_r.set_visible(vision_center_distance)
+		car.ray_cast_l.set_visible(!car.ray_cast_l.is_visible())
+		car.ray_cast_r.set_visible(!car.ray_cast_r.is_visible())
+		if not vision_machine_mode:
+			vision_center_distance = !vision_center_distance
 	elif Input.is_action_just_pressed("front_distance"):
-		vision_front_distance = !vision_front_distance
-		car.radar[3].set_visible(vision_front_distance)
+		car.radar[3].set_visible(!car.radar[3].is_visible())
 		if vision_radar_mode:
-			car.radar[3].set_visible(vision_radar_mode)
+			car.radar[3].set_visible(!vision_radar_mode)
+		if not vision_machine_mode:
+			vision_front_distance = !vision_front_distance
 	elif Input.is_action_just_pressed("car"):
-		vision_car = !vision_car
-		car.get_node("Sprite").set_visible(vision_car)
+		car.get_node("Sprite").set_visible(!car.get_node("Sprite").is_visible())
+		if not vision_machine_mode:
+			vision_car = !vision_car
 	elif Input.is_action_just_pressed("tires"):
-		vision_tires = !vision_tires
-		car.set_tires_visible(vision_tires)
+		car.set_tires_visible(!car.frt.is_visible())
+		if not vision_machine_mode:
+			vision_tires = !vision_tires
 	elif Input.is_action_just_pressed("vision_oriented"):
 		vision_oriented = !vision_oriented
 	elif Input.is_action_just_pressed("center_distance"):

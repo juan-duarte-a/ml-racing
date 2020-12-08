@@ -534,9 +534,9 @@ rect_min_size = Vector2( 50, 50 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HelpLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_left = 31.0
+margin_left = 32.0
 margin_top = 720.0
-margin_right = 371.0
+margin_right = 372.0
 margin_bottom = 743.0
 rect_min_size = Vector2( 340, 0 )
 size_flags_horizontal = 4
