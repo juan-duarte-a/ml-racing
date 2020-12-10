@@ -1,11 +1,14 @@
 extends TileMap
 class_name TrackRoadHD
 
+signal checkpoint(time, num)
+
 const CURVE_VECTOR: int = 100
 const MAP_X_SIZE: int = 10
 const MAP_Y_SIZE: int = 9
 const CAR_INITIAL_X: float = 2710.0
 const CAR_INITIAL_Y: float = 3584.0
+const CHECKPOINTS: int = 4
 
 var vector_up: Vector2 = Vector2.UP
 var vector_down: Vector2 = Vector2.DOWN
@@ -16,6 +19,9 @@ var vector_ul: Vector2 = Vector2(-1, -1).normalized()
 var vector_dr: Vector2 = Vector2(1, 1).normalized()
 var vector_dl: Vector2 = Vector2(-1, 1).normalized()
 var initial_direction: Vector2 = Vector2(-1 ,0)
+var checkpoint_check: Array
+
+onready var timer: Timer = get_parent().get_parent().get_parent().get_node("Timer")
 
 onready var corner_lines: Array = [
 	$CornerLines/LineC1,
@@ -79,6 +85,13 @@ var road_curves: Array = [
 	Vector2(6, 6)
 ]
 
+var checkpoints: Array = [
+	Vector2(2, 3),
+	Vector2(3, 2),
+	Vector2(8, 1),
+	# Last section to be checked after lap completion
+]
+
 var direction_matrix: Array = []
 var direction_road: Array = [
 	Vector2(CURVE_VECTOR, 6), # C5 -> UR
@@ -131,6 +144,9 @@ func _ready():
 				(direction_matrix[y_pos] as Array).append(direction_road[count])
 				count += 1
 	print("Done")
+	
+	for _i in range(CHECKPOINTS - 1):
+		checkpoint_check.append(false)
 
 
 func on_road(position_vector: Vector2) -> bool:
@@ -169,7 +185,22 @@ func get_completion_step() -> float:
 func get_track_completion(position_vector: Vector2) -> float:
 	var pos: Vector2
 	var percentage: float
+	var checkpoint_position: int
 	pos = get_cell_position(position_vector)
+	checkpoint_position = checkpoints.find(pos)
+	if checkpoint_position != -1:
+		if not checkpoint_check[checkpoint_position]:
+			print("Checkpoint: ", checkpoint_position)
+			if checkpoint_position == 0 or checkpoint_check[checkpoint_position - 1] == true:
+				checkpoint_check[checkpoint_position] = true
+				emit_signal("checkpoint",timer.get_stopwatch_time_msecs(), checkpoint_position)
 	percentage = 100.0 * float(completion_matrix[pos.y][pos.x]) / float(road_cells_positions.size())
 	
 	return percentage if percentage >= 0 else -1.0
+
+
+func reset_checkpoints():
+	checkpoint_check.clear()
+	for _c in range(CHECKPOINTS - 1):
+		checkpoint_check.append(false)
+	print("Checkpoints reset!")

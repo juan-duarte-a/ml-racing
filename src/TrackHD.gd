@@ -4,6 +4,7 @@ class_name TrackHD
 signal lap_finished(lap_time)
 signal lap_stats(lap_time)
 signal update_best_lap_time(lap_time)
+signal reset(completion)
 
 const COMPLETION_VECTOR_SIZE = 1200
 
@@ -33,7 +34,7 @@ onready var viewportrack: ViewportContainer = $ViewportTrack
 onready var viewport: Viewport = $ViewportTrack/Viewport
 onready var car: CarHD = $ViewportTrack/Viewport/Car
 onready var map_background: TileMap = $ViewportTrack/Viewport/TileMapBackground
-onready var map_road: TileMap = $ViewportTrack/Viewport/TrackRoadHD
+onready var map_road: TrackRoadHD = $ViewportTrack/Viewport/TrackRoadHD
 onready var map_terrain: TileMap = $ViewportTrack/Viewport/TileMapTerrain
 onready var road_details: Node2D = $ViewportTrack/Viewport/RoadDetails
 onready var completion_label: Label = $UICanvas/VBoxContainer/CompletionLabel
@@ -86,8 +87,8 @@ func _ready():
 	err = connect("lap_finished", self, "lap_finished")
 	if err != OK:
 		print("Error connecting 'lap_finished' signal!")
-		
-		time_scale = Engine.get_time_scale()
+	
+	time_scale = Engine.get_time_scale()
 	
 	set_visible(true)
 
@@ -139,7 +140,7 @@ func handle_input_events():
 			car.ray_cast_r.set_visible(true)
 			for ray in car.radar:
 				ray.set_visible(true)
-			car.get_node("Sprite").set_visible(false)
+			car.get_node("Sprite").set_visible(true)
 		else:
 			car.set_tires_visible(vision_tires)
 			for ray in car.radar:
@@ -202,7 +203,7 @@ func handle_input_events():
 			vision_car = true
 			vision_tires = false
 	elif Input.is_action_just_pressed("reset"):
-		car.reset()
+		reset_track(true)
 	elif Input.is_action_just_pressed("help"):
 		help_layer.set_visible(!help_layer.visible)
 
@@ -252,12 +253,15 @@ func run_start():
 	running = true
 
 
-func reset_track():
+func reset_track(incomplete: bool = false):
 	timer.stop_stopwatch()
 	timer.reset_stopwatch()
 	car.reset()
 	running = false
 	lap_start = true
+	map_road.reset_checkpoints()
+	if incomplete:
+		emit_signal("reset", track_completion)
 
 
 func lap_finished(lap_time):
@@ -289,11 +293,14 @@ func _on_FinishLine_area_exited(area):
 			timer.reset_stopwatch()
 			timer.start_stopwatch()
 		else:
-			if best_lap_time == 0:
-				best_lap_time = lap_time
-				emit_signal("update_best_lap_time", lap_time)
+			if map_road.checkpoint_check.find(false) != -1:
+				reset_track(true)
 			else:
-				if lap_time < best_lap_time:
+				if best_lap_time == 0:
 					best_lap_time = lap_time
 					emit_signal("update_best_lap_time", lap_time)
-			emit_signal("lap_finished", lap_time)
+				else:
+					if lap_time < best_lap_time:
+						best_lap_time = lap_time
+						emit_signal("update_best_lap_time", lap_time)
+				emit_signal("lap_finished", lap_time)

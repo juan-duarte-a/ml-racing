@@ -83,6 +83,8 @@ func _ready():
 	
 	if track.connect("lap_stats", self, "send_lap_stats") != OK:
 		print("Error connecting 'lap_stats' signal!")
+	if track.connect("reset", self, "reset") != OK:
+		print("Error connecting 'reset' signal!")
 
 
 func connect_to_client(port_number1: int = port1, port_number2: int = port2):
@@ -263,8 +265,8 @@ func send_state_variables():
 
 
 func send_lap_stats(lap_time: int):
-	attemps += 1
-	attemps_lbl.set_text(str(attemps))
+	get_parent().checkpoint(lap_time, track.map_road.checkpoints.size())
+	reset(100)
 	
 	if not offline_mode:
 		var err: int
@@ -276,6 +278,13 @@ func send_lap_stats(lap_time: int):
 		err = _output_stream.put_data(lap_data)
 		if err != OK:
 			print("Error sending lap stats!")
+
+
+func reset(track_completion: float):
+	attemps += 1
+	attemps_lbl.set_text(str(attemps))
+	get_parent().reset_checkpoints()
+	get_parent().update_average_completion(track_completion)
 
 
 func _send_data(byte_array: PoolByteArray) -> int:

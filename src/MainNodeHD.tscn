@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/MainNodeHD.gd" type="Script" id=1]
 [ext_resource path="res://src/ServerHD.gd" type="Script" id=2]
@@ -18,10 +18,10 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.721569, 0.721569, 0.721569, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="DynamicFont" id=3]
 size = 23
@@ -29,6 +29,10 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 33
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 20
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=5]
@@ -167,26 +171,29 @@ color = Color( 1, 1, 1, 0 )
 [node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
 margin_top = 148.0
 margin_right = 404.0
-margin_bottom = 189.0
+margin_bottom = 193.0
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3"]
 margin_left = 83.0
 margin_right = 321.0
-margin_bottom = 41.0
+margin_bottom = 45.0
 columns = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
-margin_top = 6.0
+margin_top = 5.0
 margin_right = 217.0
-margin_bottom = 35.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 35 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "Número de intentos: "
 
 [node name="AttempsLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer"]
 margin_left = 221.0
+margin_top = -1.0
 margin_right = 238.0
-margin_bottom = 41.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 45 )
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "0"
@@ -195,26 +202,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSpacer3" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 193.0
+[node name="CenterContainer6" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 197.0
 margin_right = 404.0
-margin_bottom = 223.0
+margin_bottom = 222.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer6"]
+margin_left = 70.0
+margin_right = 333.0
+margin_bottom = 25.0
+
+[node name="CompletedLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer6/HBoxContainer"]
+margin_right = 212.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "Completado promedio: "
+
+[node name="AvgCompletedLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer6/HBoxContainer"]
+margin_left = 216.0
+margin_right = 263.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "0.0 %"
+
+[node name="HSpacer3" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
+margin_top = 226.0
+margin_right = 404.0
+margin_bottom = 256.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HSpacer4" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 227.0
+margin_top = 260.0
 margin_right = 404.0
-margin_bottom = 257.0
+margin_bottom = 290.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="CenterContainer4" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 261.0
+margin_top = 294.0
 margin_right = 404.0
-margin_bottom = 436.0
+margin_bottom = 469.0
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4"]
+[node name="CheckpointsLabels" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4"]
 margin_left = 18.0
 margin_right = 386.0
 margin_bottom = 175.0
@@ -223,7 +255,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LabelCaption1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="LabelCaption1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_right = 120.0
 margin_bottom = 31.0
 custom_styles/normal = SubResource( 5 )
@@ -232,7 +264,7 @@ custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "Sección"
 align = 1
 
-[node name="LabelCaption2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="LabelCaption2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
 margin_right = 244.0
 margin_bottom = 31.0
@@ -242,7 +274,7 @@ custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "Actual"
 align = 1
 
-[node name="LabelCaption3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="LabelCaption3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
 margin_right = 368.0
 margin_bottom = 31.0
@@ -252,7 +284,7 @@ custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "Mejor"
 align = 1
 
-[node name="Label1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_top = 35.0
 margin_right = 120.0
 margin_bottom = 67.0
@@ -264,7 +296,7 @@ text = "Sección 1"
 align = 1
 valign = 1
 
-[node name="Label1-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label1-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
 margin_top = 35.0
 margin_right = 244.0
@@ -277,7 +309,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label1-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label1-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
 margin_top = 35.0
 margin_right = 368.0
@@ -290,7 +322,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_top = 71.0
 margin_right = 120.0
 margin_bottom = 103.0
@@ -302,7 +334,7 @@ text = "Sección 2"
 align = 1
 valign = 1
 
-[node name="Label2-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label2-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
 margin_top = 71.0
 margin_right = 244.0
@@ -315,7 +347,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label2-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label2-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
 margin_top = 71.0
 margin_right = 368.0
@@ -328,7 +360,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_top = 107.0
 margin_right = 120.0
 margin_bottom = 139.0
@@ -340,7 +372,7 @@ text = "Sección 3"
 align = 1
 valign = 1
 
-[node name="Label3-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label3-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
 margin_top = 107.0
 margin_right = 244.0
@@ -353,7 +385,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label3-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label3-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
 margin_top = 107.0
 margin_right = 368.0
@@ -366,7 +398,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label4" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label4" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_top = 143.0
 margin_right = 120.0
 margin_bottom = 175.0
@@ -378,7 +410,7 @@ text = "Sección 4"
 align = 1
 valign = 1
 
-[node name="Label4-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label4-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
 margin_top = 143.0
 margin_right = 244.0
@@ -391,7 +423,7 @@ text = "--:--:---"
 align = 1
 valign = 1
 
-[node name="Label4-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/GridContainer"]
+[node name="Label4-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
 margin_top = 143.0
 margin_right = 368.0
@@ -405,23 +437,23 @@ align = 1
 valign = 1
 
 [node name="HSpacer5" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 440.0
+margin_top = 473.0
 margin_right = 404.0
-margin_bottom = 470.0
+margin_bottom = 503.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HSpacer6" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 474.0
+margin_top = 507.0
 margin_right = 404.0
-margin_bottom = 504.0
+margin_bottom = 537.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="CenterContainer5" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 508.0
+margin_top = 541.0
 margin_right = 404.0
-margin_bottom = 628.0
+margin_bottom = 661.0
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5"]
 margin_left = 20.0
@@ -520,24 +552,24 @@ text = "0"
 align = 1
 
 [node name="HSpacer7" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 632.0
+margin_top = 665.0
 margin_right = 404.0
-margin_bottom = 662.0
+margin_bottom = 695.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HSpacer8" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 666.0
+margin_top = 699.0
 margin_right = 404.0
-margin_bottom = 716.0
-rect_min_size = Vector2( 50, 50 )
+margin_bottom = 719.0
+rect_min_size = Vector2( 50, 20 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HelpLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer"]
 margin_left = 32.0
-margin_top = 720.0
+margin_top = 723.0
 margin_right = 372.0
-margin_bottom = 743.0
+margin_bottom = 746.0
 rect_min_size = Vector2( 340, 0 )
 size_flags_horizontal = 4
 custom_fonts/font = SubResource( 11 )
@@ -545,4 +577,8 @@ custom_colors/font_color = Color( 0.819608, 0.819608, 0.819608, 1 )
 custom_colors/font_outline_modulate = Color( 0.301961, 0.301961, 0.301961, 1 )
 text = "F1 - Ayuda"
 align = 2
+
+[node name="CheckPointsTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 [connection signal="connection_to_client" from="Server" to="." method="_on_Server_connection_to_client"]
