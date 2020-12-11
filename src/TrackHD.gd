@@ -4,6 +4,7 @@ class_name TrackHD
 signal lap_finished(lap_time)
 signal lap_stats(lap_time)
 signal update_best_lap_time(lap_time)
+signal reset(completion)
 
 const COMPLETION_VECTOR_SIZE = 1200
 
@@ -33,18 +34,21 @@ onready var viewportrack: ViewportContainer = $ViewportTrack
 onready var viewport: Viewport = $ViewportTrack/Viewport
 onready var car: CarHD = $ViewportTrack/Viewport/Car
 onready var map_background: TileMap = $ViewportTrack/Viewport/TileMapBackground
-onready var map_road: TileMap = $ViewportTrack/Viewport/TrackRoadHD
+onready var map_road: TrackRoadHD = $ViewportTrack/Viewport/TrackRoadHD
 onready var map_terrain: TileMap = $ViewportTrack/Viewport/TileMapTerrain
+onready var road_details: Node2D = $ViewportTrack/Viewport/RoadDetails
 onready var completion_label: Label = $UICanvas/VBoxContainer/CompletionLabel
 onready var time_label: Label = $UICanvas/VBoxContainer/TimeLabel
 onready var completion_car_sensor: RayCast2D = $ViewportTrack/Viewport/TrackRoadHD/CompletionCarSensor
 onready var timer: Timer = $Timer
 onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var help_layer: ColorRect = $HelpCanvasLayer/HelpColorRect
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var err: int
+	help_layer.set_visible(false)
 	viewportrack.set_size(Vector2(960, 768))
 	viewport.set_size(Vector2(960, 768))
 	if get_parent().get_name() == "root":
@@ -70,7 +74,6 @@ func _ready():
 		car.speeds[s] *= scale.length() / 1.414214
 	
 	for ray in car.radar:
-#		(ray as CarRayCast).add_exception(get_node("TileMapRoad/RoadCollisionShapes"))
 		ray.set_visible(vision_radar_mode)
 	car.ray_cast_l.set_visible(vision_center_distance)
 	car.ray_cast_r.set_visible(vision_center_distance)
@@ -84,8 +87,8 @@ func _ready():
 	err = connect("lap_finished", self, "lap_finished")
 	if err != OK:
 		print("Error connecting 'lap_finished' signal!")
-		
-		time_scale = Engine.get_time_scale()
+	
+	time_scale = Engine.get_time_scale()
 	
 	set_visible(true)
 
@@ -130,43 +133,49 @@ func handle_input_events():
 		map_background.set_visible(!vision_machine_mode)
 		map_road.set_visible(!vision_machine_mode)
 		map_terrain.set_visible(!vision_machine_mode)
+		road_details.set_visible(!vision_machine_mode)
 		if vision_machine_mode:
 			car.set_tires_visible(true)
 			car.ray_cast_l.set_visible(true)
 			car.ray_cast_r.set_visible(true)
 			for ray in car.radar:
 				ray.set_visible(true)
+			car.get_node("Sprite").set_visible(true)
 		else:
 			car.set_tires_visible(vision_tires)
 			for ray in car.radar:
 				ray.set_visible(vision_radar_mode)
 			car.ray_cast_l.set_visible(vision_center_distance)
 			car.ray_cast_r.set_visible(vision_center_distance)
-			vision_car = true
 			car.get_node("Sprite").set_visible(vision_car)
 	elif Input.is_action_just_pressed("radar"):
-		vision_radar_mode = !vision_radar_mode
 		for ray in car.radar:
-			ray.set_visible(vision_radar_mode)
+			ray.set_visible(!ray.is_visible())
 		if vision_front_distance:
-			car.radar[3].set_visible(vision_front_distance)
+			car.radar[3].set_visible(!car.radar[3].is_visible())
+		if not vision_machine_mode:
+			vision_radar_mode = !vision_radar_mode
 	elif Input.is_action_just_pressed("vision_center_distance"):
-		vision_center_distance = ! vision_center_distance
 		if vision_center_distance:
 			show_center_distance = false
-		car.ray_cast_l.set_visible(vision_center_distance)
-		car.ray_cast_r.set_visible(vision_center_distance)
+		car.ray_cast_l.set_visible(!car.ray_cast_l.is_visible())
+		car.ray_cast_r.set_visible(!car.ray_cast_r.is_visible())
+		if not vision_machine_mode:
+			vision_center_distance = !vision_center_distance
 	elif Input.is_action_just_pressed("front_distance"):
-		vision_front_distance = !vision_front_distance
-		car.radar[3].set_visible(vision_front_distance)
+		car.radar[3].set_visible(!car.radar[3].is_visible())
 		if vision_radar_mode:
-			car.radar[3].set_visible(vision_radar_mode)
+			car.radar[3].set_visible(!vision_radar_mode)
+		if not vision_machine_mode:
+			vision_front_distance = !vision_front_distance
 	elif Input.is_action_just_pressed("car"):
-		vision_car = !vision_car
-		car.get_node("Sprite").set_visible(vision_car)
+		car.get_node("Sprite").set_visible(!car.get_node("Sprite").is_visible())
+		if not vision_machine_mode:
+			vision_car = !vision_car
 	elif Input.is_action_just_pressed("tires"):
-		vision_tires = !vision_tires
-		car.set_tires_visible(vision_tires)
+		car.set_tires_visible(!car.frt.is_visible())
+		if not vision_machine_mode:
+			vision_tires = !vision_tires
 	elif Input.is_action_just_pressed("vision_oriented"):
 		vision_oriented = !vision_oriented
 	elif Input.is_action_just_pressed("center_distance"):
@@ -175,23 +184,28 @@ func handle_input_events():
 		else:
 			show_center_distance = !show_center_distance
 	elif Input.is_action_just_pressed("vision_off"):
-		map_background.set_visible(true)
-		map_road.set_visible(true)
-		map_terrain.set_visible(true)
-		car.get_node("Sprite").set_visible(true)
-		car.set_tires_visible(false)
-		car.ray_cast_l.set_visible(false)
-		car.ray_cast_r.set_visible(false)
-		for ray in car.radar:
-			ray.set_visible(false)
-		vision_machine_mode = false
-		vision_radar_mode = false
-		vision_center_distance = false
-		vision_front_distance = false
-		vision_car = true
-		vision_tires = false
+		if help_layer.is_visible():
+			help_layer.set_visible(false)
+		else:
+			map_background.set_visible(true)
+			map_road.set_visible(true)
+			map_terrain.set_visible(true)
+			car.get_node("Sprite").set_visible(true)
+			car.set_tires_visible(false)
+			car.ray_cast_l.set_visible(false)
+			car.ray_cast_r.set_visible(false)
+			for ray in car.radar:
+				ray.set_visible(false)
+			vision_machine_mode = false
+			vision_radar_mode = false
+			vision_center_distance = false
+			vision_front_distance = false
+			vision_car = true
+			vision_tires = false
 	elif Input.is_action_just_pressed("reset"):
-		car.reset()
+		reset_track(true)
+	elif Input.is_action_just_pressed("help"):
+		help_layer.set_visible(!help_layer.visible)
 
 
 func update_time_label(lap_time: bool = false, update: bool = true):
@@ -208,24 +222,25 @@ func update_time_label(lap_time: bool = false, update: bool = true):
 func update_state():
 	state_variables.clear()
 	state_variables.append(car.is_oriented())
-	state_variables.append(car.get_distance_from_center())
+	state_variables.append(car.tires_off_road)
 	state_variables.append(car.get_distance_front())
+	state_variables.append(car.get_distance_from_center())
 	state_variables.append(stepify(track_completion, 0.001))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	handle_input_events()
-	if vision_tires:
-		print("Off road tires: ", car.tires_off_road)
-	if vision_front_distance:
-		print("Front distance: ", car.radar[3].get_distance())
-	if vision_center_distance:
-		print("From center: ", car.get_distance_from_center())
-	if vision_oriented:
-		print("Oriented: ", car.is_oriented())
-	if show_center_distance:
-		print("From center: ", car.get_distance_from_center())
+#	if vision_tires:
+#		print("Off road tires: ", car.tires_off_road)
+#	if vision_front_distance:
+#		print("Front distance: ", car.radar[3].get_distance())
+#	if vision_center_distance:
+#		print("From center: ", car.get_distance_from_center())
+#	if vision_oriented:
+#		print("Oriented: ", car.is_oriented())
+#	if show_center_distance:
+#		print("From center: ", car.get_distance_from_center())
 	
 	calculate_track_completion()
 	update_time_label(false, update_timer)
@@ -238,12 +253,15 @@ func run_start():
 	running = true
 
 
-func reset_track():
+func reset_track(incomplete: bool = false):
 	timer.stop_stopwatch()
 	timer.reset_stopwatch()
 	car.reset()
 	running = false
 	lap_start = true
+	map_road.reset_checkpoints()
+	if incomplete:
+		emit_signal("reset", track_completion)
 
 
 func lap_finished(lap_time):
@@ -275,11 +293,14 @@ func _on_FinishLine_area_exited(area):
 			timer.reset_stopwatch()
 			timer.start_stopwatch()
 		else:
-			if best_lap_time == 0:
-				best_lap_time = lap_time
-				emit_signal("update_best_lap_time", lap_time)
+			if map_road.checkpoint_check.find(false) != -1:
+				reset_track(true)
 			else:
-				if lap_time < best_lap_time:
+				if best_lap_time == 0:
 					best_lap_time = lap_time
 					emit_signal("update_best_lap_time", lap_time)
-			emit_signal("lap_finished", lap_time)
+				else:
+					if lap_time < best_lap_time:
+						best_lap_time = lap_time
+						emit_signal("update_best_lap_time", lap_time)
+				emit_signal("lap_finished", lap_time)

@@ -350,13 +350,7 @@ func reset():
 		wheel_tween2.start()
 
 
-func _physics_process(delta):
-	tires_off_road = int(frt.off_road) + int(flt.off_road) + int(brt.off_road) + int(blt.off_road)
-	if tires_off_road > 1:
-		speed_factor = 0.7
-	else:
-		speed_factor = 1
-	
+func _handle_input():
 	if Input.is_action_just_pressed("forward"):
 		print("GEAR UP: ", OS.get_ticks_msec())
 		set_action(ACTIONS.GEAR_UP)
@@ -408,6 +402,16 @@ func _physics_process(delta):
 			# warning-ignore:return_value_discarded
 			zoom_tween.start()
 
+
+func _physics_process(delta):
+	tires_off_road = int(frt.off_road) + int(flt.off_road) + int(brt.off_road) + int(blt.off_road)
+	if tires_off_road > 1:
+		speed_factor = 0.7
+	else:
+		speed_factor = 1
+	
+	_handle_input()
+	
 	if turning:
 		update_turn_angle(delta, turning_left)
 	
