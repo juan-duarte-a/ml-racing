@@ -32,14 +32,21 @@ export var packet_size: int = 3 # Byte array size.
 #	END = bytearray(bytes([65, 27, 4]))
 #	RUN = bytearray(bytes([65, 82, 78]))
 #	STOP = bytearray(bytes([65, 83, 84]))
+#	GEAR_UP = bytearray(bytes([65, 71, 85]))
+#	GEAR_DOWN = bytearray(bytes([65, 71, 68]))
 #	TURN_LEFT = bytearray(bytes([65, 84, 76]))
 #	TURN_RIGHT = bytearray(bytes([65, 84, 82]))
+#	CENTER_WHEEL = bytearray(bytes([65, 67, 87]))
+
 var ACTIONS = {
 	"END": ([ACTION, 27, 4] as PoolByteArray),
 	"RUN": ([ACTION, 82, 78] as PoolByteArray),
 	"STOP": ([ACTION, 83, 84] as PoolByteArray),
+	"GEAR_UP": ([ACTION, 71, 85] as PoolByteArray),
+	"GEAR_DOWN": ([ACTION, 71, 68] as PoolByteArray),
 	"TURN_LEFT": ([ACTION, 84, 76] as PoolByteArray),
-	"TURN_RIGHT": ([ACTION, 84, 82] as PoolByteArray)
+	"TURN_RIGHT": ([ACTION, 84, 82] as PoolByteArray),
+	"CENTER_WHEEL": ([ACTION, 67, 87] as PoolByteArray),
 	}
 
 """ From ml_comm.py """
@@ -173,12 +180,21 @@ func manage_action():
 		elif (data[1] as PoolByteArray) == ACTIONS["STOP"]:
 			car.set_action(Car.ACTIONS.STOP)
 			message = "STOP"
+		elif (data[1] as PoolByteArray) == ACTIONS["GEAR_UP"]:
+			car.set_action(Car.ACTIONS.GEAR_UP)
+			message = "GEAR_UP"
+		elif (data[1] as PoolByteArray) == ACTIONS["GEAR_DOWN"]:
+			car.set_action(Car.ACTIONS.GEAR_DOWN)
+			message = "GEAR_DOWN"
 		elif (data[1] as PoolByteArray) == ACTIONS["TURN_LEFT"]:
 			car.set_action(Car.ACTIONS.TURN_LEFT)
 			message = "TURN_LEFT"
 		elif (data[1] as PoolByteArray) == ACTIONS["TURN_RIGHT"]:
 			car.set_action(Car.ACTIONS.TURN_RIGHT)
 			message = "TURN_RIGHT"
+		elif (data[1] as PoolByteArray) == ACTIONS["CENTER_WHEEL"]:
+			car.set_action(Car.ACTIONS.CENTER_WHEEL)
+			message = "CENTER_WHEEL"
 		print("Received traduction <- ", message)
 
 

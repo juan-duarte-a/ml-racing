@@ -37,7 +37,6 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_bottom = 1
 border_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 
 [sub_resource type="DynamicFont" id=7]
@@ -46,6 +45,9 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 
@@ -77,7 +79,7 @@ font_data = ExtResource( 5 )
 
 [node name="MainNode" type="Node"]
 script = ExtResource( 1 )
-offline_mode = true
+time_scale = 2.0
 
 [node name="Server" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -243,12 +245,12 @@ color = Color( 1, 1, 1, 0 )
 [node name="CenterContainer4" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
 margin_top = 294.0
 margin_right = 404.0
-margin_bottom = 469.0
+margin_bottom = 468.0
 
 [node name="CheckpointsLabels" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4"]
 margin_left = 18.0
 margin_right = 386.0
-margin_bottom = 175.0
+margin_bottom = 174.0
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -256,7 +258,7 @@ __meta__ = {
 
 [node name="LabelCaption1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_right = 120.0
-margin_bottom = 31.0
+margin_bottom = 30.0
 custom_styles/normal = SubResource( 6 )
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
@@ -266,7 +268,7 @@ align = 1
 [node name="LabelCaption2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
 margin_right = 244.0
-margin_bottom = 31.0
+margin_bottom = 30.0
 custom_styles/normal = SubResource( 6 )
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
@@ -276,7 +278,7 @@ align = 1
 [node name="LabelCaption3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
 margin_right = 368.0
-margin_bottom = 31.0
+margin_bottom = 30.0
 custom_styles/normal = SubResource( 6 )
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
@@ -284,9 +286,9 @@ text = "Mejor"
 align = 1
 
 [node name="Label1" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
-margin_top = 35.0
+margin_top = 34.0
 margin_right = 120.0
-margin_bottom = 67.0
+margin_bottom = 66.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -297,9 +299,9 @@ valign = 1
 
 [node name="Label1-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
-margin_top = 35.0
+margin_top = 34.0
 margin_right = 244.0
-margin_bottom = 67.0
+margin_bottom = 66.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -313,9 +315,9 @@ __meta__ = {
 
 [node name="Label1-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
-margin_top = 35.0
+margin_top = 34.0
 margin_right = 368.0
-margin_bottom = 67.0
+margin_bottom = 66.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -325,9 +327,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
-margin_top = 71.0
+margin_top = 70.0
 margin_right = 120.0
-margin_bottom = 103.0
+margin_bottom = 102.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -338,9 +340,9 @@ valign = 1
 
 [node name="Label2-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
-margin_top = 71.0
+margin_top = 70.0
 margin_right = 244.0
-margin_bottom = 103.0
+margin_bottom = 102.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -351,9 +353,9 @@ valign = 1
 
 [node name="Label2-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
-margin_top = 71.0
+margin_top = 70.0
 margin_right = 368.0
-margin_bottom = 103.0
+margin_bottom = 102.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -363,9 +365,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
-margin_top = 107.0
+margin_top = 106.0
 margin_right = 120.0
-margin_bottom = 139.0
+margin_bottom = 138.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -376,9 +378,9 @@ valign = 1
 
 [node name="Label3-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
-margin_top = 107.0
+margin_top = 106.0
 margin_right = 244.0
-margin_bottom = 139.0
+margin_bottom = 138.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -389,9 +391,9 @@ valign = 1
 
 [node name="Label3-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
-margin_top = 107.0
+margin_top = 106.0
 margin_right = 368.0
-margin_bottom = 139.0
+margin_bottom = 138.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -401,9 +403,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
-margin_top = 143.0
+margin_top = 142.0
 margin_right = 120.0
-margin_bottom = 175.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -414,9 +416,9 @@ valign = 1
 
 [node name="Label4-2" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 124.0
-margin_top = 143.0
+margin_top = 142.0
 margin_right = 244.0
-margin_bottom = 175.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -427,9 +429,9 @@ valign = 1
 
 [node name="Label4-3" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels"]
 margin_left = 248.0
-margin_top = 143.0
+margin_top = 142.0
 margin_right = 368.0
-margin_bottom = 175.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 120, 32 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
@@ -439,23 +441,23 @@ align = 1
 valign = 1
 
 [node name="HSpacer5" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 473.0
+margin_top = 472.0
 margin_right = 404.0
-margin_bottom = 503.0
+margin_bottom = 502.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HSpacer6" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 507.0
+margin_top = 506.0
 margin_right = 404.0
-margin_bottom = 537.0
+margin_bottom = 536.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="CenterContainer5" type="CenterContainer" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 541.0
+margin_top = 540.0
 margin_right = 404.0
-margin_bottom = 661.0
+margin_bottom = 660.0
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5"]
 margin_left = 20.0
@@ -554,24 +556,24 @@ text = "0"
 align = 1
 
 [node name="HSpacer7" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 665.0
+margin_top = 664.0
 margin_right = 404.0
-margin_bottom = 695.0
+margin_bottom = 694.0
 rect_min_size = Vector2( 50, 30 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HSpacer8" type="ColorRect" parent="HBoxContainer/ColorRect2/VBoxContainer"]
-margin_top = 699.0
+margin_top = 698.0
 margin_right = 404.0
-margin_bottom = 719.0
+margin_bottom = 718.0
 rect_min_size = Vector2( 50, 20 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="HelpLabel" type="Label" parent="HBoxContainer/ColorRect2/VBoxContainer"]
 margin_left = 32.0
-margin_top = 723.0
+margin_top = 722.0
 margin_right = 372.0
-margin_bottom = 746.0
+margin_bottom = 745.0
 rect_min_size = Vector2( 340, 0 )
 size_flags_horizontal = 4
 custom_fonts/font = SubResource( 12 )
