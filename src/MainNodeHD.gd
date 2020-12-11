@@ -75,6 +75,7 @@ func checkpoint(time, pos: int):
 			best_checkpoints_time[checkpoints_time.size() - 1] or \
 			best_checkpoints_time[checkpoints_time.size() - 1] == -1:
 		best_checkpoints_time[checkpoints_time.size() - 1] = checkpoints_time[checkpoints_time.size() - 1]
+		(checkpoint_labels[pos] as Label).set_modulate("4ccb41")
 	if pos == checkpoint_labels.size() - 1:
 		accumulated_checkpoint_time = 0
 	else:
@@ -95,6 +96,8 @@ func checkpoint_timer_signal():
 					track.get_node("Timer").msecs_to_string(checkpoints_time[i]))
 		else:
 			(checkpoint_labels[i] as Label).set_text("--:--:---")
+		for l in checkpoint_labels:
+			(l as Label).set_modulate("ffffff")
 
 
 func update_best_checkpoints():
