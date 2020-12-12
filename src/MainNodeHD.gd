@@ -45,18 +45,18 @@ func _ready():
 	for _i in range(checkpoint_labels.size()):
 		best_checkpoints_time.append(-1)
 	
+	if track.connect("update_best_lap_time", self, "update_best_lap_time") != OK:
+		print("Error connecting best lap label signal!")
+	if track.map_road.connect("checkpoint", self, "checkpoint") != OK:
+		print("Error connecting checkpoint signal!")
+	if cp_timer.connect("timeout", self, "checkpoint_timer_signal") != OK:
+		print("Error connecting checkpoint timer signal!")
 	if not offline_mode:
 		_server.connect_to_client()
 		yield(_server, "connection_to_client")
 	else:
 		_server.offline_mode = true
 	print(get_physics_process_delta_time())
-	if track.connect("update_best_lap_time", self, "update_best_lap_time") != OK:
-		print("Error connecting best lap label signal!")
-	if track.map_road.connect("checkpoint", self, "checkpoint") != OK:
-		print("Error connecting best lap label signal!")
-	if cp_timer.connect("timeout", self, "checkpoint_timer_signal") != OK:
-		print("Error connecting checkpoint timer signal!")
 
 
 func update_best_lap_time(lap_time: int):

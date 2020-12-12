@@ -193,7 +193,7 @@ func get_track_completion(position_vector: Vector2) -> float:
 			print("Checkpoint: ", checkpoint_position)
 			if checkpoint_position == 0 or checkpoint_check[checkpoint_position - 1] == true:
 				checkpoint_check[checkpoint_position] = true
-				emit_signal("checkpoint",timer.get_stopwatch_time_msecs(), checkpoint_position)
+				emit_signal("checkpoint", timer.get_stopwatch_time_msecs(), checkpoint_position)
 	percentage = 100.0 * float(completion_matrix[pos.y][pos.x]) / float(road_cells_positions.size())
 	
 	return percentage if percentage >= 0 else -1.0
