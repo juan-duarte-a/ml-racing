@@ -15,6 +15,9 @@ export var _turn_angle: float = 35 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 export var max_tire_rotation: float = 30 # Degrees.
 export var turning_mode: int = TURN_MODE.FIXED_ANGLE
+export var min_turning_angle: int = 20
+export var max_turning_angle: int = 35
+export var turning_factor: float = 4.0
 
 onready var camera: Camera2D = get_node("Camera2D")
 onready var ray_cast_l: CarRayCastHD = get_node("RayCasts/CarRayCastHDL")
@@ -38,6 +41,7 @@ onready var radar: Array = [
 
 var _speed: int # In pixels / second.
 var speeds: Array
+var turning_angles: Array
 var road: TrackRoadHD
 var velocity: Vector2
 var direction: Vector2
@@ -59,10 +63,12 @@ var wheel_tween2: Tween
 var zoom_tween: Tween
 var zoom: float
 var zoom_step: float
+var ready: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var speed_granularity: int
+	var turning_granularity: int
 	
 	direction = Vector2(1, 0)
 	velocity = Vector2(0, 0)
@@ -74,6 +80,7 @@ func _ready():
 	prev_speed_factor = speed_factor
 	tires_off_road = 0
 	accum_tire_rotation_time = 0
+	
 	if get_parent().name != "root":
 		road = get_parent().get_node("TrackRoadHD")
 	
@@ -84,14 +91,17 @@ func _ready():
 	zoom_tween = Tween.new()
 	add_child(zoom_tween)
 	
-	# warning-ignore:integer_division
 	speeds.append(0)
 	if gears > 1:
+		# warning-ignore:integer_division
 		speed_granularity = (high_speed - low_speed) / (gears - 1)
+		# warning-ignore:integer_division
+		turning_granularity = (max_turning_angle - min_turning_angle) / (gears - 1)
 	else:
 		speed_granularity = 0
 	for s in range (gears):
 		speeds.append(low_speed + speed_granularity * s)
+		turning_angles.append(max_turning_angle - turning_granularity * s)
 	_speed = speeds[0]
 	gear = 0
 	
@@ -236,7 +246,8 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 	#		print(direction)
 	#		print("Turning finish time: ", OS.get_ticks_msec())
 	elif turning_mode == TURN_MODE.USER_CONTROLLED:
-		rotation_speed = abs(_speed / (W / sin(deg2rad(turn_angle)))) * 3
+		turn_angle = turning_angles[gear - 1]
+		rotation_speed = abs(_speed / (W / sin(deg2rad(turn_angle)))) * turning_factor
 #		print(_speed, " - ", W, " - ", turn_angle, " - ", rad2deg(rotation_speed))
 		angle = rotation_speed * delta
 		accum_tire_rotation_time += delta
@@ -261,17 +272,42 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 		wheel_tween2.start()
 
 
-func set_speed(speed: int):
-	pass
-
-
 func get_distance_front() -> int:
 	return int((radar[3] as CarRayCastHD).get_distance())
 
 
-func get_distance_from_center() -> int:
+func get_distance_left() -> int:
+	return int((radar[0] as CarRayCastHD).get_distance())
+
+
+func get_distance_right() -> int:
+	return int((radar[6] as CarRayCastHD).get_distance())
+
+
+func get_distance_left_30deg() -> int:
+	return int((radar[1] as CarRayCastHD).get_distance())
+
+
+func get_distance_right_30deg() -> int:
+	return int((radar[5] as CarRayCastHD).get_distance())
+
+
+func get_distance_left_60deg() -> int:
+	return int((radar[2] as CarRayCastHD).get_distance())
+
+
+func get_distance_right_60deg() -> int:
+	return int((radar[4] as CarRayCastHD).get_distance())
+
+
+func get_distance_from_center(percentage_mode: bool = false) -> int:
 	# warning-ignore:integer_division
-	return int(ray_cast_l.get_distance() - ray_cast_r.get_distance()) / 2
+	var center_distance: int = int(ray_cast_l.get_distance() - ray_cast_r.get_distance()) / 2
+	if percentage_mode:
+		if ray_cast_l.get_distance() > 0 or ray_cast_r.get_distance() > 0:
+			# warning-ignore:narrowing_conversion
+			center_distance = 1000 * center_distance / (ray_cast_l.get_distance() + ray_cast_r.get_distance()) * 2
+	return center_distance
 
 
 func is_oriented() -> bool:
@@ -426,7 +462,8 @@ func _physics_process(delta):
 	
 	if get_parent().get_name() != "root":
 		get_parent().get_parent().get_parent().update_corner_vectors()
-	update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
+	if ready:
+		update_l_r_raycasts() # This is a must to force distance_to_center raycasts update in time.
 	
 #	print(ray_cast_l.get_distance() + ray_cast_r.get_distance())
 #	print(road.get_track_completion(front_position.get_global_position()))

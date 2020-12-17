@@ -326,8 +326,9 @@ func _update_state_labels():
 		temp_str = "No"
 	is_oriented_lbl.set_text(temp_str)
 	off_road_tires_lbl.set_text(str(track.state_variables[1]))
-	front_distance_lbl.set_text(str(track.state_variables[2]))
-	center_distance_lbl.set_text(str(track.state_variables[3]))
+	front_distance_lbl.set_text(str("%.2f" % float(track.state_variables[2] / 100.0)))
+	center_distance_lbl.set_text(str("%.1f" % float(track.state_variables[9] / 10.0) + " %"))
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -249,10 +249,6 @@ func update_turn_angle(delta: float, left: bool, turn_angle: float = _turn_angle
 		wheel_tween2.start()
 
 
-func set_speed(speed: int):
-	pass
-
-
 func get_distance_front() -> int:
 	return int((radar[3] as CarRayCast).get_distance())
 

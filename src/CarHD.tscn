@@ -5,24 +5,26 @@
 [ext_resource path="res://src/CarTire.gd" type="Script" id=3]
 [ext_resource path="res://assets/tire1.png" type="Texture" id=6]
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=1]
 flags = 12
 load_path = "res://.import/Car_3_01.png-f31bd24ad4bf64b0daa01f2b62c85ac2.stex"
 
-[sub_resource type="CircleShape2D" id=1]
-
 [sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="CircleShape2D" id=3]
 
 [node name="Car" type="KinematicBody2D"]
 scale = Vector2( 0.3, 0.3 )
 collision_mask = 6
 script = ExtResource( 2 )
 turning_mode = 1
+min_turning_angle = 35
+turning_factor = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 20, 0 )
 rotation = 1.5708
-texture = SubResource( 3 )
+texture = SubResource( 1 )
 
 [node name="CollisionPolygonD2" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -37,7 +39,7 @@ collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontPositioner"]
 scale = Vector2( 0.4, 0.4 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="RayCasts" type="Node2D" parent="."]
 
@@ -107,7 +109,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireFR"]
 scale = Vector2( 0.01, 0.01 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CarTireFL" type="Area2D" parent="Tires"]
 position = Vector2( 276, -162 )
@@ -124,7 +126,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireFL"]
 scale = Vector2( 0.01, 0.01 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CarTireBR" type="Area2D" parent="Tires"]
 position = Vector2( -280, 162 )
@@ -141,7 +143,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireBR"]
 scale = Vector2( 0.01, 0.01 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CarTireBL" type="Area2D" parent="Tires"]
 position = Vector2( -280, -162 )
@@ -158,7 +160,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tires/CarTireBL"]
 scale = Vector2( 0.01, 0.01 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1300, 0 )

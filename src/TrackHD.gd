@@ -8,6 +8,8 @@ signal reset(completion)
 
 const COMPLETION_VECTOR_SIZE = 1200
 
+export var auto_reset: bool = false
+
 var vision_machine_mode: bool
 var vision_radar_mode: bool
 var vision_center_distance: bool
@@ -29,6 +31,7 @@ var best_lap_time: int
 var state_variables: Array
 var running: bool
 var time_scale: float
+var reseting: bool
 
 onready var viewportrack: ViewportContainer = $ViewportTrack
 onready var viewport: Viewport = $ViewportTrack/Viewport
@@ -67,6 +70,7 @@ func _ready():
 	update_completion = true
 	lap_start = true
 	running = false
+	reseting = false
 	best_lap_time = 0
 	state_variables = []
 	
@@ -79,6 +83,7 @@ func _ready():
 	car.ray_cast_r.set_visible(vision_center_distance)
 	car.set_tires_visible(false)
 	car.direction = Vector2(-1,0)
+	
 	get_node("ViewportTrack/Viewport/TrackRoadHD/CornerLines").set_visible(false)
 	
 	err = car.connect("run", self, "run_start")
@@ -121,10 +126,9 @@ func calculate_track_completion():
 				map_road.to_local(completion_car_sensor.get_collision_point()))
 		if waypoint_distance == 0:
 			waypoint_distance = 0.000001
-	
-	track_completion = map_road.get_track_completion(car.front_position.get_global_position())
-	track_completion = track_completion + map_road.get_completion_step() * \
-			(1 - waypoint_distance / map_road.get_cell_size().x)
+		track_completion = map_road.get_track_completion(car.front_position.get_global_position())
+		track_completion = track_completion + map_road.get_completion_step() * \
+				(1 - waypoint_distance / map_road.get_cell_size().x)
 
 
 func handle_input_events():
@@ -220,12 +224,21 @@ func update_time_label(lap_time: bool = false, update: bool = true):
 
 
 func update_state():
-	state_variables.clear()
-	state_variables.append(car.is_oriented())
-	state_variables.append(car.tires_off_road)
-	state_variables.append(car.get_distance_front())
-	state_variables.append(car.get_distance_from_center())
-	state_variables.append(stepify(track_completion, 0.001))
+	if not reseting:
+		state_variables.clear()
+		state_variables.append(car.is_oriented())
+		state_variables.append(car.tires_off_road)
+		state_variables.append(car.get_distance_front())
+		state_variables.append(car.get_distance_left())
+		state_variables.append(car.get_distance_right())
+		state_variables.append(car.get_distance_left_30deg())
+		state_variables.append(car.get_distance_right_30deg())
+		state_variables.append(car.get_distance_left_60deg())
+		state_variables.append(car.get_distance_right_60deg())
+		state_variables.append(car.get_distance_from_center(true))
+		state_variables.append(stepify(track_completion, 0.001))
+	else:
+		reseting = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -241,11 +254,17 @@ func _physics_process(_delta):
 #		print("Oriented: ", car.is_oriented())
 #	if show_center_distance:
 #		print("From center: ", car.get_distance_from_center())
-	
 	calculate_track_completion()
 	update_time_label(false, update_timer)
 	update_track_completion(update_completion)
-	update_state()
+	if car.ready:
+		update_state()
+		if auto_reset:
+			if state_variables[1] > 2 or \
+					not map_road.on_road(car.front_position.get_global_position()):
+				reset_track(true)
+	else:
+		car.ready = true
 
 
 func run_start():
@@ -254,6 +273,8 @@ func run_start():
 
 
 func reset_track(incomplete: bool = false):
+	reseting = true
+	state_variables[1] = 0
 	timer.stop_stopwatch()
 	timer.reset_stopwatch()
 	car.reset()
