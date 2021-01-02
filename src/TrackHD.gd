@@ -32,6 +32,7 @@ var state_variables: Array
 var running: bool
 var time_scale: float
 var reseting: bool
+var done: bool
 
 onready var viewportrack: ViewportContainer = $ViewportTrack
 onready var viewport: Viewport = $ViewportTrack/Viewport
@@ -71,6 +72,7 @@ func _ready():
 	lap_start = true
 	running = false
 	reseting = false
+	done = false
 	best_lap_time = 0
 	state_variables = []
 	
@@ -194,6 +196,7 @@ func handle_input_events():
 			map_background.set_visible(true)
 			map_road.set_visible(true)
 			map_terrain.set_visible(true)
+			road_details.set_visible(true)
 			car.get_node("Sprite").set_visible(true)
 			car.set_tires_visible(false)
 			car.ray_cast_l.set_visible(false)
@@ -237,6 +240,7 @@ func update_state():
 		state_variables.append(car.get_distance_right_60deg())
 		state_variables.append(car.get_distance_from_center(true))
 		state_variables.append(stepify(track_completion, 0.001))
+		state_variables.append(done)
 	else:
 		reseting = false
 
@@ -270,10 +274,12 @@ func _physics_process(_delta):
 func run_start():
 	timer.start_stopwatch()
 	running = true
+	done = false
 
 
 func reset_track(incomplete: bool = false):
 	reseting = true
+	done = true
 	state_variables[1] = 0
 	timer.stop_stopwatch()
 	timer.reset_stopwatch()

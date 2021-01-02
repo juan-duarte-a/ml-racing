@@ -81,22 +81,26 @@ func get_stopwatch_time() -> Dictionary:
 	return track_time
 
 
-func msecs_to_string(msecs: int) -> String:
+func msecs_to_string(msecs: int, secs: bool = false) -> String:
 	var track_time: String
 	var _hours: int  
 	var minutes: int
 	var seconds: int
 	var milliseconds: int
 	
-	# warning-ignore:integer_division
-	_hours = msecs  / 3600000
-	# warning-ignore:integer_division
-	minutes = (msecs % 3600000) / 60000
-	# warning-ignore:integer_division
-	seconds = (msecs % 3600000) % 60000 / 1000
+	if not secs:
+		# warning-ignore:integer_division
+		_hours = msecs  / 3600000
+		# warning-ignore:integer_division
+		minutes = (msecs % 3600000) / 60000
+		# warning-ignore:integer_division
+		seconds = (msecs % 3600000) % 60000 / 1000
+	else:
+		# warning-ignore:integer_division
+		seconds = msecs / 1000
 	milliseconds = (msecs % 3600000) % 60000 % 1000
 	
-	track_time = str("%0*d" % [2, minutes]) + ":" + \
+	track_time = ((str("%0*d" % [2, minutes]) + ":") if not secs else "") + \
 				str("%0*d" % [2, seconds]) + \
 				str(":%0*d" % [3, milliseconds]) 
 	

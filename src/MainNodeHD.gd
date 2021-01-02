@@ -15,22 +15,24 @@ onready var cp_timer: Timer = $CheckPointsTimer
 onready var _server: ServerHD = $Server
 onready var track: TrackHD = $HBoxContainer/Track
 onready var best_lap_label: Label = \
-		$HBoxContainer/ColorRect2/VBoxContainer/CenterContainer2/BestLapLabel
+		$HBoxContainer/InfoRect/VBoxContainer/CenterContainer2/BestLapLabel
+onready var lap_completed_label: Label = \
+		$HBoxContainer/InfoRect/VBoxContainer/CenterContainer6/HBoxContainer/LapCompletedLabel
 onready var avg_completion_label: Label = \
-		$HBoxContainer/ColorRect2/VBoxContainer/CenterContainer6/HBoxContainer/AvgCompletedLabel
+		$HBoxContainer/InfoRect/VBoxContainer/CenterContainer7/HBoxContainer/AvgCompletedLabel
 
 onready var checkpoint_labels: Array = [
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label1-2",
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label2-2",
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label3-2",
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label4-2"
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label1-2",
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label2-2",
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label3-2",
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label4-2"
 ]
 
 onready var best_checkpoint_labels: Array = [
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label1-3",
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label2-3",
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label3-3",
-	$"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer4/CheckpointsLabels/Label4-3"
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label1-3",
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label2-3",
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label3-3",
+	$"HBoxContainer/InfoRect/VBoxContainer/CenterContainer4/CheckpointsLabels/Label4-3"
 ]
 
 
@@ -69,7 +71,7 @@ func checkpoint(time, pos: int):
 	time_delta = time
 	if pos != 0:
 		time_delta -= accumulated_checkpoint_time
-	(checkpoint_labels[pos] as Label).set_text(track.get_node("Timer").msecs_to_string(time_delta))
+	(checkpoint_labels[pos] as Label).set_text(track.get_node("Timer").msecs_to_string(time_delta, true))
 	checkpoints_time.append(time_delta)
 	if _server.attemps == 0 or checkpoints_time[checkpoints_time.size() - 1] < \
 			best_checkpoints_time[checkpoints_time.size() - 1] or \
@@ -97,7 +99,7 @@ func checkpoint_timer_signal():
 			(checkpoint_labels[i] as Label).set_text(
 					track.get_node("Timer").msecs_to_string(checkpoints_time[i]))
 		else:
-			(checkpoint_labels[i] as Label).set_text("--:--:---")
+			(checkpoint_labels[i] as Label).set_text("--:---")
 		for l in checkpoint_labels:
 			(l as Label).set_modulate("ffffff")
 
@@ -106,7 +108,12 @@ func update_best_checkpoints():
 	for i in range(best_checkpoints_time.size()):
 		if best_checkpoints_time[i] != -1:
 			(best_checkpoint_labels[i] as Label).set_text(
-					track.get_node("Timer").msecs_to_string(best_checkpoints_time[i]))
+					track.get_node("Timer").msecs_to_string(best_checkpoints_time[i], true))
+
+
+func update_lap_completion(num_lap: int):
+	lap_completed_label.set_text("%d (%.1f" % [_server.completed_laps, 
+			float(100.0 * num_lap/(_server.attemps))] + " %)")
 
 
 func update_average_completion(track_completion: float):

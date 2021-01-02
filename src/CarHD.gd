@@ -162,10 +162,14 @@ func set_action(action: int, value: int = -1):
 	elif action == ACTIONS.CENTER_WHEEL:
 		if velocity != Vector2.ZERO:
 			# warning-ignore:return_value_discarded
-			wheel_tween1.interpolate_property(frt, "rotation_degrees", null, 90, 0.2, \
+			wheel_tween1.stop(frt)
+			# warning-ignore:return_value_discarded
+			wheel_tween2.stop(flt)
+			# warning-ignore:return_value_discarded
+			wheel_tween1.interpolate_property(frt, "rotation_degrees", null, 90, 0.15, \
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			# warning-ignore:return_value_discarded
-			wheel_tween2.interpolate_property(flt, "rotation_degrees", null, 90, 0.2, \
+			wheel_tween2.interpolate_property(flt, "rotation_degrees", null, 90, 0.15, \
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			# warning-ignore:return_value_discarded
 			wheel_tween1.start()

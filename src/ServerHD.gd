@@ -17,6 +17,7 @@ var _data_action: Array
 var update_state: bool
 var test: bool
 var attemps: int
+var completed_laps: int
 var update_frames: int
 
 const ACTION: int = 65
@@ -67,15 +68,15 @@ onready var server_timer: Timer = $ServerTimer
 onready var car: CarHD = get_parent().get_node("HBoxContainer/Track/ViewportTrack/Viewport/Car")
 onready var track: TrackHD = get_parent().get_node("HBoxContainer/Track")
 onready var attemps_lbl = get_parent().get_node(
-			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer3/GridContainer/AttempsLabel")
+			"HBoxContainer/InfoRect/VBoxContainer/CenterContainer3/GridContainer/AttempsLabel")
 onready var is_oriented_lbl = get_parent().get_node(
-			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label1-2")
+			"HBoxContainer/InfoRect/VBoxContainer/CenterContainer5/GridContainer/Label1-2")
 onready var off_road_tires_lbl = get_parent().get_node(
-			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label2-2")
+			"HBoxContainer/InfoRect/VBoxContainer/CenterContainer5/GridContainer/Label2-2")
 onready var front_distance_lbl = get_parent().get_node(
-			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label3-2")
+			"HBoxContainer/InfoRect/VBoxContainer/CenterContainer5/GridContainer/Label3-2")
 onready var center_distance_lbl = get_parent().get_node(
-			"HBoxContainer/ColorRect2/VBoxContainer/CenterContainer5/GridContainer/Label4-2")
+			"HBoxContainer/InfoRect/VBoxContainer/CenterContainer5/GridContainer/Label4-2")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -87,6 +88,7 @@ func _ready():
 	test = false
 	attemps = 0
 	update_frames = 1
+	completed_laps = 0
 	
 	if track.connect("lap_stats", self, "send_lap_stats") != OK:
 		print("Error connecting 'lap_stats' signal!")
@@ -143,7 +145,8 @@ func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 
 # Handles the communication with the client.
 # Should be called as a thread.
-# delay: time in seconds before restarting the cycle (time client wait for response, only in action requests)
+# delay: time in seconds before restarting the cycle (time client wait 
+# 	for response, only in action requests)
 func handle_communication(delay: float = 0):
 	var bytes_available: int
 	
@@ -281,6 +284,7 @@ func send_state_variables():
 
 
 func send_lap_stats(lap_time: int):
+	completed_laps += 1
 	get_parent().checkpoint(lap_time, track.map_road.checkpoints.size())
 	reset(100)
 	
@@ -300,6 +304,7 @@ func reset(track_completion: float):
 	attemps += 1
 	attemps_lbl.set_text(str(attemps))
 	get_parent().reset_checkpoints()
+	get_parent().update_lap_completion(completed_laps)
 	get_parent().update_average_completion(track_completion)
 
 
