@@ -767,16 +767,16 @@ points = PoolVector2Array( 176, 288, 176, 208, 208, 192, 272, 192, 304, 208, 304
 } ]
 10/z_index = 0
 
+[sub_resource type="DynamicFont" id=39]
+size = 32
+font_data = ExtResource( 38 )
+
 [sub_resource type="StyleBoxFlat" id=38]
 bg_color = Color( 0, 0, 0, 0.352941 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="DynamicFont" id=39]
-size = 32
-font_data = ExtResource( 38 )
 
 [sub_resource type="Animation" id=40]
 length = 5.0
@@ -787,10 +787,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 4.5, 5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("UICanvas/VBoxContainer/CompletionLabel:custom_colors/font_color")
@@ -799,10 +799,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 4.5, 5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 0.0117647, 0.784314, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="DynamicFont" id=41]
@@ -926,14 +926,10 @@ format = 1
 tile_data = PoolIntArray( 3, 1, 0, 4, 7, 0, 5, 6, 0, 6, 5, 0, 7, 4, 0, 8, 2, 0, 65539, 9, 0, 65544, 11, 0, 131075, 0, 0, 131076, 6, 0, 131077, 7, 0, 131078, 2, 0, 131080, 10, 0, 196609, 1, 0, 196610, 5, 0, 196611, 7, 0, 196612, 4, 0, 196613, 7, 0, 196614, 3, 0, 196616, 9, 0, 262145, 9, 0, 262150, 1, 0, 262151, 6, 0, 262152, 3, 0, 327681, 8, 0, 327686, 9, 0, 393217, 0, 0, 393218, 4, 0, 393219, 5, 0, 393220, 6, 0, 393221, 7, 0, 393222, 3, 0 )
 script = ExtResource( 54 )
 
-[node name="CollisionRoadLimits" type="Node2D" parent="ViewportTrack/Viewport/TrackRoadHD" groups=[
-"road_limit",
-]]
+[node name="CollisionRoadLimits" type="Node2D" parent="ViewportTrack/Viewport/TrackRoadHD" groups=["road_limit"]]
 position = Vector2( 0, -196 )
 
-[node name="Road_limit1" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit1" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 2048, 2756 )
 collision_layer = 8
 collision_mask = 0
@@ -942,9 +938,7 @@ collision_mask = 0
 scale = Vector2( 10.8173, 22.6466 )
 shape = SubResource( 4 )
 
-[node name="Road_limit2" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit2" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 2560, 3908 )
 collision_layer = 8
 collision_mask = 0
@@ -953,9 +947,7 @@ collision_mask = 0
 scale = Vector2( 28.2555, 32.5118 )
 shape = SubResource( 5 )
 
-[node name="Road_limit3" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit3" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 256, 1860 )
 collision_layer = 8
 collision_mask = 0
@@ -964,9 +956,7 @@ collision_mask = 0
 scale = Vector2( 7.29726, 8.78161 )
 shape = SubResource( 6 )
 
-[node name="Road_limit4" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit4" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 1024, 836 )
 collision_layer = 8
 collision_mask = 0
@@ -975,9 +965,7 @@ collision_mask = 0
 scale = Vector2( 5.99828, 3.97213 )
 shape = SubResource( 7 )
 
-[node name="Road_limit5" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit5" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 3840, 1476 )
 collision_layer = 8
 collision_mask = 0
@@ -986,9 +974,7 @@ collision_mask = 0
 scale = Vector2( 6.47214, 6.68217 )
 shape = SubResource( 8 )
 
-[node name="Road_limit6" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit6" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 2816, 964 )
 collision_layer = 8
 collision_mask = 0
@@ -997,9 +983,7 @@ collision_mask = 0
 scale = Vector2( 3.57769, 11.2248 )
 shape = SubResource( 9 )
 
-[node name="Road_limit7" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit7" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 4352, 3268 )
 collision_layer = 8
 collision_mask = 0
@@ -1008,9 +992,7 @@ collision_mask = 0
 scale = Vector2( 9.33293, 6.32089 )
 shape = SubResource( 10 )
 
-[node name="Road_limit8" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit8" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 4864, 1476 )
 collision_layer = 8
 collision_mask = 0
@@ -1019,9 +1001,7 @@ collision_mask = 0
 scale = Vector2( 5.18936, 6.50129 )
 shape = SubResource( 11 )
 
-[node name="Road_limit9" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit9" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 3328, 68 )
 collision_layer = 8
 collision_mask = 0
@@ -1030,9 +1010,7 @@ collision_mask = 0
 scale = Vector2( 4.50375, 9.13696 )
 shape = SubResource( 12 )
 
-[node name="Road_limit10" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit10" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 512, 3780 )
 collision_layer = 8
 collision_mask = 0
@@ -1040,9 +1018,7 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit10"]
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit11" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit11" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 512, 1732 )
 collision_layer = 8
 collision_mask = 0
@@ -1051,9 +1027,7 @@ collision_mask = 0
 rotation = 1.5708
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit12" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit12" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 3584, 2244 )
 collision_layer = 8
 collision_mask = 0
@@ -1062,9 +1036,7 @@ collision_mask = 0
 rotation = -1.5708
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit13" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit13" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 3584, 1220 )
 collision_layer = 8
 collision_mask = 0
@@ -1073,9 +1045,7 @@ collision_mask = 0
 rotation = 3.14159
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit14" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit14" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 1536, 1732 )
 collision_layer = 8
 collision_mask = 0
@@ -1083,9 +1053,7 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits/Road_limit14"]
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit15" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit15" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 1536, 196 )
 collision_layer = 8
 collision_mask = 0
@@ -1094,9 +1062,7 @@ collision_mask = 0
 rotation = 1.5708
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit16" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit16" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 4608, 196 )
 collision_layer = 8
 collision_mask = 0
@@ -1105,9 +1071,7 @@ collision_mask = 0
 rotation = 3.14159
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit17" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit17" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 4608, 2756 )
 collision_layer = 8
 collision_mask = 0
@@ -1116,9 +1080,7 @@ collision_mask = 0
 rotation = -1.5708
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit18" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit18" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 3072, 2244 )
 collision_layer = 8
 collision_mask = 0
@@ -1127,9 +1089,7 @@ collision_mask = 0
 rotation = 1.5708
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit19" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit19" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 3584, 3780 )
 collision_layer = 8
 collision_mask = 0
@@ -1138,9 +1098,7 @@ collision_mask = 0
 rotation = -1.5708
 polygon = PoolVector2Array( 0, 0, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road_limit20" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="Road_limit20" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 position = Vector2( 2560, 1732 )
 collision_layer = 8
 collision_mask = 0
@@ -1149,9 +1107,7 @@ collision_mask = 0
 scale = Vector2( 1.01, 0.4 )
 shape = SubResource( 13 )
 
-[node name="RoadCurveLimits" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=[
-"road_limit",
-]]
+[node name="RoadCurveLimits" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/CollisionRoadLimits" groups=["road_limit"]]
 visible = false
 collision_layer = 0
 collision_mask = 0
@@ -1176,15 +1132,11 @@ polygon = PoolVector2Array( 247, -78, 204, -121, 310, -53.7 )
 position = Vector2( 512, 3780 )
 polygon = PoolVector2Array( 78, -247, 121, -204, 53.7, -310 )
 
-[node name="RoadCollisionShapes" type="Node2D" parent="ViewportTrack/Viewport/TrackRoadHD" groups=[
-"road",
-]]
+[node name="RoadCollisionShapes" type="Node2D" parent="ViewportTrack/Viewport/TrackRoadHD" groups=["road"]]
 visible = false
 position = Vector2( 0, -196 )
 
-[node name="Road1" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road1" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 2048, 3524 )
 collision_layer = 2
 
@@ -1192,9 +1144,7 @@ collision_layer = 2
 scale = Vector2( 9.46559, 9.10359 )
 shape = SubResource( 14 )
 
-[node name="Road2" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road2" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 768, 2756 )
 collision_layer = 2
 
@@ -1202,9 +1152,7 @@ collision_layer = 2
 scale = Vector2( 9.41872, 7.9295 )
 shape = SubResource( 15 )
 
-[node name="Road3" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road3" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 2048, 1988 )
 collision_layer = 2
 
@@ -1212,9 +1160,7 @@ collision_layer = 2
 scale = Vector2( 12.3796, 10.8338 )
 shape = SubResource( 16 )
 
-[node name="Road4" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road4" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 2560, 1476 )
 collision_layer = 2
 
@@ -1222,9 +1168,7 @@ collision_layer = 2
 scale = Vector2( 10.1199, 9.4892 )
 shape = SubResource( 17 )
 
-[node name="Road5" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road5" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 1792, 964 )
 collision_layer = 2
 
@@ -1232,9 +1176,7 @@ collision_layer = 2
 scale = Vector2( 7.02642, 5.94897 )
 shape = SubResource( 18 )
 
-[node name="Road6" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road6" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3072, 452 )
 collision_layer = 2
 
@@ -1242,9 +1184,7 @@ collision_layer = 2
 scale = Vector2( 4.06409, 6.48496 )
 shape = SubResource( 19 )
 
-[node name="Road7" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road7" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 4352, 1476 )
 collision_layer = 2
 
@@ -1252,9 +1192,7 @@ collision_layer = 2
 scale = Vector2( 8.69246, 8.47955 )
 shape = SubResource( 20 )
 
-[node name="Road8" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road8" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3840, 2500 )
 collision_layer = 2
 
@@ -1262,9 +1200,7 @@ collision_layer = 2
 scale = Vector2( 15.1502, 27.5125 )
 shape = SubResource( 21 )
 
-[node name="Road9" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road9" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3328, 3012 )
 collision_layer = 2
 
@@ -1272,18 +1208,14 @@ collision_layer = 2
 scale = Vector2( 15.1502, 27.5125 )
 shape = SubResource( 21 )
 
-[node name="Road10" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road10" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 512, 3780 )
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road10"]
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road11" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road11" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 512, 1732 )
 collision_layer = 2
 
@@ -1291,9 +1223,7 @@ collision_layer = 2
 rotation = 1.5708
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road12" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road12" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3584, 2244 )
 collision_layer = 2
 
@@ -1301,9 +1231,7 @@ collision_layer = 2
 rotation = -1.5708
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road13" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road13" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3584, 1220 )
 collision_layer = 2
 
@@ -1311,18 +1239,14 @@ collision_layer = 2
 rotation = 3.14159
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road14" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road14" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 1536, 1732 )
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes/Road14"]
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road15" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road15" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 1536, 196 )
 collision_layer = 2
 
@@ -1330,9 +1254,7 @@ collision_layer = 2
 rotation = 1.5708
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road16" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road16" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 4608, 196 )
 collision_layer = 2
 
@@ -1340,9 +1262,7 @@ collision_layer = 2
 rotation = 3.14159
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road17" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road17" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 4608, 2756 )
 collision_layer = 2
 
@@ -1350,9 +1270,7 @@ collision_layer = 2
 rotation = -1.5708
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road18" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road18" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3072, 2244 )
 collision_layer = 2
 
@@ -1360,9 +1278,7 @@ collision_layer = 2
 rotation = 1.5708
 polygon = PoolVector2Array( 512, -512, 512, 0, 488, -3, 464, -6.5, 440, -11, 416, -17, 392, -24, 364, -33, 336, -44, 308, -57, 280, -72, 252, -88, 224, -108, 196, -130, 168, -156, 140, -186, 112, -220, 84, -260, 60, -302, 40, -346, 28, -380, 18, -412, 10, -446, 4, -484, 0, -512 )
 
-[node name="Road19" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=[
-"road",
-]]
+[node name="Road19" type="Area2D" parent="ViewportTrack/Viewport/TrackRoadHD/RoadCollisionShapes" groups=["road"]]
 position = Vector2( 3584, 3780 )
 collision_layer = 2
 
@@ -1992,9 +1908,9 @@ __meta__ = {
 [node name="CompletionLabel" type="Label" parent="UICanvas/VBoxContainer"]
 margin_right = 160.0
 margin_bottom = 40.0
-custom_styles/normal = SubResource( 38 )
+custom_colors/font_color = Color( 0.0117647, 0.784314, 1, 1 )
 custom_fonts/font = SubResource( 39 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_styles/normal = SubResource( 38 )
 text = "Comp. %"
 align = 1
 valign = 1
@@ -2003,9 +1919,9 @@ valign = 1
 margin_top = 44.0
 margin_right = 160.0
 margin_bottom = 84.0
-custom_styles/normal = SubResource( 38 )
+custom_colors/font_color = Color( 0.0117647, 0.784314, 1, 1 )
 custom_fonts/font = SubResource( 39 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_styles/normal = SubResource( 38 )
 text = "00:00:00"
 align = 1
 valign = 1
@@ -2060,8 +1976,8 @@ margin_left = 365.0
 margin_right = 595.0
 margin_bottom = 65.0
 rect_min_size = Vector2( 230, 65 )
-custom_fonts/normal_font = SubResource( 41 )
 custom_colors/default_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+custom_fonts/normal_font = SubResource( 41 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=40 freq=5 ]ML-Racing[/wave]"
 text = "ML-Racing"
@@ -2074,11 +1990,11 @@ margin_left = 377.0
 margin_top = 6.0
 margin_right = 582.0
 margin_bottom = 58.0
-custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 0.956863, 0.956863, 0.956863, 1 )
 custom_colors/font_outline_modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 42 )
 text = "ML-Racing"
 align = 1
 
@@ -2098,9 +2014,9 @@ margin_bottom = 607.0
 margin_left = 297.0
 margin_right = 662.0
 margin_bottom = 360.0
-custom_fonts/font = SubResource( 43 )
 custom_colors/font_color = Color( 0.956863, 0.956863, 0.956863, 1 )
 custom_colors/font_outline_modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+custom_fonts/font = SubResource( 43 )
 text = "[F1] = Abrir/cerrar ayuda
 [R] = Radar ON/OFF
 [D] = Radar lateral ON/OFF
@@ -2112,5 +2028,6 @@ text = "[F1] = Abrir/cerrar ayuda
 [NUM +] = Aumentar zoom
 [NUM -] = Disminuir zoom
 [ESC] = Restablecer vista"
+
 [connection signal="area_exited" from="ViewportTrack/Viewport/TrackRoadHD/FinishLine" to="." method="_on_FinishLine_area_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

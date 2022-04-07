@@ -123,6 +123,7 @@ func calculate_track_completion():
 				map_road.to_local(car.front_position.get_global_position())).normalized() * \
 						COMPLETION_VECTOR_SIZE)
 	completion_car_sensor.force_raycast_update()
+	
 	if map_road.on_road(car.front_position.get_global_position()):
 		waypoint_distance = map_road.to_local(car.front_position.get_global_position()).distance_to(
 				map_road.to_local(completion_car_sensor.get_collision_point()))
@@ -158,7 +159,10 @@ func handle_input_events():
 		for ray in car.radar:
 			ray.set_visible(!ray.is_visible())
 		if vision_front_distance:
-			car.radar[3].set_visible(!car.radar[3].is_visible())
+			if vision_radar_mode:
+				car.radar[3].set_visible(vision_front_distance)
+			else:
+				car.radar[3].set_visible(true)
 		if not vision_machine_mode:
 			vision_radar_mode = !vision_radar_mode
 	elif Input.is_action_just_pressed("vision_center_distance"):
@@ -169,10 +173,9 @@ func handle_input_events():
 		if not vision_machine_mode:
 			vision_center_distance = !vision_center_distance
 	elif Input.is_action_just_pressed("front_distance"):
-		car.radar[3].set_visible(!car.radar[3].is_visible())
-		if vision_radar_mode:
-			car.radar[3].set_visible(!vision_radar_mode)
-		if not vision_machine_mode:
+		if not vision_radar_mode:
+			car.radar[3].set_visible(!car.radar[3].is_visible())
+		if not vision_machine_mode and not vision_radar_mode:
 			vision_front_distance = !vision_front_distance
 	elif Input.is_action_just_pressed("car"):
 		car.get_node("Sprite").set_visible(!car.get_node("Sprite").is_visible())
@@ -184,11 +187,6 @@ func handle_input_events():
 			vision_tires = !vision_tires
 	elif Input.is_action_just_pressed("vision_oriented"):
 		vision_oriented = !vision_oriented
-	elif Input.is_action_just_pressed("center_distance"):
-		if vision_center_distance:
-			show_center_distance = false
-		else:
-			show_center_distance = !show_center_distance
 	elif Input.is_action_just_pressed("vision_off"):
 		if help_layer.is_visible():
 			help_layer.set_visible(false)

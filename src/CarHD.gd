@@ -14,7 +14,7 @@ export var gears: int = 2
 export var _turn_angle: float = 35 # In degrees.
 export var turn_velocity: float  = 20/0.2 # In degrees / sec.
 export var max_tire_rotation: float = 30 # Degrees.
-export var turning_mode: int = TURN_MODE.FIXED_ANGLE
+export var turning_mode: int = TURN_MODE.USER_CONTROLLED
 export var min_turning_angle: int = 20
 export var max_turning_angle: int = 35
 export var turning_factor: float = 4.0
@@ -161,6 +161,7 @@ func set_action(action: int, value: int = -1):
 #			print("Turning start time: ", OS.get_ticks_msec())
 	elif action == ACTIONS.CENTER_WHEEL:
 		if velocity != Vector2.ZERO:
+			turning = false
 			# warning-ignore:return_value_discarded
 			wheel_tween1.stop(frt)
 			# warning-ignore:return_value_discarded
@@ -171,11 +172,10 @@ func set_action(action: int, value: int = -1):
 			# warning-ignore:return_value_discarded
 			wheel_tween2.interpolate_property(flt, "rotation_degrees", null, 90, 0.15, \
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-			# warning-ignore:return_value_discarded
-			wheel_tween1.start()
-			# warning-ignore:return_value_discarded
-			wheel_tween2.start()
-			turning = false
+#			# warning-ignore:return_value_discarded
+#			wheel_tween1.start()
+#			# warning-ignore:return_value_discarded
+#			wheel_tween2.start()
 #		print("Turning start time: ", OS.get_ticks_msec())
 
 
