@@ -138,11 +138,16 @@ func connect_to_client(port_number1: int = port1, port_number2: int = port2):
 	
 	while _input_stream.get_available_bytes() <= packet_size:
 		_data = _input_stream.get_partial_data(packet_size) # Gets data sent by client.
+		print("Finishing connection", _data)
 		if _data[0] == OK and (_data[1] as PoolByteArray) == RESPONSES["CONNECTION_OK"]:
 			print("Connection syncronized.")
 			break
 			yield(server_timer, "timeout")
-
+		
+	if _input_stream.get_available_bytes() > packet_size:
+		_data = _input_stream.get_partial_data(packet_size) # Gets data sent by client.
+		print("Finishing connection ", (_data[1] as PoolByteArray).get_string_from_ascii())
+	
 	_online = true
 	send_state_variables()
 	emit_signal("connection_to_client", status)
