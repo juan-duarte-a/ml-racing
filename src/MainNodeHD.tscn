@@ -79,6 +79,7 @@ font_data = ExtResource( 5 )
 
 [node name="MainNode" type="Node"]
 script = ExtResource( 1 )
+comm_test = true
 time_scale = 3.0
 
 [node name="Server" type="Node" parent="."]
